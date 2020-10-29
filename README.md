@@ -46,7 +46,7 @@ The dataset contains ten subsets, and each subset (e.g., `pathmnist.npz`) is com
 
   `outputroot` is the root where you want to save testing results
 
-* Run our [`train.py`](./medmnist/train.py) script in terminal. 
+* Run our [`train.py`](./train.py) script in terminal. 
 
   First, change directory to where train.py locates. Then, use command `python train.py xxxmnist` to run the experiments, where `xxxmnist` is subset of our MedMNIST (e.g., `pathmnist`).
 
