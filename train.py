@@ -44,6 +44,9 @@ def main(flag):
     lr = 0.001
     batch_size = 128
     val_auc_list = []
+    dir_path = './%s_checkpoints' % (flag)
+    if not os.path.isdir(dir_path):
+        os.mkdir(dir_path)
 
     print('==> Preparing data..')
     train_transform = transforms.Compose([
@@ -85,13 +88,14 @@ def main(flag):
 
     for epoch in range(start_epoch, end_epoch + 1):
         train(model, optimizer, criterion, train_loader, device, task)
-        val(model, val_loader, device, val_auc_list, flag, task, epoch)
+        val(model, val_loader, device, val_auc_list, task, dir_path, epoch)
     
     auc_list = np.array(val_auc_list)
     index = auc_list.argmax()
     print('epoch %s is the best model' % (index))
 
-    restore_model_path = 'checkpoints_ResNet18/%s_checkpoints/ckpt_%d_auc_%.5f.pth' % (flag, index, auc_list[index])
+    print('==> Testing model..')
+    restore_model_path = os.path.join(dir_path, 'ckpt_%d_auc_%.5f.pth' % (index, auc_list[index]))
     model.load_state_dict(torch.load(restore_model_path)['net'])
     test(model, 'train', train_loader, device, flag, task)
     test(model, 'val', val_loader, device, flag, task)
@@ -125,14 +129,14 @@ def train(model, optimizer, criterion, train_loader, device, task):
         optimizer.step()
 
 
-def val(model, val_loader, device, val_auc_list, flag, task, epoch):
+def val(model, val_loader, device, val_auc_list, task, dir_path, epoch):
     ''' validation function
     :param model: the model to validate
     :param val_loader: DataLoader of validation set
     :param device: cpu or cuda
     :param val_auc_list: the list to save AUC score of each epoch
-    :param flag: subset name
     :param task: task of current dataset, binary-class/multi-class/multi-label, binary-class
+    :param dir_path: where to save model
     :param epoch: current epoch
 
     '''
@@ -150,9 +154,9 @@ def val(model, val_loader, device, val_auc_list, flag, task, epoch):
                 outputs = m(outputs).to(device)
             else:
                 targets = targets.squeeze().long().to(device)
-                m = nn.Softmax()
+                m = nn.Softmax(dim=1)
                 outputs = m(outputs).to(device)
-                targets = targets.resize_(len(targets), 1)
+                targets = targets.float().resize_(len(targets), 1)
 
             y_true = torch.cat((y_true, targets), 0)
             y_score = torch.cat((y_score, outputs), 0)
@@ -167,9 +171,7 @@ def val(model, val_loader, device, val_auc_list, flag, task, epoch):
         'auc': auc,
         'epoch': epoch,
     }
-    dir_path = 'checkpoints_ResNet18/%s_checkpoints' % (flag)
-    if not os.path.isdir(dir_path):
-        os.mkdir(dir_path)
+
     path = os.path.join(dir_path, 'ckpt_%d_auc_%.5f.pth' % (epoch, auc))
     torch.save(state, path)
 
@@ -199,9 +201,9 @@ def test(model, split, data_loader, device, flag, task):
                 outputs = m(outputs).to(device)
             else:
                 targets = targets.squeeze().long().to(device)
-                m = nn.Softmax()
+                m = nn.Softmax(dim=1)
                 outputs = m(outputs).to(device)
-                targets = targets.resize_(len(targets), 1)
+                targets = targets.float().resize_(len(targets), 1)
 
             y_true = torch.cat((y_true, targets), 0)
             y_score = torch.cat((y_score, outputs), 0)
