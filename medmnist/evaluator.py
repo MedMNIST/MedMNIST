@@ -5,6 +5,12 @@ import pandas as pd
 
 
 def getAUC(y_true, y_score, task):
+    '''AUC metric.
+    :param y_true: the ground truth labels, shape: (n_samples, n_classes) for multi-label, and (n_samples,) for other tasks
+    :param y_score: the predicted score of each class, shape: (n_samples, n_classes)
+    :param task: the task of current dataset
+
+    '''
     if task == 'binary-class':
         threshold = 0.5
         y_pre = np.zeros_like(y_true)
@@ -30,6 +36,12 @@ def getAUC(y_true, y_score, task):
 
 
 def getACC(y_true, y_score, task):
+    '''Accuracy metric.
+    :param y_true: the ground truth labels, shape: (n_samples, n_classes) for multi-label, and (n_samples,) for other tasks
+    :param y_score: the predicted score of each class, shape: (n_samples, n_classes)
+    :param task: the task of current dataset
+
+    '''
     if task == 'multi-label, binary-class':
         zero = np.zeros_like(y_score)
         one = np.ones_like(y_score)
@@ -55,6 +67,12 @@ def getACC(y_true, y_score, task):
 
 
 def save(y_true, y_score, outputpath):
+    '''Save ground truth and scores
+    :param y_true: the ground truth labels, shape: (n_samples, n_classes) for multi-label, and (n_samples,) for other tasks
+    :param y_score: the predicted score of each class, shape: (n_samples, n_classes)
+    :param outputpath: path to save the result csv
+
+    '''
     idx = []
 
     idx.append('id')

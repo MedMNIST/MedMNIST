@@ -1,5 +1,3 @@
-dataroot = r"/home/jiancheng/code/shirui/MedMNIST/data"
+dataroot = "..." # the root of our npz datasets. e.g., "/data"
 
-inforoot = r"/home/jiancheng/code/shirui/MedMNIST/data/medmnist.json"
-
-outputroot = r"/home/jiancheng/code/shirui/MedMNIST/result"
+outputroot = "..." # the root of saving our csv results. e.g., "/result"

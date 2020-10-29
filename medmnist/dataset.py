@@ -5,10 +5,20 @@ from torch.utils.data import Dataset
 from PIL import Image
 
 
+INFO = "medmnist/medmnist.json"
+
+
 class MedMNIST(Dataset):
+
     flag = ...
 
     def __init__(self, split='train', transform=None, target_transform=None):
+        ''' dataset
+        :param split: 'train', 'val' or 'test', select dataset
+        :param transform: data transformation
+        :param target_transform: target transformation
+    
+        '''
 
         npz_file = np.load(os.path.join(environ.dataroot,"{}.npz".format(self.flag)))
 

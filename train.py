@@ -1,11 +1,12 @@
 from medmnist.models import ResNet18, ResNet50
-from medmnist.dataset import *
-from medmnist.environ import inforoot, outputroot
-from medmnist.evaluator import *
+from medmnist.dataset import INFO, PathMNIST, ChestMNIST, DermaMNIST, OCTMNIST, PneumoniaMNIST, RetinaMNIST, BreastMNIST, OrganMNIST_Axial, OrganMNIST_Coronal, OrganMNIST_Sagittal
+from medmnist.environ import outputroot
+from medmnist.evaluator import getAUC, getACC, save
 
 import os
 import sys
 import json
+import numpy as np
 import torch
 import torch.nn as nn
 import torch.optim as optim
@@ -14,6 +15,11 @@ import torchvision.transforms as transforms
 
 
 def main(flag):
+    ''' main function
+    :param flag: name of subset
+
+    '''
+
     dataclass = {
         "pathmnist": PathMNIST,
         "chestmnist": ChestMNIST,
@@ -27,7 +33,7 @@ def main(flag):
         "organmnist_sagittal": OrganMNIST_Sagittal,
     }
 
-    with open(inforoot, 'r') as f:
+    with open(INFO, 'r') as f:
         info = json.load(f)
         task = info[flag]['task']
         n_channels = info[flag]['n_channels']
@@ -56,11 +62,14 @@ def main(flag):
     ])
 
     train_dataset = dataclass[flag](split='train', transform=train_transform)
-    train_loader = data.DataLoader(dataset=train_dataset, batch_size=batch_size, shuffle=True)
+    train_loader = data.DataLoader(
+        dataset=train_dataset, batch_size=batch_size, shuffle=True)
     val_dataset = dataclass[flag](split='val', transform=val_transform)
-    val_loader = data.DataLoader(dataset=val_dataset, batch_size=batch_size, shuffle=True)
+    val_loader = data.DataLoader(
+        dataset=val_dataset, batch_size=batch_size, shuffle=True)
     test_dataset = dataclass[flag](split='test', transform=test_transform)
-    test_loader = data.DataLoader(dataset=test_dataset, batch_size=batch_size, shuffle=True)
+    test_loader = data.DataLoader(
+        dataset=test_dataset, batch_size=batch_size, shuffle=True)
 
     print('==> Building model..')
 
@@ -76,19 +85,30 @@ def main(flag):
 
     for epoch in range(start_epoch, end_epoch + 1):
         train(model, optimizer, criterion, train_loader, device, task)
-        val(model, optimizer, val_loader, device, val_auc_list, flag, task, epoch)
+        val(model, val_loader, device, val_auc_list, flag, task, epoch)
+    
     auc_list = np.array(val_auc_list)
     index = auc_list.argmax()
     print('epoch %s is the best model' % (index))
 
     restore_model_path = 'checkpoints_ResNet18/%s_checkpoints/ckpt_%d_auc_%.5f.pth' % (flag, index, auc_list[index])
     model.load_state_dict(torch.load(restore_model_path)['net'])
-    test(model, optimizer, 'train', train_loader, device, flag, task)
-    test(model, optimizer, 'val', val_loader, device, flag, task)
-    test(model, optimizer, 'test', test_loader, device, flag, task)
+    test(model, 'train', train_loader, device, flag, task)
+    test(model, 'val', val_loader, device, flag, task)
+    test(model, 'test', test_loader, device, flag, task)
 
 
 def train(model, optimizer, criterion, train_loader, device, task):
+    ''' training function
+    :param model: the model to train
+    :param optimizer: optimizer used in training
+    :param criterion: loss function
+    :param train_loader: DataLoader of training set
+    :param device: cpu or cuda
+    :param task: task of current dataset, binary-class/multi-class/multi-label, binary-class
+
+    '''
+
     model.train()
     for batch_idx, (inputs, targets) in enumerate(train_loader):
         optimizer.zero_grad()
@@ -105,13 +125,23 @@ def train(model, optimizer, criterion, train_loader, device, task):
         optimizer.step()
 
 
-def val(model, optimizer, val_loader, device, val_auc_list, flag, task, epoch):
+def val(model, val_loader, device, val_auc_list, flag, task, epoch):
+    ''' validation function
+    :param model: the model to validate
+    :param val_loader: DataLoader of validation set
+    :param device: cpu or cuda
+    :param val_auc_list: the list to save AUC score of each epoch
+    :param flag: subset name
+    :param task: task of current dataset, binary-class/multi-class/multi-label, binary-class
+    :param epoch: current epoch
+
+    '''
+
     model.eval()
     y_true = torch.tensor([]).to(device)
     y_score = torch.tensor([]).to(device)
     with torch.no_grad():
         for batch_idx, (inputs, targets) in enumerate(val_loader):
-            optimizer.zero_grad()
             outputs = model(inputs.to(device))
 
             if task == 'multi-label, binary-class':
@@ -144,14 +174,23 @@ def val(model, optimizer, val_loader, device, val_auc_list, flag, task, epoch):
     torch.save(state, path)
 
 
-def test(model, optimizer, split, data_loader, device, flag, task):
+def test(model, split, data_loader, device, flag, task):
+    ''' testing function
+    :param model: the model to test
+    :param split: the data to test, 'train/val/test'
+    :param data_loader: DataLoader of data
+    :param device: cpu or cuda
+    :param flag: subset name
+    :param task: task of current dataset, binary-class/multi-class/multi-label, binary-class
+
+    '''
+
     model.eval()
     y_true = torch.tensor([]).to(device)
     y_score = torch.tensor([]).to(device)
 
     with torch.no_grad():
         for batch_idx, (inputs, targets) in enumerate(data_loader):
-            optimizer.zero_grad()
             outputs = model(inputs.to(device))
 
             if task == 'multi-label, binary-class':
@@ -172,6 +211,7 @@ def test(model, optimizer, split, data_loader, device, flag, task):
         auc = getAUC(y_true, y_score, task)
         acc = getACC(y_true, y_score, task)
         print('%s AUC: %.5f ACC: %.5f' % (split, auc, acc))
+
         outputdir = os.path.join(outputroot, flag)
         if not os.path.exists(outputdir):
             os.mkdir(outputdir)
