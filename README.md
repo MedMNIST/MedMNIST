@@ -34,6 +34,21 @@ Our MedMNIST dataset is available on [Dropbox](https://www.dropbox.com/sh/upxrsy
 
 The dataset contains ten subsets, and each subset (e.g., `pathmnist.npz`) is comprised of `train_images`, `train_labels`, `val_images`, `val_labels`, `test_images` and `test_labels`.
 
+# How to run the experiments
+
+* Download Dataset  [MedMNIST](https://www.dropbox.com/sh/upxrsyb5v8jxbso/AADOV0_6pC9Tb3cIACro1uUPa?dl=0).
+
+* Modify the paths
+
+  Specify `dataroot` and `outputroot` in  [./medmnist/environ.py](./medmnist/environ.py) 
+
+  `dataroot` is the root where you save our `npz` datasets
+
+  `outputroot` is the root where you want to save testing results
+
+* Run our [`train.py`](./medmnist/train.py) script in terminal. 
+
+  First, change directory to where train.py locates. Then, use command `python train.py xxxmnist` to run the experiments, where `xxxmnist` is subset of our MedMNIST (e.g., `pathmnist`).
 
 # LICENSE
 The code is under Apache-2.0 License.
