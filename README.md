@@ -13,11 +13,11 @@ Jiancheng Yang, Rui Shi, Bingbing Ni
 [arXiv](https://arxiv.org/abs/2010.14925)
 
 # Code Structure
-* [`medmnist/`](mylib/):
-    * [`dataset.py`](mylib/dataset.py): dataloaders of medmnist.
-    * [`models.py`](mylib/models.py): *ResNet-18* and *ResNet-50* models.
-    * [`evaluator.py`](mylib/evaluator.py): evaluate metrics.
-    * [`environ.py`](mylib/environ.py): roots.
+* [`medmnist/`](medmnist/):
+    * [`dataset.py`](medmnist/dataset.py): dataloaders of medmnist.
+    * [`models.py`](medmnist/models.py): *ResNet-18* and *ResNet-50* models.
+    * [`evaluator.py`](medmnist/evaluator.py): evaluate metrics.
+    * [`environ.py`](medmnist/environ.py): roots.
 * [`train.py`](train.py): the training script.
 
 # Requirements
