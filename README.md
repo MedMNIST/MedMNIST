@@ -59,15 +59,10 @@ If you find this project useful, please cite our paper as:
 or using bibtex:
      
      @article{medmnist,
-     
      title={MedMNIST Classification Decathlon: A Lightweight AutoML Benchmark for Medical Image Analysis},
-     
      author={Yang, Jiancheng and Shi, Rui and Ni, Bingbing},
-     
      journal={arXiv preprint arXiv:2010.14925},
-     
      year={2020}
-     
      }
 
 # LICENSE
