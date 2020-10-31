@@ -51,5 +51,24 @@ The dataset contains ten subsets, and each subset (e.g., `pathmnist.npz`) is com
 
   First, change directory to where train.py locates. Then, use command `python train.py xxxmnist` to run the experiments, where `xxxmnist` is subset of our MedMNIST (e.g., `pathmnist`).
 
+# Citation
+If you find this project useful, please cite our paper as:
+
+      Jiancheng Yang, Rui Shi, Bingbing Ni. "MedMNIST Classification Decathlon: A Lightweight AutoML Benchmark for Medical Image Analysis," arXiv preprint arXiv:2010.14925, 2020.
+
+or using bibtex:
+     
+     @article{medmnist,
+     
+     title={MedMNIST Classification Decathlon: A Lightweight AutoML Benchmark for Medical Image Analysis},
+     
+     author={Yang, Jiancheng and Shi, Rui and Ni, Bingbing},
+     
+     journal={arXiv preprint arXiv:2010.14925},
+     
+     year={2020}
+     
+     }
+
 # LICENSE
 The code is under Apache-2.0 License.
