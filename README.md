@@ -13,6 +13,14 @@ Jiancheng Yang, Rui Shi, Bingbing Ni
 [arXiv preprint](https://arxiv.org/abs/2010.14925), 2020.
 ([project page](https://medmnist.github.io/))
 
+# Key Features
+* ***Educational***: Our multi-modal data, from multiple open medical image datasets with Creative Commons (CC) Licenses, is easy to use for educational purpose.
+* ***Standardized***: Data is pre-processed into same format, which requires no background knowledge for users.
+* ***Diverse***: The multi-modal datasets covers diverse data scales (from 100 to 100,000) and tasks (binary/multiclass, ordinal regression and multi-label).
+* ***Lightweight***: The small size of 28 × 28 is friendly for rapid prototyping and experimenting multi-modal machine learning and AutoML algorithms.
+
+Please note that this dataset is **NOT** intended for clinical use.
+
 # Code Structure
 * [`medmnist/`](medmnist/):
     * [`dataset.py`](medmnist/dataset.py): dataloaders of medmnist.
