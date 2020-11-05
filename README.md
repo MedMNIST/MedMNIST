@@ -6,7 +6,7 @@ We present *MedMNIST*, a collection of 10 pre-processed medical open datasets. M
 
 ![MedMNIST_Decathlon](overview.jpg)
 
-More details, please refer to our paper:
+For more details, please refer to our paper:
 
 **MedMNIST Classification Decathlon: A Lightweight AutoML Benchmark for Medical Image Analysis** ([arXiv](https://arxiv.org/abs/2010.14925))
 
