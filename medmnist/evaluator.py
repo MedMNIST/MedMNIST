@@ -12,11 +12,8 @@ def getAUC(y_true, y_score, task):
 
     '''
     if task == 'binary-class':
-        threshold = 0.5
-        y_pre = np.zeros_like(y_true)
-        for i in range(y_score.shape[0]):
-            y_pre[i] = (y_score[i][-1] > threshold)
-        return roc_auc_score(y_true, y_pre)
+        y_score = y_score[:,-1]
+        return roc_auc_score(y_true, y_score)
     elif task == 'multi-label, binary-class':
         auc = 0
         for i in range(y_score.shape[1]):
@@ -35,26 +32,24 @@ def getAUC(y_true, y_score, task):
         return auc / y_score.shape[1]
 
 
-def getACC(y_true, y_score, task):
+def getACC(y_true, y_score, task, threshold=0.5):
     '''Accuracy metric.
     :param y_true: the ground truth labels, shape: (n_samples, n_classes) for multi-label, and (n_samples,) for other tasks
     :param y_score: the predicted score of each class, shape: (n_samples, n_classes)
     :param task: the task of current dataset
+    :param threshold: the threshold for multilabel and binary-class tasks
 
     '''
     if task == 'multi-label, binary-class':
         zero = np.zeros_like(y_score)
         one = np.ones_like(y_score)
-        y_pre = np.where(y_score < 0.5, zero, one)
+        y_pre = np.where(y_score < threshold, zero, one)
         acc = 0
-        print('acc:')
         for label in range(y_true.shape[1]):
             label_acc = accuracy_score(y_true[:, label], y_pre[:, label])
-            print(label_acc)
             acc += label_acc
         return acc / y_true.shape[1]
     elif task == 'binary-class':
-        threshold = 0.5
         y_pre = np.zeros_like(y_true)
         for i in range(y_score.shape[0]):
             y_pre[i] = (y_score[i][-1] > threshold)
