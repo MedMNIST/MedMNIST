@@ -1,16 +1,22 @@
-# MedMNIST
+# MedMNIST 
+## [arXiv Preprint](https://arxiv.org/abs/2010.14925) | [Project Page](https://medmnist.github.io/) | [Dataset](https://www.dropbox.com/sh/upxrsyb5v8jxbso/AADOV0_6pC9Tb3cIACro1uUPa?dl=0)
+[Jiancheng Yang](https://jiancheng-yang.com/), Rui Shi, [Bingbing Ni](https://scholar.google.com/citations?user=eUbmKwYAAAAJ), [Bilian Ke](https://scholar.google.com/citations?user=2cX5y8kAAAAJ)
 
-*MedMNIST*, a collection of 10 pre-processed medical open datasets, is standardized to perform classification tasks on lightweight 28 * 28 images, which requires no background knowledge. Covering the primary data modalities in medical image analysis, it is diverse on data scale (from 100 to 100,000) and tasks (binary/multi-class, ordinal regression and multi-label). MedMNIST could be used for educational purpose, rapid prototyping, multi-modal machine learning or AutoML in medical image analysis. Moreover, MedMNIST Classification Decathlon is designed to benchmark AutoML algorithms on all 10 datasets. The datasets, evaluation code and baseline methods for MedMNIST are publicly available at https://medmnist.github.io/.
+We present *MedMNIST*, a collection of 10 pre-processed medical open datasets. MedMNIST is standardized to perform classification tasks on lightweight 28 * 28 images, which requires no background knowledge. Covering the primary data modalities in medical image analysis, it is diverse on data scale (from 100 to 100,000) and tasks (binary/multi-class, ordinal regression and multi-label). MedMNIST could be used for educational purpose, rapid prototyping, multi-modal machine learning or AutoML in medical image analysis. Moreover, MedMNIST Classification Decathlon is designed to benchmark AutoML algorithms on all 10 datasets. 
 
-![MedMNIST_Decathlon](MedMNIST_Decathlon.png)
+![MedMNIST_Decathlon](overview.jpg)
 
-More details, please refer to our paper:
+For more details, please refer to our paper:
 
-**MedMNIST Classification Decathlon: A Lightweight AutoML Benchmark for Medical Image Analysis**
+**MedMNIST Classification Decathlon: A Lightweight AutoML Benchmark for Medical Image Analysis** ([arXiv](https://arxiv.org/abs/2010.14925))
 
-Jiancheng Yang, Rui Shi, Bingbing Ni
+# Key Features
+* ***Educational***: Our multi-modal data, from multiple open medical image datasets with Creative Commons (CC) Licenses, is easy to use for educational purpose.
+* ***Standardized***: Data is pre-processed into same format, which requires no background knowledge for users.
+* ***Diverse***: The multi-modal datasets covers diverse data scales (from 100 to 100,000) and tasks (binary/multiclass, ordinal regression and multi-label).
+* ***Lightweight***: The small size of 28 × 28 is friendly for rapid prototyping and experimenting multi-modal machine learning and AutoML algorithms.
 
-[arXiv](https://arxiv.org/abs/2010.14925)
+Please note that this dataset is **NOT** intended for clinical use.
 
 # Code Structure
 * [`medmnist/`](medmnist/):
@@ -49,6 +55,20 @@ The dataset contains ten subsets, and each subset (e.g., `pathmnist.npz`) is com
 * Run our [`train.py`](./train.py) script in terminal. 
 
   First, change directory to where train.py locates. Then, use command `python train.py xxxmnist` to run the experiments, where `xxxmnist` is subset of our MedMNIST (e.g., `pathmnist`).
+
+# Citation
+If you find this project useful, please cite our paper as:
+
+      Jiancheng Yang, Rui Shi, Bingbing Ni. "MedMNIST Classification Decathlon: A Lightweight AutoML Benchmark for Medical Image Analysis," arXiv preprint arXiv:2010.14925, 2020.
+
+or using bibtex:
+     
+     @article{medmnist,
+     title={MedMNIST Classification Decathlon: A Lightweight AutoML Benchmark for Medical Image Analysis},
+     author={Yang, Jiancheng and Shi, Rui and Ni, Bingbing},
+     journal={arXiv preprint arXiv:2010.14925},
+     year={2020}
+     }
 
 # LICENSE
 The code is under Apache-2.0 License.
