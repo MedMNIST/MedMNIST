@@ -37,7 +37,7 @@ class MedMNIST(Dataset):
             self.label = npz_file['test_labels']
 
     def __getitem__(self, index):
-        img, target = self.img[index], int(self.label[index])
+        img, target = self.img[index], self.label[index].astype(int)
         img = Image.fromarray(np.uint8(img))
 
         if self.transform is not None:
