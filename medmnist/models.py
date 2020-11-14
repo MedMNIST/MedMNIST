@@ -1,5 +1,5 @@
 '''
-kuangliu/pytorch-cifar
+Adapted from kuangliu/pytorch-cifar .
 '''
 
 import torch.nn as nn

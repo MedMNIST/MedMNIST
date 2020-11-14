@@ -61,7 +61,7 @@ def getACC(y_true, y_score, task, threshold=0.5):
         return accuracy_score(y_true, y_pre)
 
 
-def save(y_true, y_score, outputpath):
+def save_results(y_true, y_score, outputpath):
     '''Save ground truth and scores
     :param y_true: the ground truth labels, shape: (n_samples, n_classes) for multi-label, and (n_samples,) for other tasks
     :param y_score: the predicted score of each class, shape: (n_samples, n_classes)

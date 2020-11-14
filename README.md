@@ -1,5 +1,5 @@
 # MedMNIST 
-## [arXiv Preprint](https://arxiv.org/abs/2010.14925) | [Project Page](https://medmnist.github.io/) | [Dataset](https://www.dropbox.com/sh/upxrsyb5v8jxbso/AADOV0_6pC9Tb3cIACro1uUPa?dl=0)
+## [arXiv Preprint](https://arxiv.org/abs/2010.14925) | [Project Page](https://medmnist.github.io/) | [Dataset](#dataset)
 [Jiancheng Yang](https://jiancheng-yang.com/), Rui Shi, [Bingbing Ni](https://scholar.google.com/citations?user=eUbmKwYAAAAJ), [Bilian Ke](https://scholar.google.com/citations?user=2cX5y8kAAAAJ)
 
 We present *MedMNIST*, a collection of 10 pre-processed medical open datasets. MedMNIST is standardized to perform classification tasks on lightweight 28 * 28 images, which requires no background knowledge. Covering the primary data modalities in medical image analysis, it is diverse on data scale (from 100 to 100,000) and tasks (binary/multi-class, ordinal regression and multi-label). MedMNIST could be used for educational purpose, rapid prototyping, multi-modal machine learning or AutoML in medical image analysis. Moreover, MedMNIST Classification Decathlon is designed to benchmark AutoML algorithms on all 10 datasets. 
@@ -23,38 +23,34 @@ Please note that this dataset is **NOT** intended for clinical use.
     * [`dataset.py`](medmnist/dataset.py): dataloaders of medmnist.
     * [`models.py`](medmnist/models.py): *ResNet-18* and *ResNet-50* models.
     * [`evaluator.py`](medmnist/evaluator.py): evaluate metrics.
-    * [`environ.py`](medmnist/environ.py): roots.
 * [`train.py`](train.py): the training script.
 
 # Requirements
+The code requires only common Python environments for machine learning; Basicially, it was tested with
 * Python 3 (Anaconda 3.6.3 specifically)
 * PyTorch\==0.3.1
-* numpy\==1.18.5, pandas\==0.25.3, scikit-learn\==0.22.2
+* numpy\==1.18.5, pandas\==0.25.3, scikit-learn\==0.22.2, tqdm
 
-Higher versions should also work (perhaps with minor modifications).
+Higher (or lower) versions should also work (perhaps with minor modifications).
 
 
 # Dataset
 
-Our MedMNIST dataset is available on [Dropbox](https://www.dropbox.com/sh/upxrsyb5v8jxbso/AADOV0_6pC9Tb3cIACro1uUPa?dl=0).
+You could download the dataset(s) via the following free accesses:
+
+* [zenodo.org](https://doi.org/10.5281/zenodo.4269852) (recommended): You could also use our code to download the datasets from zenodo.org automatically.
+* [Google Drive](https://drive.google.com/drive/folders/1Tl_SP-ffDQg-jDG_EWPlWKgZTmGbvFXU?usp=sharing)
+* [百度网盘](https://pan.baidu.com/s/1bgPbESbLOlUSu4QC-4O46g) (code: gx6i)
 
 The dataset contains ten subsets, and each subset (e.g., `pathmnist.npz`) is comprised of `train_images`, `train_labels`, `val_images`, `val_labels`, `test_images` and `test_labels`.
 
 # How to run the experiments
 
-* Download Dataset  [MedMNIST](https://www.dropbox.com/sh/upxrsyb5v8jxbso/AADOV0_6pC9Tb3cIACro1uUPa?dl=0).
+* Download Dataset.
 
-* Modify the paths
+* Run the demo code [`train.py`](./train.py) script in terminal. 
 
-  Specify `dataroot` and `outputroot` in  [./medmnist/environ.py](./medmnist/environ.py) 
-
-  `dataroot` is the root where you save our `npz` datasets
-
-  `outputroot` is the root where you want to save testing results
-
-* Run our [`train.py`](./train.py) script in terminal. 
-
-  First, change directory to where train.py locates. Then, use command `python train.py xxxmnist` to run the experiments, where `xxxmnist` is subset of our MedMNIST (e.g., `pathmnist`).
+  First, change directory to where train.py locates. Then, use command `python train.py xxxmnist input_root output_root` to run the experiments, where `xxxmnist` is subset of our MedMNIST (e.g., `pathmnist`), `input_root` is the path of the data files, `output_root` is the folder to save the results.
 
 # Citation
 If you find this project useful, please cite our paper as:
