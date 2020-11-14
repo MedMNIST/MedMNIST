@@ -10,7 +10,8 @@ import torch.utils.data as data
 import torchvision.transforms as transforms
 
 from medmnist.models import ResNet18, ResNet50
-from medmnist.dataset import INFO, PathMNIST, ChestMNIST, DermaMNIST, OCTMNIST, PneumoniaMNIST, RetinaMNIST, BreastMNIST, OrganMNISTAxial, OrganMNISTCoronal, OrganMNISTSagittal
+from medmnist.dataset import INFO, PathMNIST, ChestMNIST, DermaMNIST, OCTMNIST, PneumoniaMNIST, RetinaMNIST, \
+    BreastMNIST, OrganMNISTAxial, OrganMNISTCoronal, OrganMNISTSagittal
 from medmnist.evaluator import getAUC, getACC, save_results
 
 
@@ -88,7 +89,7 @@ def main(flag, input_root, output_root, end_epoch, download):
     for epoch in trange(start_epoch, end_epoch):
         train(model, optimizer, criterion, train_loader, device, task)
         val(model, val_loader, device, val_auc_list, task, dir_path, epoch)
-    
+
     auc_list = np.array(val_auc_list)
     index = auc_list.argmax()
     print('epoch %s is the best model' % (index))
@@ -212,7 +213,7 @@ def test(model, split, data_loader, device, flag, task, output_root=None):
         auc = getAUC(y_true, y_score, task)
         acc = getACC(y_true, y_score, task)
         print('%s AUC: %.5f ACC: %.5f' % (split, auc, acc))
-        
+
         if output_root is not None:
             output_dir = os.path.join(output_root, flag)
             if not os.path.exists(output_dir):
@@ -224,8 +225,9 @@ def test(model, split, data_loader, device, flag, task, output_root=None):
 if __name__ == '__main__':
     parser = argparse.ArgumentParser(description='RUN Baseline model of MedMNIST')
     parser.add_argument('--data_name', default='pathmnist', help='subset of MedMNIST', type=str)
-    parser.add_argument('--input_root',default='./input', help='input root, the source of dataset files', type=str)
-    parser.add_argument('--output_root', default='./output', help='output root, where to save models and results', type=str)
+    parser.add_argument('--input_root', default='./input', help='input root, the source of dataset files', type=str)
+    parser.add_argument('--output_root', default='./output', help='output root, where to save models and results',
+                        type=str)
     parser.add_argument('--num_epoch', default=100, help='num of epochs of training', type=int)
     parser.add_argument('--download', default=True, help='whether download the dataset or not', type=bool)
 
@@ -235,5 +237,4 @@ if __name__ == '__main__':
     output_root = args.output_root
     end_epoch = args.num_epoch
     download = args.download
-    
     main(data_name, input_root, output_root, end_epoch=end_epoch, download=download)
