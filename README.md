@@ -20,11 +20,11 @@ Please note that this dataset is **NOT** intended for clinical use.
 
 # Code Structure
 * [`medmnist/`](medmnist/):
-    * [`dataset.py`](medmnist/dataset.py): dataloaders of medmnist.
+    * [`dataset.py`](medmnist/dataset.py): PyTorch dataasets and dataloaders of MedMNIST.
     * [`models.py`](medmnist/models.py): *ResNet-18* and *ResNet-50* models.
-    * [`evaluator.py`](medmnist/evaluator.py): evaluate metrics.
-* [`train.py`](train.py): the training script.
-* [`getting_started.ipynb`](getting_started.ipynb): Explore the MedMNIST dataset with jupyter notebook. 
+    * [`evaluator.py`](medmnist/evaluator.py): Standardized evaluation functions.
+* [`train.py`](train.py): The training and evaluation script to reproduce the baseline results in the paper.
+* [`getting_started.ipynb`](getting_started.ipynb): Explore the MedMNIST dataset with jupyter notebook. It is **ONLY** intended for a quick exploration, i.e., it does not provide full training and evaluation functionalities (please refer to [`train.py`](train.py) instead). 
 
 # Requirements
 The code requires only common Python environments for machine learning; Basicially, it was tested with
@@ -53,12 +53,10 @@ The dataset contains ten subsets, and each subset (e.g., `pathmnist.npz`) is com
 
   First, change directory to where [`train.py`](./train.py) locates. Then, use command `python train.py --data_name xxxmnist --input_root input --output_root output --num_epoch 100 --download True` to run the experiments, where `xxxmnist` is subset of our MedMNIST (e.g., `pathmnist`), `input` is the path of the data files, `output` is the folder to save the results, `num_epoch` is the number of epochs of training, and `download` is the bool value whether download the dataset. 
   
-  To run PathMNIST
+  For instance, to run PathMNIST
   
-  ```
-  python train.py --data_name pathmnist --input_root input --output_root output --num_epoch 100 --download True
-  ```
-
+      python train.py --data_name pathmnist --input_root input_folder --output_root output_folder --num_epoch 100 --download True
+  
 # Citation
 If you find this project useful, please cite our paper as:
 
