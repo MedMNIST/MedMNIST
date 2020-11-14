@@ -73,3 +73,5 @@ or using bibtex:
 
 # LICENSE
 The code is under Apache-2.0 License.
+
+The datasets are under Creative Commons (CC) Licenses in general, please refer to the [project page](https://medmnist.github.io/#citation) for details. 
