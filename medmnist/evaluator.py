@@ -18,7 +18,6 @@ def getAUC(y_true, y_score, task):
         auc = 0
         for i in range(y_score.shape[1]):
             label_auc = roc_auc_score(y_true[:, i], y_score[:, i])
-            print(label_auc)
             auc += label_auc
         return auc / y_score.shape[1]
     else:

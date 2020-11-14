@@ -50,7 +50,13 @@ The dataset contains ten subsets, and each subset (e.g., `pathmnist.npz`) is com
 
 * Run the demo code [`train.py`](./train.py) script in terminal. 
 
-  First, change directory to where train.py locates. Then, use command `python train.py xxxmnist input_root output_root` to run the experiments, where `xxxmnist` is subset of our MedMNIST (e.g., `pathmnist`), `input_root` is the path of the data files, `output_root` is the folder to save the results.
+  First, change directory to where [`train.py`](./train.py) locates. Then, use command `python train.py --data_name xxxmnist --input_root input --output_root output --num_epoch 100 --download True` to run the experiments, where `xxxmnist` is subset of our MedMNIST (e.g., `pathmnist`), `input` is the path of the data files, `output` is the folder to save the results, `num_epoch` is the number of epochs of training, and `download` is the bool value whether download the dataset. 
+  
+  To run PathMNIST
+  
+  ```
+  python train.py --data_name pathmnist --input_root input --output_root output --num_epoch 100 --download True
+  ```
 
 # Citation
 If you find this project useful, please cite our paper as:
