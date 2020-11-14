@@ -57,7 +57,6 @@ The dataset contains ten subsets, and each subset (e.g., `pathmnist.npz`) is com
   ```
   python train.py --data_name pathmnist --input_root input --output_root output --num_epoch 100 --download True
   ```
-  
 
 # Citation
 If you find this project useful, please cite our paper as:
