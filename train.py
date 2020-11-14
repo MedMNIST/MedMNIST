@@ -1,11 +1,7 @@
-from medmnist.models import ResNet18, ResNet50
-from medmnist.dataset import INFO, PathMNIST, ChestMNIST, DermaMNIST, OCTMNIST, PneumoniaMNIST, RetinaMNIST, BreastMNIST, OrganMNIST_Axial, OrganMNIST_Coronal, OrganMNIST_Sagittal
-from medmnist.environ import outputroot
-from medmnist.evaluator import getAUC, getACC, save
-
 import os
-import sys
+import argparse
 import json
+from tqdm import trange
 import numpy as np
 import torch
 import torch.nn as nn
@@ -13,8 +9,12 @@ import torch.optim as optim
 import torch.utils.data as data
 import torchvision.transforms as transforms
 
+from medmnist.models import ResNet18, ResNet50
+from medmnist.dataset import INFO, PathMNIST, ChestMNIST, DermaMNIST, OCTMNIST, PneumoniaMNIST, RetinaMNIST, BreastMNIST, OrganMNISTAxial, OrganMNISTCoronal, OrganMNISTSagittal
+from medmnist.evaluator import getAUC, getACC, save_results
 
-def main(flag):
+
+def main(flag, input_root, output_root, end_epoch, download):
     ''' main function
     :param flag: name of subset
 
@@ -28,9 +28,9 @@ def main(flag):
         "pneumoniamnist": PneumoniaMNIST,
         "retinamnist": RetinaMNIST,
         "breastmnist": BreastMNIST,
-        "organmnist_axial": OrganMNIST_Axial,
-        "organmnist_coronal": OrganMNIST_Coronal,
-        "organmnist_sagittal": OrganMNIST_Sagittal,
+        "organmnist_axial": OrganMNISTAxial,
+        "organmnist_coronal": OrganMNISTCoronal,
+        "organmnist_sagittal": OrganMNISTSagittal,
     }
 
     with open(INFO, 'r') as f:
@@ -40,15 +40,14 @@ def main(flag):
         n_classes = len(info[flag]['label'])
 
     start_epoch = 0
-    end_epoch = 99
     lr = 0.001
     batch_size = 128
     val_auc_list = []
-    dir_path = './%s_checkpoints' % (flag)
-    if not os.path.isdir(dir_path):
-        os.mkdir(dir_path)
+    dir_path = os.path.join(output_root, '%s_checkpoints' % (flag))
+    if not os.path.exists(dir_path):
+        os.makedirs(dir_path)
 
-    print('==> Preparing data..')
+    print('==> Preparing data...')
     train_transform = transforms.Compose([
         transforms.ToTensor(),
         transforms.Normalize(mean=[.5], std=[.5])
@@ -64,17 +63,17 @@ def main(flag):
         transforms.Normalize(mean=[.5], std=[.5])
     ])
 
-    train_dataset = dataclass[flag](split='train', transform=train_transform)
+    train_dataset = dataclass[flag](root=input_root, split='train', transform=train_transform, download=download)
     train_loader = data.DataLoader(
         dataset=train_dataset, batch_size=batch_size, shuffle=True)
-    val_dataset = dataclass[flag](split='val', transform=val_transform)
+    val_dataset = dataclass[flag](root=input_root, split='val', transform=val_transform, download=download)
     val_loader = data.DataLoader(
         dataset=val_dataset, batch_size=batch_size, shuffle=True)
-    test_dataset = dataclass[flag](split='test', transform=test_transform)
+    test_dataset = dataclass[flag](root=input_root, split='test', transform=test_transform, download=download)
     test_loader = data.DataLoader(
         dataset=test_dataset, batch_size=batch_size, shuffle=True)
 
-    print('==> Building model..')
+    print('==> Building and training model...')
 
     device = torch.device("cuda:0" if torch.cuda.is_available() else "cpu")
     model = ResNet18(in_channels=n_channels, num_classes=n_classes).to(device)
@@ -86,7 +85,7 @@ def main(flag):
 
     optimizer = optim.SGD(model.parameters(), lr=lr, momentum=0.9)
 
-    for epoch in range(start_epoch, end_epoch + 1):
+    for epoch in trange(start_epoch, end_epoch):
         train(model, optimizer, criterion, train_loader, device, task)
         val(model, val_loader, device, val_auc_list, task, dir_path, epoch)
     
@@ -94,12 +93,12 @@ def main(flag):
     index = auc_list.argmax()
     print('epoch %s is the best model' % (index))
 
-    print('==> Testing model..')
+    print('==> Testing model...')
     restore_model_path = os.path.join(dir_path, 'ckpt_%d_auc_%.5f.pth' % (index, auc_list[index]))
     model.load_state_dict(torch.load(restore_model_path)['net'])
-    test(model, 'train', train_loader, device, flag, task)
-    test(model, 'val', val_loader, device, flag, task)
-    test(model, 'test', test_loader, device, flag, task)
+    test(model, 'train', train_loader, device, flag, task, output_root=output_root)
+    test(model, 'val', val_loader, device, flag, task, output_root=output_root)
+    test(model, 'test', test_loader, device, flag, task, output_root=output_root)
 
 
 def train(model, optimizer, criterion, train_loader, device, task):
@@ -176,7 +175,7 @@ def val(model, val_loader, device, val_auc_list, task, dir_path, epoch):
     torch.save(state, path)
 
 
-def test(model, split, data_loader, device, flag, task):
+def test(model, split, data_loader, device, flag, task, output_root=None):
     ''' testing function
     :param model: the model to test
     :param split: the data to test, 'train/val/test'
@@ -213,14 +212,28 @@ def test(model, split, data_loader, device, flag, task):
         auc = getAUC(y_true, y_score, task)
         acc = getACC(y_true, y_score, task)
         print('%s AUC: %.5f ACC: %.5f' % (split, auc, acc))
-
-        outputdir = os.path.join(outputroot, flag)
-        if not os.path.exists(outputdir):
-            os.mkdir(outputdir)
-        outputpath = os.path.join(outputdir, '%s.csv' % (split))
-        save(y_true, y_score, outputpath)
+        
+        if output_root is not None:
+            output_dir = os.path.join(output_root, flag)
+            if not os.path.exists(output_dir):
+                os.mkdir(output_dir)
+            output_path = os.path.join(output_dir, '%s.csv' % (split))
+            save_results(y_true, y_score, output_path)
 
 
 if __name__ == '__main__':
-    data_name = sys.argv[1]
-    main(data_name)
+    parser = argparse.ArgumentParser(description='RUN Baseline model of MedMNIST')
+    parser.add_argument('--data_name', default='pathmnist', help='subset of MedMNIST', type=str)
+    parser.add_argument('--input_root',default='./input', help='input root, the source of dataset files', type=str)
+    parser.add_argument('--output_root', default='./output', help='output root, where to save models and results', type=str)
+    parser.add_argument('--num_epoch', default=100, help='num of epochs of training', type=int)
+    parser.add_argument('--download', default=True, help='whether download the dataset or not', type=bool)
+
+    args = parser.parse_args()
+    data_name = args.data_name.lower()
+    input_root = args.input_root
+    output_root = args.output_root
+    end_epoch = args.num_epoch
+    download = args.download
+    
+    main(data_name, input_root, output_root, end_epoch=end_epoch, download=download)
