@@ -47,7 +47,7 @@ The dataset contains ten subsets, and each subset (e.g., `pathmnist.npz`) is com
 
 # How to run the experiments
 
-* Download Dataset.
+* Download the dataset manually or automatically (by setting `download=True` in [`dataset.py`](medmnist/dataset.py)).
 
 * Run the demo code [`train.py`](./train.py) script in terminal. 
 
