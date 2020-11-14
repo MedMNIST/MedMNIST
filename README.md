@@ -24,6 +24,7 @@ Please note that this dataset is **NOT** intended for clinical use.
     * [`models.py`](medmnist/models.py): *ResNet-18* and *ResNet-50* models.
     * [`evaluator.py`](medmnist/evaluator.py): evaluate metrics.
 * [`train.py`](train.py): the training script.
+* [`getting_started.ipynb`](getting_started.ipynb): Explore the MedMNIST dataset with jupyter notebook. 
 
 # Requirements
 The code requires only common Python environments for machine learning; Basicially, it was tested with
