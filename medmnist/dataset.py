@@ -1,18 +1,20 @@
 import os
-import json
 import numpy as np
 from PIL import Image
 from torch.utils.data import Dataset
-
-
-INFO = "medmnist/medmnist.json"
+from .info import INFO
 
 
 class MedMNIST(Dataset):
 
     flag = ...
 
-    def __init__(self, root, split='train', transform=None, target_transform=None, download=False):
+    def __init__(self,
+                 root,
+                 split='train',
+                 transform=None,
+                 target_transform=None,
+                 download=False):
         ''' dataset
         :param split: 'train', 'val' or 'test', select subset
         :param transform: data transformation
@@ -20,15 +22,14 @@ class MedMNIST(Dataset):
     
         '''
 
-        with open(INFO, 'r') as f:
-            self.info = json.load(f)[self.flag]
-
+        self.info = INFO[self.flag]
         self.root = root
 
         if download:
             self.download()
 
-        if not os.path.exists(os.path.join(self.root, "{}.npz".format(self.flag))):
+        if not os.path.exists(
+                os.path.join(self.root, "{}.npz".format(self.flag))):
             raise RuntimeError('Dataset not found.' +
                                ' You can use download=True to download it')
 
@@ -68,7 +69,7 @@ class MedMNIST(Dataset):
         '''
         _repr_indent = 4
         head = "Dataset " + self.__class__.__name__
-        
+
         body = ["Number of datapoints: {}".format(self.__len__())]
         body.append("Root location: {}".format(self.root))
         body.append("Split: {}".format(self.split))
@@ -79,20 +80,20 @@ class MedMNIST(Dataset):
         body.append("Description: {}".format(self.info["description"]))
         body.append("License: {}".format(self.info["license"]))
 
-        if hasattr(self, "transforms") and self.transforms is not None:
-            body += [repr(self.transforms)]
         lines = [head] + [" " * _repr_indent + line for line in body]
         return '\n'.join(lines)
 
     def download(self):
         try:
             from torchvision.datasets.utils import download_url
-            download_url(url=self.info["url"], root=self.root, 
-                        filename="{}.npz".format(self.flag), md5=self.info["MD5"])
+            download_url(url=self.info["url"],
+                         root=self.root,
+                         filename="{}.npz".format(self.flag),
+                         md5=self.info["MD5"])
         except:
             raise RuntimeError('Something went wrong when downloading! ' +
-                    'Go to the homepage to download manually. ' +
-                    'https://github.com/MedMNIST/MedMNIST')
+                               'Go to the homepage to download manually. ' +
+                               'https://github.com/MedMNIST/MedMNIST')
 
 
 class PathMNIST(MedMNIST):

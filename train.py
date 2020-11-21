@@ -1,6 +1,5 @@
 import os
 import argparse
-import json
 from tqdm import trange
 import numpy as np
 import torch
@@ -10,9 +9,10 @@ import torch.utils.data as data
 import torchvision.transforms as transforms
 
 from medmnist.models import ResNet18, ResNet50
-from medmnist.dataset import INFO, PathMNIST, ChestMNIST, DermaMNIST, OCTMNIST, PneumoniaMNIST, RetinaMNIST, \
+from medmnist.dataset import PathMNIST, ChestMNIST, DermaMNIST, OCTMNIST, PneumoniaMNIST, RetinaMNIST, \
     BreastMNIST, OrganMNISTAxial, OrganMNISTCoronal, OrganMNISTSagittal
 from medmnist.evaluator import getAUC, getACC, save_results
+from medmnist.info import INFO
 
 
 def main(flag, input_root, output_root, end_epoch, download):
@@ -21,7 +21,7 @@ def main(flag, input_root, output_root, end_epoch, download):
 
     '''
 
-    dataclass = {
+    flag_to_class = {
         "pathmnist": PathMNIST,
         "chestmnist": ChestMNIST,
         "dermamnist": DermaMNIST,
@@ -33,12 +33,12 @@ def main(flag, input_root, output_root, end_epoch, download):
         "organmnist_coronal": OrganMNISTCoronal,
         "organmnist_sagittal": OrganMNISTSagittal,
     }
+    DataClass = flag_to_class[flag]
 
-    with open(INFO, 'r') as f:
-        info = json.load(f)
-        task = info[flag]['task']
-        n_channels = info[flag]['n_channels']
-        n_classes = len(info[flag]['label'])
+    info = INFO[flag]
+    task = info['task']
+    n_channels = info['n_channels']
+    n_classes = len(info['label'])
 
     start_epoch = 0
     lr = 0.001
@@ -49,30 +49,39 @@ def main(flag, input_root, output_root, end_epoch, download):
         os.makedirs(dir_path)
 
     print('==> Preparing data...')
-    train_transform = transforms.Compose([
-        transforms.ToTensor(),
-        transforms.Normalize(mean=[.5], std=[.5])
-    ])
+    train_transform = transforms.Compose(
+        [transforms.ToTensor(),
+         transforms.Normalize(mean=[.5], std=[.5])])
 
-    val_transform = transforms.Compose([
-        transforms.ToTensor(),
-        transforms.Normalize(mean=[.5], std=[.5])
-    ])
+    val_transform = transforms.Compose(
+        [transforms.ToTensor(),
+         transforms.Normalize(mean=[.5], std=[.5])])
 
-    test_transform = transforms.Compose([
-        transforms.ToTensor(),
-        transforms.Normalize(mean=[.5], std=[.5])
-    ])
+    test_transform = transforms.Compose(
+        [transforms.ToTensor(),
+         transforms.Normalize(mean=[.5], std=[.5])])
 
-    train_dataset = dataclass[flag](root=input_root, split='train', transform=train_transform, download=download)
-    train_loader = data.DataLoader(
-        dataset=train_dataset, batch_size=batch_size, shuffle=True)
-    val_dataset = dataclass[flag](root=input_root, split='val', transform=val_transform, download=download)
-    val_loader = data.DataLoader(
-        dataset=val_dataset, batch_size=batch_size, shuffle=True)
-    test_dataset = dataclass[flag](root=input_root, split='test', transform=test_transform, download=download)
-    test_loader = data.DataLoader(
-        dataset=test_dataset, batch_size=batch_size, shuffle=True)
+    train_dataset = DataClass(root=input_root,
+                                    split='train',
+                                    transform=train_transform,
+                                    download=download)
+    train_loader = data.DataLoader(dataset=train_dataset,
+                                   batch_size=batch_size,
+                                   shuffle=True)
+    val_dataset = DataClass(root=input_root,
+                                  split='val',
+                                  transform=val_transform,
+                                  download=download)
+    val_loader = data.DataLoader(dataset=val_dataset,
+                                 batch_size=batch_size,
+                                 shuffle=True)
+    test_dataset = DataClass(root=input_root,
+                                   split='test',
+                                   transform=test_transform,
+                                   download=download)
+    test_loader = data.DataLoader(dataset=test_dataset,
+                                  batch_size=batch_size,
+                                  shuffle=True)
 
     print('==> Building and training model...')
 
@@ -95,11 +104,24 @@ def main(flag, input_root, output_root, end_epoch, download):
     print('epoch %s is the best model' % (index))
 
     print('==> Testing model...')
-    restore_model_path = os.path.join(dir_path, 'ckpt_%d_auc_%.5f.pth' % (index, auc_list[index]))
+    restore_model_path = os.path.join(
+        dir_path, 'ckpt_%d_auc_%.5f.pth' % (index, auc_list[index]))
     model.load_state_dict(torch.load(restore_model_path)['net'])
-    test(model, 'train', train_loader, device, flag, task, output_root=output_root)
+    test(model,
+         'train',
+         train_loader,
+         device,
+         flag,
+         task,
+         output_root=output_root)
     test(model, 'val', val_loader, device, flag, task, output_root=output_root)
-    test(model, 'test', test_loader, device, flag, task, output_root=output_root)
+    test(model,
+         'test',
+         test_loader,
+         device,
+         flag,
+         task,
+         output_root=output_root)
 
 
 def train(model, optimizer, criterion, train_loader, device, task):
@@ -223,13 +245,28 @@ def test(model, split, data_loader, device, flag, task, output_root=None):
 
 
 if __name__ == '__main__':
-    parser = argparse.ArgumentParser(description='RUN Baseline model of MedMNIST')
-    parser.add_argument('--data_name', default='pathmnist', help='subset of MedMNIST', type=str)
-    parser.add_argument('--input_root', default='./input', help='input root, the source of dataset files', type=str)
-    parser.add_argument('--output_root', default='./output', help='output root, where to save models and results',
+    parser = argparse.ArgumentParser(
+        description='RUN Baseline model of MedMNIST')
+    parser.add_argument('--data_name',
+                        default='pathmnist',
+                        help='subset of MedMNIST',
                         type=str)
-    parser.add_argument('--num_epoch', default=100, help='num of epochs of training', type=int)
-    parser.add_argument('--download', default=True, help='whether download the dataset or not', type=bool)
+    parser.add_argument('--input_root',
+                        default='./input',
+                        help='input root, the source of dataset files',
+                        type=str)
+    parser.add_argument('--output_root',
+                        default='./output',
+                        help='output root, where to save models and results',
+                        type=str)
+    parser.add_argument('--num_epoch',
+                        default=100,
+                        help='num of epochs of training',
+                        type=int)
+    parser.add_argument('--download',
+                        default=True,
+                        help='whether download the dataset or not',
+                        type=bool)
 
     args = parser.parse_args()
     data_name = args.data_name.lower()
@@ -237,4 +274,8 @@ if __name__ == '__main__':
     output_root = args.output_root
     end_epoch = args.num_epoch
     download = args.download
-    main(data_name, input_root, output_root, end_epoch=end_epoch, download=download)
+    main(data_name,
+         input_root,
+         output_root,
+         end_epoch=end_epoch,
+         download=download)

@@ -55,7 +55,7 @@ The dataset contains ten subsets, and each subset (e.g., `pathmnist.npz`) is com
   
   For instance, to run PathMNIST
   
-      python train.py --data_name pathmnist --input_root input_folder --output_root output_folder --num_epoch 100 --download True
+      python train.py --data_name pathmnist --input_root <path/to/input/folder> --output_root <path/to/output/folder> --num_epoch 100 --download True
   
 # Citation
 If you find this project useful, please cite our paper as:
