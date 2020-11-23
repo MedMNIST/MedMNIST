@@ -2,7 +2,7 @@
 ## [arXiv Preprint](https://arxiv.org/abs/2010.14925) | [Project Page](https://medmnist.github.io/) | [Dataset](#dataset)
 [Jiancheng Yang](https://jiancheng-yang.com/), Rui Shi, [Bingbing Ni](https://scholar.google.com/citations?user=eUbmKwYAAAAJ), [Bilian Ke](https://scholar.google.com/citations?user=2cX5y8kAAAAJ)
 
-We present *MedMNIST*, a collection of 10 pre-processed medical open datasets. MedMNIST is standardized to perform classification tasks on lightweight 28 * 28 images, which requires no background knowledge. Covering the primary data modalities in medical image analysis, it is diverse on data scale (from 100 to 100,000) and tasks (binary/multi-class, ordinal regression and multi-label). MedMNIST could be used for educational purpose, rapid prototyping, multi-modal machine learning or AutoML in medical image analysis. Moreover, MedMNIST Classification Decathlon is designed to benchmark AutoML algorithms on all 10 datasets. 
+We present *MedMNIST*, a collection of 10 pre-processed medical open datasets. MedMNIST is standardized to perform classification tasks on lightweight 28 × 28 images, which requires no background knowledge. Covering the primary data modalities in medical image analysis, it is diverse on data scale (from 100 to 100,000) and tasks (binary/multi-class, ordinal regression and multi-label). MedMNIST could be used for educational purpose, rapid prototyping, multi-modal machine learning or AutoML in medical image analysis. Moreover, MedMNIST Classification Decathlon is designed to benchmark AutoML algorithms on all 10 datasets. 
 
 ![MedMNIST_Decathlon](overview.jpg)
 
@@ -20,11 +20,12 @@ Please note that this dataset is **NOT** intended for clinical use.
 
 # Code Structure
 * [`medmnist/`](medmnist/):
-    * [`dataset.py`](medmnist/dataset.py): PyTorch dataasets and dataloaders of MedMNIST.
+    * [`dataset.py`](medmnist/dataset.py): PyTorch datasets and dataloaders of MedMNIST.
     * [`models.py`](medmnist/models.py): *ResNet-18* and *ResNet-50* models.
     * [`evaluator.py`](medmnist/evaluator.py): Standardized evaluation functions.
 * [`train.py`](train.py): The training and evaluation script to reproduce the baseline results in the paper.
 * [`getting_started.ipynb`](getting_started.ipynb): Explore the MedMNIST dataset with jupyter notebook. It is **ONLY** intended for a quick exploration, i.e., it does not provide full training and evaluation functionalities (please refer to [`train.py`](train.py) instead). 
+* [`setup.py`](setup.py): The script to install medmnist as a module
 
 # Requirements
 The code requires only common Python environments for machine learning; Basicially, it was tested with
@@ -48,6 +49,8 @@ The dataset contains ten subsets, and each subset (e.g., `pathmnist.npz`) is com
 # How to run the experiments
 
 * Download the dataset manually or automatically (by setting `download=True` in [`dataset.py`](medmnist/dataset.py)).
+
+* [optional] Install medmnist as a module by using command `python setup.py install`
 
 * Run the demo code [`train.py`](./train.py) script in terminal. 
 
