@@ -23,6 +23,7 @@ Please note that this dataset is **NOT** intended for clinical use.
     * [`dataset.py`](medmnist/dataset.py): PyTorch datasets and dataloaders of MedMNIST.
     * [`models.py`](medmnist/models.py): *ResNet-18* and *ResNet-50* models.
     * [`evaluator.py`](medmnist/evaluator.py): Standardized evaluation functions.
+    * [`info.py`](medmnist/info.py): Dataset information `dict` for each subset of MedMNIST.
 * [`train.py`](train.py): The training and evaluation script to reproduce the baseline results in the paper.
 * [`getting_started.ipynb`](getting_started.ipynb): Explore the MedMNIST dataset with jupyter notebook. It is **ONLY** intended for a quick exploration, i.e., it does not provide full training and evaluation functionalities (please refer to [`train.py`](train.py) instead). 
 * [`setup.py`](setup.py): The script to install medmnist as a module
