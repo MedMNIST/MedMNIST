@@ -39,11 +39,9 @@ Higher (or lower) versions should also work (perhaps with minor modifications).
 
 # Dataset
 
-You could download the dataset(s) via the following free accesses:
+You could download the dataset(s) via the following free access:
 
-* [zenodo.org](https://doi.org/10.5281/zenodo.4269852) (recommended): You could also use our code to download the datasets from zenodo.org automatically.
-* [Google Drive](https://drive.google.com/drive/folders/1Tl_SP-ffDQg-jDG_EWPlWKgZTmGbvFXU?usp=sharing)
-* [百度网盘](https://pan.baidu.com/s/1bgPbESbLOlUSu4QC-4O46g) (code: gx6i)
+        `[zenodo.org](https://doi.org/10.5281/zenodo.4269852)`: You could also use our code to download the datasets from zenodo.org automatically.
 
 The dataset contains ten subsets, and each subset (e.g., `pathmnist.npz`) is comprised of `train_images`, `train_labels`, `val_images`, `val_labels`, `test_images` and `test_labels`.
 
