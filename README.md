@@ -1,5 +1,5 @@
 # MedMNIST 
-## [ISBI'21 Paper](https://arxiv.org/abs/2010.14925) | [Project Page](https://medmnist.github.io/) | [Dataset](#dataset)
+## Project Page ([Website](https://medmnist.github.io/)) | Paper ([ISBI'21](https://arxiv.org/abs/2010.14925)) | Dataset ([Zenodo](https://doi.org/10.5281/zenodo.4269852))
 [Jiancheng Yang](https://jiancheng-yang.com/), Rui Shi, [Bingbing Ni](https://scholar.google.com/citations?user=eUbmKwYAAAAJ), [Bilian Ke](https://scholar.google.com/citations?user=2cX5y8kAAAAJ)
 
 We present *MedMNIST*, a collection of 10 pre-processed medical open datasets. MedMNIST is standardized to perform classification tasks on lightweight 28 × 28 images, which requires no background knowledge. Covering the primary data modalities in medical image analysis, it is diverse on data scale (from 100 to 100,000) and tasks (binary/multi-class, ordinal regression and multi-label). MedMNIST could be used for educational purpose, rapid prototyping, multi-modal machine learning or AutoML in medical image analysis. Moreover, MedMNIST Classification Decathlon is designed to benchmark AutoML algorithms on all 10 datasets. 
@@ -39,9 +39,7 @@ Higher (or lower) versions should also work (perhaps with minor modifications).
 
 # Dataset
 
-You could download the dataset(s) via the following free access:
-
-* [`zenodo.org`](https://doi.org/10.5281/zenodo.4269852): You could also use our code to download the datasets from zenodo.org automatically.
+Please download the dataset(s) via * [`Zenodo`](https://doi.org/10.5281/zenodo.4269852). You could also use our code to download automatically.
 
 The dataset contains ten subsets, and each subset (e.g., `pathmnist.npz`) is comprised of `train_images`, `train_labels`, `val_images`, `val_labels`, `test_images` and `test_labels`.
 
