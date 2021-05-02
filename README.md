@@ -41,7 +41,7 @@ Higher (or lower) versions should also work (perhaps with minor modifications).
 
 You could download the dataset(s) via the following free access:
 
-        `[zenodo.org](https://doi.org/10.5281/zenodo.4269852)`: You could also use our code to download the datasets from zenodo.org automatically.
+        [`zenodo.org`](https://doi.org/10.5281/zenodo.4269852): You could also use our code to download the datasets from zenodo.org automatically.
 
 The dataset contains ten subsets, and each subset (e.g., `pathmnist.npz`) is comprised of `train_images`, `train_labels`, `val_images`, `val_labels`, `test_images` and `test_labels`.
 
