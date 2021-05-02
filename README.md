@@ -39,7 +39,7 @@ Higher (or lower) versions should also work (perhaps with minor modifications).
 
 # Dataset
 
-Please download the dataset(s) via * [`Zenodo`](https://doi.org/10.5281/zenodo.4269852). You could also use our code to download automatically.
+Please download the dataset(s) via [`Zenodo`](https://doi.org/10.5281/zenodo.4269852). You could also use our code to download automatically.
 
 The dataset contains ten subsets, and each subset (e.g., `pathmnist.npz`) is comprised of `train_images`, `train_labels`, `val_images`, `val_labels`, `test_images` and `test_labels`.
 
