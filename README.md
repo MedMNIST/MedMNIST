@@ -1,10 +1,10 @@
 # MedMNIST 
 ## Project Page ([Website](https://medmnist.github.io/)) | Paper ([ISBI'21](https://arxiv.org/abs/2010.14925)) | Dataset ([Zenodo](https://doi.org/10.5281/zenodo.4269852))
-[Jiancheng Yang](https://jiancheng-yang.com/), Rui Shi, [Bingbing Ni](https://scholar.google.com/citations?user=eUbmKwYAAAAJ), [Bilian Ke](https://scholar.google.com/citations?user=2cX5y8kAAAAJ)
+[Jiancheng Yang](https://jiancheng-yang.com/), Rui Shi, [Bingbing Ni](https://scholar.google.com/citations?user=eUbmKwYAAAAJ)
 
 We present *MedMNIST*, a collection of 10 pre-processed medical open datasets. MedMNIST is standardized to perform classification tasks on lightweight 28 × 28 images, which requires no background knowledge. Covering the primary data modalities in medical image analysis, it is diverse on data scale (from 100 to 100,000) and tasks (binary/multi-class, ordinal regression and multi-label). MedMNIST could be used for educational purpose, rapid prototyping, multi-modal machine learning or AutoML in medical image analysis. Moreover, MedMNIST Classification Decathlon is designed to benchmark AutoML algorithms on all 10 datasets. 
 
-![MedMNIST_Decathlon](overview.jpg)
+![MedMNISTv1_overview](assets/medmnistv1.jpg)
 
 For more details, please refer to our paper:
 
@@ -32,7 +32,7 @@ Please note that this dataset is **NOT** intended for clinical use.
 The code requires only common Python environments for machine learning; Basicially, it was tested with
 * Python 3 (Anaconda 3.6.3 specifically)
 * PyTorch\==0.3.1
-* numpy\==1.18.5, pandas\==0.25.3, scikit-learn\==0.22.2, tqdm
+* numpy\==1.18.5, pandas\==0.25.3, scikit-learn\==0.22.2, tqdm, Pillow
 
 Higher (or lower) versions should also work (perhaps with minor modifications).
 
@@ -41,7 +41,11 @@ Higher (or lower) versions should also work (perhaps with minor modifications).
 
 Please download the dataset(s) via [`Zenodo`](https://doi.org/10.5281/zenodo.4269852). You could also use our code to download automatically.
 
-The dataset contains ten subsets, and each subset (e.g., `pathmnist.npz`) is comprised of `train_images`, `train_labels`, `val_images`, `val_labels`, `test_images` and `test_labels`.
+It is suggested to use our [`dataset`](medmnist/dataset.py) code to parse the `.npz` files; however, you are free to parse them with your own code (including but not limited to Python), as they are only standard NumPy serialization files. 
+
+The dataset contains several subsets, and each subset (e.g., `pathmnist.npz`) is comprised of 6 keys: `train_images`, `train_labels`, `val_images`, `val_labels`, `test_images` and `test_labels`.
+* `train_images` / `val_images` / `test_images`: `N` x 28 x 28 x 3 for RGB,  `N` x 28 x 28 for gray-scale. `N` denotes the number of samples.  
+* `train_labels` / `val_labels` / `test_labels`: `N` x `L`. `N` denotes the number of samples. `L` denotes the number of task labels; for single-label (binary/multi-class) classification, `L=1`, and `{1,2,3,4,5,..,C}` denotes the category labels (`C=2` for binary); for multi-label classification `L!=1`, e.g., `L=14` for `chestmnist.npz`.
 
 # How to run the experiments
 
@@ -60,16 +64,17 @@ The dataset contains ten subsets, and each subset (e.g., `pathmnist.npz`) is com
 # Citation
 If you find this project useful, please cite our paper as:
 
-      Jiancheng Yang, Rui Shi, Bingbing Ni. "MedMNIST Classification Decathlon: A Lightweight AutoML Benchmark for Medical Image Analysis," arXiv preprint arXiv:2010.14925, 2020.
+      Jiancheng Yang, Rui Shi, Bingbing Ni. "MedMNIST Classification Decathlon: A Lightweight AutoML Benchmark for Medical Image Analysis," IEEE 18th International Symposium on Biomedical Imaging (ISBI), 2021.
 
 or using bibtex:
      
-     @article{medmnist,
-     title={MedMNIST Classification Decathlon: A Lightweight AutoML Benchmark for Medical Image Analysis},
-     author={Yang, Jiancheng and Shi, Rui and Ni, Bingbing},
-     journal={arXiv preprint arXiv:2010.14925},
-     year={2020}
-     }
+    @inproceedings{medmnistv1,
+        title={MedMNIST Classification Decathlon: A Lightweight AutoML Benchmark for Medical Image Analysis},
+        author={Yang, Jiancheng and Shi, Rui and Ni, Bingbing},
+        booktitle={IEEE 18th International Symposium on Biomedical Imaging (ISBI)},
+        pages={191--195},
+        year={2021}
+    }
 
 # LICENSE
 The code is under Apache-2.0 License.

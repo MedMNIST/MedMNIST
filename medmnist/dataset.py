@@ -19,7 +19,7 @@ class MedMNIST(Dataset):
         :param split: 'train', 'val' or 'test', select subset
         :param transform: data transformation
         :param target_transform: target transformation
-    
+
         '''
 
         self.info = INFO[self.flag]
