@@ -23,7 +23,12 @@ class MedMNIST(Dataset):
         '''
 
         self.info = INFO[self.flag]
-        self.root = root
+
+        if self.root is not None and os.path.exists(self.root):
+            self.root = root
+        else:
+            raise RuntimeError("Failed to setup the default `root` directory. " +
+                               "Please specify and create the `root` directory manually.")
 
         if download:
             self.download()

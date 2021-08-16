@@ -4,3 +4,4 @@ pandas
 scikit-learn
 tqdm
 Pillow
+fire
