@@ -2,19 +2,20 @@ import os
 import numpy as np
 from PIL import Image
 from torch.utils.data import Dataset
-from medmnist.info import INFO, HOMEPAGE
+from medmnist.info import INFO, HOMEPAGE, DEFAULT_ROOT
 
 
-class MedMNIST(Dataset):
+class MedMNIST2D(Dataset):
 
     flag = ...
 
     def __init__(self,
-                 root,
-                 split='train',
+                 split,
                  transform=None,
                  target_transform=None,
-                 download=False):
+                 download=True,
+                 as_rgb=False,
+                 root=DEFAULT_ROOT):
         ''' dataset
         :param split: 'train', 'val' or 'test', select subset
         :param transform: data transformation
@@ -24,7 +25,7 @@ class MedMNIST(Dataset):
 
         self.info = INFO[self.flag]
 
-        if self.root is not None and os.path.exists(self.root):
+        if root is not None and os.path.exists(root):
             self.root = root
         else:
             raise RuntimeError("Failed to setup the default `root` directory. " +
@@ -54,9 +55,16 @@ class MedMNIST(Dataset):
             self.img = npz_file['test_images']
             self.label = npz_file['test_labels']
 
+        self.as_rgb = as_rgb
+
     def __getitem__(self, index):
         img, target = self.img[index], self.label[index].astype(int)
         img = Image.fromarray(np.uint8(img))
+
+        if self.as_rgb:
+            img = Image.fromarray(img).convert('RGB')
+        else:
+            img = Image.fromarray(img)
 
         if self.transform is not None:
             img = self.transform(img)
@@ -73,17 +81,16 @@ class MedMNIST(Dataset):
         '''Adapted from torchvision.
         '''
         _repr_indent = 4
-        head = "Dataset " + self.__class__.__name__
-
-        body = ["Number of datapoints: {}".format(self.__len__())]
-        body.append("Root location: {}".format(self.root))
-        body.append("Split: {}".format(self.split))
-        body.append("Task: {}".format(self.info["task"]))
-        body.append("Number of channels: {}".format(self.info["n_channels"]))
-        body.append("Meaning of labels: {}".format(self.info["label"]))
-        body.append("Number of samples: {}".format(self.info["n_samples"]))
-        body.append("Description: {}".format(self.info["description"]))
-        body.append("License: {}".format(self.info["license"]))
+        head = f"Dataset {self.__class__.__name__} ({self.flag})"
+        body = [f"Number of datapoints: {self.__len__()}"]
+        body.append(f"Root location: {self.root}")
+        body.append(f"Split: {self.split}")
+        body.append(f"Task: {self.info['task']}")
+        body.append(f"Number of channels: {self.info['n_channels']}")
+        body.append(f"Meaning of labels: {self.info['label']}")
+        body.append(f"Number of samples: {self.info['n_samples']}")
+        body.append(f"Description: {self.info['description']}")
+        body.append(f"License: {self.info['license']}")
 
         lines = [head] + [" " * _repr_indent + line for line in body]
         return '\n'.join(lines)
@@ -101,41 +108,47 @@ class MedMNIST(Dataset):
                                HOMEPAGE)
 
 
-class PathMNIST(MedMNIST):
+class PathMNIST(MedMNIST2D):
     flag = "pathmnist"
 
 
-class OCTMNIST(MedMNIST):
+class OCTMNIST(MedMNIST2D):
     flag = "octmnist"
 
 
-class PneumoniaMNIST(MedMNIST):
+class PneumoniaMNIST(MedMNIST2D):
     flag = "pneumoniamnist"
 
 
-class ChestMNIST(MedMNIST):
+class ChestMNIST(MedMNIST2D):
     flag = "chestmnist"
 
 
-class DermaMNIST(MedMNIST):
+class DermaMNIST(MedMNIST2D):
     flag = "dermamnist"
 
 
-class RetinaMNIST(MedMNIST):
+class RetinaMNIST(MedMNIST2D):
     flag = "retinamnist"
 
 
-class BreastMNIST(MedMNIST):
+class BreastMNIST(MedMNIST2D):
     flag = "breastmnist"
 
 
-class OrganMNISTAxial(MedMNIST):
-    flag = "organmnist_axial"
+class OrganAMNIST(MedMNIST2D):
+    flag = "organamnist"
 
 
-class OrganMNISTCoronal(MedMNIST):
-    flag = "organmnist_coronal"
+class OrganCMNIST(MedMNIST2D):
+    flag = "organcmnist"
 
 
-class OrganMNISTSagittal(MedMNIST):
-    flag = "organmnist_sagittal"
+class OrganSMNIST(MedMNIST2D):
+    flag = "organsmnist"
+
+
+# backward-compatible
+OrganMNISTAxial = OrganAMNIST
+OrganMNISTCoronal = OrganCMNIST
+OrganMNISTSagittal = OrganSMNIST

@@ -17,8 +17,8 @@ def requirements():
 
 setup(
     name='medmnist',
-    version=medmnist.info.__version__,
-    url=medmnist.info.HOMEPAGE,
+    version=medmnist.__version__,
+    url=medmnist.HOMEPAGE,
     license='Apache-2.0 License',
     author='Jiancheng Yang and Rui Shi',
     author_email='jekyll4168@sjtu.edu.cn',

@@ -25,13 +25,13 @@ Please note that this dataset is **NOT** intended for clinical use.
     * [`info.py`](medmnist/info.py): Dataset information `dict` for each subset of MedMNIST.
 * [`examples/`](examples/):
     * [`getting_started.ipynb`](examples/getting_started.ipynb): Explore the MedMNIST dataset with jupyter notebook. It is **ONLY** intended for a quick exploration, i.e., it does not provide full training and evaluation functionalities. Please refer to our another repository [`MedMNIST/experiments`](https://github.com/MedMNIST/experiments) for all experiments, including PyTorch, auto-sklearn, AutoKeras and Google AutoML Vision, together with their weights!
-    * [`getting_started_without_PyTorch.ipynb`](examples/getting_started_without_PyTorch.ipynb): This notebook provides snippets about how to use MedMNIST data (the `.npz` files) without PyTorch.
+    * #TODO [`getting_started_without_PyTorch.ipynb`](examples/getting_started_without_PyTorch.ipynb): This notebook provides snippets about how to use MedMNIST data (the `.npz` files) without PyTorch.
 * [`setup.py`](setup.py): The script to install medmnist as a module
 
 # Installation and Requirements
 Setup the required environments and install `medmnist` as a standard Python package:
 
-        pip install git+https://github.com/MedMNIST/MedMNIST.git
+    pip install git+https://github.com/MedMNIST/MedMNIST.git
 
 
 The code requires only common Python environments for machine learning. Basicially, it was tested with
@@ -50,24 +50,37 @@ Please download the dataset(s) via [`Zenodo`](https://doi.org/10.5281/zenodo.426
 
 The MedMNIST dataset contains several subsets. Each subset (e.g., `pathmnist.npz`) is comprised of 6 keys: `train_images`, `train_labels`, `val_images`, `val_labels`, `test_images` and `test_labels`.
 * `train_images` / `val_images` / `test_images`: `N` x 28 x 28 x 3 for RGB,  `N` x 28 x 28 for gray-scale. `N` denotes the number of samples.  
-* `train_labels` / `val_labels` / `test_labels`: `N` x `L`. `N` denotes the number of samples. `L` denotes the number of task labels; for single-label (binary/multi-class) classification, `L=1`, and `{1,2,3,4,5,..,C}` denotes the category labels (`C=2` for binary); for multi-label classification `L!=1`, e.g., `L=14` for `chestmnist.npz`.
+* `train_labels` / `val_labels` / `test_labels`: `N` x `L`. `N` denotes the number of samples. `L` denotes the number of task labels; for single-label (binary/multi-class) classification, `L=1`, and `{0,1,2,3,..,C}` denotes the category labels (`C=1` for binary); for multi-label classification `L!=1`, e.g., `L=14` for `chestmnist.npz`.
 
 # How to Use
 
-* List all available datasets
+* List all available datasets:
     
-    python -m medmnist list
+        python -m medmnist available
+
+* Download all available datasets:
+    
+        python -m medmnist download
+
+* Delete all downloaded npz from root:
+
+        python -m medmnist clean
+
+* Print the dataset details given a subset flag:
+
+        python -m medmnist info <subset:xxxmnist>
 
 * Download the dataset manually or automatically (by setting `download=True` in [`dataset.py`](medmnist/dataset.py)).
 
 * Please refer to our another repository [`MedMNIST/experiments`](https://github.com/MedMNIST/experiments) for all experiments, including PyTorch, auto-sklearn, AutoKeras and Google AutoML Vision together with their weights!
 
 # Citation
+
 If you find this project useful, please cite our paper as:
 
     Jiancheng Yang, Rui Shi, Bingbing Ni. "MedMNIST Classification Decathlon: A Lightweight AutoML Benchmark for Medical Image Analysis," IEEE 18th International Symposium on Biomedical Imaging (ISBI), 2021.
 
-or using bibtex:
+or using the bibtex:
      
     @inproceedings{medmnistv1,
         title={MedMNIST Classification Decathlon: A Lightweight AutoML Benchmark for Medical Image Analysis},
@@ -77,7 +90,10 @@ or using bibtex:
         year={2021}
     }
 
+Please also cite the corresponding paper of source data if you use any subset of MedMNIST as per the description in the [project page](https://medmnist.github.io/).
+
 # LICENSE
+
 The code is under Apache-2.0 License.
 
-The datasets are under Creative Commons (CC) Licenses in general, please refer to the [project page](https://medmnist.github.io/#citation) for details. 
+The datasets are under Creative Commons (CC) Licenses in general. Each subset uses the same license as that of the source dataset, please refer to the [project page](https://medmnist.github.io/) for details. 
