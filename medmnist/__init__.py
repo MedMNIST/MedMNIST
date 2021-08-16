@@ -1,1 +1,1 @@
-__version__ = "1.0"
+from medmnist.info import __version__

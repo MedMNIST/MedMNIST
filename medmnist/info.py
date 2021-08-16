@@ -1,3 +1,7 @@
+__version__ = "1.0"
+
+HOMEPAGE = "https://github.com/MedMNIST/MedMNIST/"
+
 INFO = {
     "pathmnist": {
         "description":

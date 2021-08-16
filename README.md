@@ -51,7 +51,7 @@ The dataset contains several subsets, and each subset (e.g., `pathmnist.npz`) is
 
 * Download the dataset manually or automatically (by setting `download=True` in [`dataset.py`](medmnist/dataset.py)).
 
-* [optional] Install medmnist as a module by using command `python setup.py install`
+* [recommended] Install medmnist as a module by using command `python setup.py install`
 
 * Run the demo code [`train.py`](./train.py) script in terminal. 
 

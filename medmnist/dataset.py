@@ -2,7 +2,7 @@ import os
 import numpy as np
 from PIL import Image
 from torch.utils.data import Dataset
-from .info import INFO
+from medmnist.info import INFO, HOMEPAGE
 
 
 class MedMNIST(Dataset):
@@ -93,7 +93,7 @@ class MedMNIST(Dataset):
         except:
             raise RuntimeError('Something went wrong when downloading! ' +
                                'Go to the homepage to download manually. ' +
-                               'https://github.com/MedMNIST/MedMNIST')
+                               HOMEPAGE)
 
 
 class PathMNIST(MedMNIST):
