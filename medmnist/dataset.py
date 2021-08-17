@@ -5,7 +5,7 @@ from torch.utils.data import Dataset
 from medmnist.info import INFO, HOMEPAGE, DEFAULT_ROOT
 
 
-class MedMNIST2D(Dataset):
+class MedMNIST(Dataset):
 
     flag = ...
 
@@ -57,29 +57,11 @@ class MedMNIST2D(Dataset):
 
         self.as_rgb = as_rgb
 
-    def __getitem__(self, index):
-        img, target = self.img[index], self.label[index].astype(int)
-        img = Image.fromarray(np.uint8(img))
-
-        if self.as_rgb:
-            img = Image.fromarray(img).convert('RGB')
-        else:
-            img = Image.fromarray(img)
-
-        if self.transform is not None:
-            img = self.transform(img)
-
-        if self.target_transform is not None:
-            target = self.target_transform(target)
-
-        return img, target
-
     def __len__(self):
         return self.img.shape[0]
 
     def __repr__(self):
-        '''Adapted from torchvision.
-        '''
+        '''Adapted from torchvision.ss'''
         _repr_indent = 4
         head = f"Dataset {self.__class__.__name__} ({self.flag})"
         body = [f"Number of datapoints: {self.__len__()}"]
@@ -106,6 +88,32 @@ class MedMNIST2D(Dataset):
             raise RuntimeError('Something went wrong when downloading! ' +
                                'Go to the homepage to download manually. ' +
                                HOMEPAGE)
+
+
+class MedMNIST2D(MedMNIST):
+
+    def __getitem__(self, index):
+        img, target = self.img[index], self.label[index].astype(int)
+        img = Image.fromarray(np.uint8(img))
+
+        if self.as_rgb:
+            img = Image.fromarray(img).convert('RGB')
+        else:
+            img = Image.fromarray(img)
+
+        if self.transform is not None:
+            img = self.transform(img)
+
+        if self.target_transform is not None:
+            target = self.target_transform(target)
+
+        return img, target
+
+    def save(self, folder):
+        pass
+
+    def montage(self, length):
+        pass
 
 
 class PathMNIST(MedMNIST2D):
