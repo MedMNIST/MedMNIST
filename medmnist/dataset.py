@@ -136,6 +136,14 @@ class BreastMNIST(MedMNIST2D):
     flag = "breastmnist"
 
 
+class BloodMNIST(MedMNIST2D):
+    flag = "bloodmnist"
+
+
+class TissueMNIST(MedMNIST2D):
+    flag = "tissuemnist"
+
+
 class OrganAMNIST(MedMNIST2D):
     flag = "organamnist"
 

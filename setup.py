@@ -22,7 +22,7 @@ setup(
     license='Apache-2.0 License',
     author='Jiancheng Yang and Rui Shi',
     author_email='jekyll4168@sjtu.edu.cn',
-    description='MedMNIST Classification Decathlon: A Lightweight AutoML Benchmark for Medical Image Analysis',
+    description='MedMNIST v2: A Large-Scale Lightweight Benchmark for 2D and 3D Biomedical Image Classification',
     long_description=readme(),
     packages=find_packages(),
     install_requires=requirements(),
