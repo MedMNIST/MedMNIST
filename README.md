@@ -74,7 +74,7 @@ The MedMNIST dataset contains several subsets. Each subset (e.g., `pathmnist.npz
 
         python -m medmnist info --flag=xxxmnist
 
-* Save the dataset as standard figures, which could be used for AutoML tools, e.g., Google AutoML Vision:
+* Save the dataset as standard figure and csv files, which could be used for AutoML tools, e.g., Google AutoML Vision:
 
         python -m medmnist save --flag=xxxmnist --folder=tmp/
 

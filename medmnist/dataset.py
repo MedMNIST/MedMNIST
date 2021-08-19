@@ -1,5 +1,4 @@
 import os
-from sys import base_prefix
 import numpy as np
 from PIL import Image
 from torch.utils.data import Dataset
@@ -47,19 +46,19 @@ class MedMNIST(Dataset):
         self.target_transform = target_transform
 
         if self.split == 'train':
-            self.img = npz_file['train_images']
+            self.imgs = npz_file['train_images']
             self.label = npz_file['train_labels']
         elif self.split == 'val':
-            self.img = npz_file['val_images']
+            self.imgs = npz_file['val_images']
             self.label = npz_file['val_labels']
         elif self.split == 'test':
-            self.img = npz_file['test_images']
+            self.imgs = npz_file['test_images']
             self.label = npz_file['test_labels']
 
         self.as_rgb = as_rgb
 
     def __len__(self):
-        return self.img.shape[0]
+        return self.imgs.shape[0]
 
     def __repr__(self):
         '''Adapted from torchvision.ss'''
@@ -94,7 +93,12 @@ class MedMNIST(Dataset):
 class MedMNIST2D(MedMNIST):
 
     def __getitem__(self, index):
-        img, target = self.img[index], self.label[index].astype(int)
+        '''
+        return: (without transform/target_transofrm)
+            img: PIL.Image
+            target: np.array of `L` (L=1 for single-label)
+        '''
+        img, target = self.imgs[index], self.label[index].astype(int)
         img = Image.fromarray(img)
 
         if self.as_rgb:
@@ -110,64 +114,30 @@ class MedMNIST2D(MedMNIST):
 
     def save(self, folder, postfix="png", write_csv=True):
 
-        split_dict = {
-            "train": "TRAIN",
-            "val": "VALIDATION",
-            "test": "TEST"
-        }  # compatible for Google AutoML Vision
+        from medmnist.utils import save2d
 
-        from tqdm import trange
-
-        _transform = self.transform
-        _target_transform = self.target_transform
-        self.transform = None
-        self.target_transform = None
-
-        base_folder = os.path.join(folder, self.flag)
-
-        if not os.path.exists(base_folder):
-            os.makedirs(base_folder)
-
-        if write_csv:
-            csv_file = open(os.path.join(folder, f"{self.flag}.csv"), "a")
-
-        for idx in trange(self.__len__()):
-
-            img, label = self.__getitem__(idx)
-
-            file_name = f"{self.split}{idx}_{'_'.join(map(str,label))}.{postfix}"
-
-            img.save(os.path.join(base_folder, file_name))
-
-            if write_csv:
-                line = f"{split_dict[self.split]},{file_name},{','.join(map(str,label))}\n"
-                csv_file.write(line)
-
-        self.transform = _transform
-        self.target_transform = _target_transform
-        csv_file.close()
+        save2d(imgs=self.imgs,
+               labels=self.label,
+               img_folder=os.path.join(folder, self.flag),
+               split=self.split,
+               postfix=postfix,
+               csv_path=os.path.join(folder, f"{self.flag}.csv") if write_csv else None)
 
     def montage(self, length=20, replace=False, save_folder=None):
-        import os
-        import numpy as np
-        import matplotlib.pyplot as plt
-        from skimage.util import montage as skimage_montage
+        from medmnist.utils import montage2d
 
-        n_imgs = length * length
-        sel = np.random.choice(self.__len__(), size=n_imgs, replace=replace)
-        sel_img = self.img[sel]
-        if self.info['n_channels'] == 3:
-            montage_arr = skimage_montage(sel_img, multichannel=True)
-        else:
-            assert self.info['n_channels'] == 1
-            montage_arr = skimage_montage(sel_img, multichannel=False)
+        n_sel = length * length
+        sel = np.random.choice(self.__len__(), size=n_sel, replace=replace)
 
-        montage_img = Image.fromarray(montage_arr)
+        montage_img = montage2d(imgs=self.imgs,
+                                n_channels=self.info['n_channels'],
+                                sel=sel)
 
         if save_folder is not None:
-            montage_img.save(
-                os.path.join(save_folder,
-                             f"{self.flag}_{self.split}_montage.jpg"))
+            if not os.path.exists(save_folder):
+                os.makedirs(save_folder)
+            montage_img.save(os.path.join(save_folder,
+                                          f"{self.flag}_{self.split}_montage.jpg"))
 
         return montage_img
 
@@ -175,13 +145,55 @@ class MedMNIST2D(MedMNIST):
 class MedMNIST3D(MedMNIST):
 
     def __getitem__(self, index):
-        return super().__getitem__(index)
+        '''
+        return: (without transform/target_transofrm)
+            img: an array of 1x28x28x28 or 3x28x28x28 (if `as_RGB=True`), in [0,1]
+            target: np.array of `L` (L=1 for single-label)
+        '''
+        img, target = self.imgs[index], self.label[index].astype(int)
 
-    def save(self, folder, postfix="png", write_csv=True):
-        raise NotImplementedError
+        img = np.stack([img/255.]*(3 if self.as_rgb else 1), axis=0)
+
+        if self.transform is not None:
+            img = self.transform(img)
+
+        if self.target_transform is not None:
+            target = self.target_transform(target)
+
+        return img, target
+
+    def save(self, folder, postfix="gif", write_csv=True):
+        from medmnist.utils import save3d
+
+        assert postfix == "gif"
+
+        save3d(imgs=self.imgs,
+               labels=self.label,
+               img_folder=os.path.join(folder, self.flag),
+               split=self.split,
+               postfix=postfix,
+               csv_path=os.path.join(folder, f"{self.flag}.csv") if write_csv else None)
 
     def montage(self, length=20, replace=False, save_folder=None):
-        raise NotImplementedError
+        assert self.info['n_channels'] == 1
+
+        from medmnist.utils import montage3d, save_frames_as_gif
+        n_sel = length * length
+        sel = np.random.choice(self.__len__(), size=n_sel, replace=replace)
+
+        montage_frames = montage3d(imgs=self.imgs,
+                                   n_channels=self.info['n_channels'],
+                                   sel=sel)
+
+        if save_folder is not None:
+            if not os.path.exists(save_folder):
+                os.makedirs(save_folder)
+
+            save_frames_as_gif(montage_frames,
+                               os.path.join(save_folder,
+                                            f"{self.flag}_{self.split}_montage.gif"))
+
+        return montage_frames
 
 
 class PathMNIST(MedMNIST2D):

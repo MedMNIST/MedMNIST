@@ -61,6 +61,13 @@ def test(save_folder="tmp/", root=DEFAULT_ROOT):
     download(root)
 
     for key in INFO.keys():
+        if key.endswith("mnist"):
+            postfix = "jpg"
+            continue
+        else:
+            postfix = "gif"
+            # continue
+
         print(f"Verifying {key}....")
 
         info(key)
@@ -87,16 +94,9 @@ def test(save_folder="tmp/", root=DEFAULT_ROOT):
             assert shape == [28, 28] or shape == [28, 28, 28]
 
         if save_folder != "null":
-            try:
-                train_dataset.montage(save_folder=save_folder)
-            except NotImplementedError:
-                print(f"{key} `montage` method not implemented.")
-            
-            try:
-                save(key, save_folder, postfix=".jpg", root=root)
-            except:
-                print(f"{key} `save` method not implemented.")
-            
+            train_dataset.montage(save_folder=save_folder)
+            save(key, save_folder, postfix=postfix, root=root)
+
     # clean(root)
 
 

@@ -371,8 +371,8 @@ INFO = {
         "MD5": "902d495e3d91ad1a7bcac1a6b58a8fa2",
         "task": "binary-class",
         "label": {
-            "0": "1,2",
-            "1": "4,5"
+            "0": "benign",
+            "1": "malignant"
         },
         "n_channels": 1,
         "n_samples": {
@@ -391,8 +391,8 @@ INFO = {
         "MD5": "bbd3c5a5576322bc4cdfea780653b1ce",
         "task": "binary-class",
         "label": {
-            "0": "0",
-            "1": "1"
+            "0": "normal",
+            "1": "hyperplasia"
         },
         "n_channels": 1,
         "n_samples": {
@@ -411,9 +411,9 @@ INFO = {
         "MD5": "6aa7b0143a6b42da40027a9dda61302f",
         "task": "multi-class",
         "label": {
-            "0": "Buckle Rib Fracture",
-            "1": "Nondisplaced Rib Fracture",
-            "2": "Displaced Rib Fracture"
+            "0": "buckle rib fracture",
+            "1": "nondisplaced rib fracture",
+            "2": "displaced rib fracture"
         },
         "n_channels": 1,
         "n_samples": {
@@ -452,8 +452,8 @@ INFO = {
         "MD5": "1235b78a3cd6280881dd7850a78eadb6",
         "task": "binary-class",
         "label": {
-            "0": "Inhibitory synapse",
-            "1": "Excitatory synapse"
+            "0": "inhibitory synapse",
+            "1": "excitatory synapse"
         },
         "n_channels": 1,
         "n_samples": {
