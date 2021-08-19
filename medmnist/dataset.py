@@ -1,4 +1,5 @@
 import os
+from sys import base_prefix
 import numpy as np
 from PIL import Image
 from torch.utils.data import Dataset
@@ -13,7 +14,7 @@ class MedMNIST(Dataset):
                  split,
                  transform=None,
                  target_transform=None,
-                 download=True,
+                 download=False,
                  as_rgb=False,
                  root=DEFAULT_ROOT):
         ''' dataset
@@ -94,12 +95,10 @@ class MedMNIST2D(MedMNIST):
 
     def __getitem__(self, index):
         img, target = self.img[index], self.label[index].astype(int)
-        img = Image.fromarray(np.uint8(img))
+        img = Image.fromarray(img)
 
         if self.as_rgb:
-            img = Image.fromarray(img).convert('RGB')
-        else:
-            img = Image.fromarray(img)
+            img = img.convert('RGB')
 
         if self.transform is not None:
             img = self.transform(img)
@@ -109,11 +108,80 @@ class MedMNIST2D(MedMNIST):
 
         return img, target
 
-    def save(self, folder):
-        pass
+    def save(self, folder, postfix="png", write_csv=True):
 
-    def montage(self, length):
-        pass
+        split_dict = {
+            "train": "TRAIN",
+            "val": "VALIDATION",
+            "test": "TEST"
+        }  # compatible for Google AutoML Vision
+
+        from tqdm import trange
+
+        _transform = self.transform
+        _target_transform = self.target_transform
+        self.transform = None
+        self.target_transform = None
+
+        base_folder = os.path.join(folder, self.flag)
+
+        if not os.path.exists(base_folder):
+            os.makedirs(base_folder)
+
+        if write_csv:
+            csv_file = open(os.path.join(folder, f"{self.flag}.csv"), "a")
+
+        for idx in trange(self.__len__()):
+
+            img, label = self.__getitem__(idx)
+
+            file_name = f"{self.split}{idx}_{'_'.join(map(str,label))}.{postfix}"
+
+            img.save(os.path.join(base_folder, file_name))
+
+            if write_csv:
+                line = f"{split_dict[self.split]},{file_name},{','.join(map(str,label))}\n"
+                csv_file.write(line)
+
+        self.transform = _transform
+        self.target_transform = _target_transform
+        csv_file.close()
+
+    def montage(self, length=20, replace=False, save_folder=None):
+        import os
+        import numpy as np
+        import matplotlib.pyplot as plt
+        from skimage.util import montage as skimage_montage
+
+        n_imgs = length * length
+        sel = np.random.choice(self.__len__(), size=n_imgs, replace=replace)
+        sel_img = self.img[sel]
+        if self.info['n_channels'] == 3:
+            montage_arr = skimage_montage(sel_img, multichannel=True)
+        else:
+            assert self.info['n_channels'] == 1
+            montage_arr = skimage_montage(sel_img, multichannel=False)
+
+        montage_img = Image.fromarray(montage_arr)
+
+        if save_folder is not None:
+            montage_img.save(
+                os.path.join(save_folder,
+                             f"{self.flag}_{self.split}_montage.jpg"))
+
+        return montage_img
+
+
+class MedMNIST3D(MedMNIST):
+
+    def __getitem__(self, index):
+        return super().__getitem__(index)
+
+    def save(self, folder, postfix="png", write_csv=True):
+        raise NotImplementedError
+
+    def montage(self, length=20, replace=False, save_folder=None):
+        raise NotImplementedError
 
 
 class PathMNIST(MedMNIST2D):
@@ -162,6 +230,30 @@ class OrganCMNIST(MedMNIST2D):
 
 class OrganSMNIST(MedMNIST2D):
     flag = "organsmnist"
+
+
+class OrganMNIST3D(MedMNIST3D):
+    flag = "organmnist3d"
+
+
+class NoduleMNIST3D(MedMNIST3D):
+    flag = "nodulemnist3d"
+
+
+class AdrenalMNIST3D(MedMNIST3D):
+    flag = "adrenalmnist3d"
+
+
+class FractureMNIST3D(MedMNIST3D):
+    flag = "fracturemnist3d"
+
+
+class VesselMNIST3D(MedMNIST3D):
+    flag = "vesselmnist3d"
+
+
+class SynapseMNIST3D(MedMNIST3D):
+    flag = "synapsemnist3d"
 
 
 # backward-compatible

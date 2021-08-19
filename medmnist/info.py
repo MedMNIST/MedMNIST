@@ -1,9 +1,9 @@
-__version__ = "1.1"
+__version__ = "1.2"
 
 
 import os
-import warnings
 from os.path import expanduser
+import warnings
 
 
 def get_default_root():
@@ -413,7 +413,7 @@ INFO = {
         "label": {
             "0": "Buckle Rib Fracture",
             "1": "Nondisplaced Rib Fracture",
-            "2": "Displaced Rib Fracture, Segmental Rib Fracture"
+            "2": "Displaced Rib Fracture"
         },
         "n_channels": 1,
         "n_samples": {

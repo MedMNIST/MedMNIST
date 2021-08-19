@@ -31,8 +31,12 @@ Please note that this dataset is **NOT** intended for clinical use.
 # Installation and Requirements
 Setup the required environments and install `medmnist` as a standard Python package:
 
-    pip install git+https://github.com/MedMNIST/MedMNIST.git
+    pip install --upgrade git+https://github.com/MedMNIST/MedMNIST.git
 
+Check whether you have isnstalled the latest [version](medmnist/info.py):
+
+    >>> import medmnist
+    >>> print(medmnist.__version__)
 
 The code requires only common Python environments for machine learning. Basicially, it was tested with
 * Python 3 (Anaconda 3.6.3 specifically)
@@ -68,9 +72,17 @@ The MedMNIST dataset contains several subsets. Each subset (e.g., `pathmnist.npz
 
 * Print the dataset details given a subset flag:
 
-        python -m medmnist info <subset:xxxmnist>
+        python -m medmnist info --flag=xxxmnist
+
+* Save the dataset as standard figures, which could be used for AutoML tools, e.g., Google AutoML Vision:
+
+        python -m medmnist save --flag=xxxmnist --folder=tmp/
 
 * Download the dataset manually or automatically (by setting `download=True` in [`dataset.py`](medmnist/dataset.py)).
+
+* Explore the MedMNIST dataset with jupyter notebook ([`getting_started.ipynb`](examples/getting_started.ipynb)), and train basic neural networks in PyTorch.
+
+* If you do not use PyTorch, go to [`getting_started_without_PyTorch.ipynb`](examples/getting_started_without_PyTorch.ipynb), which provides snippets about how to use MedMNIST data (the `.npz` files) without PyTorch.
 
 * Please refer to our another repository [`MedMNIST/experiments`](https://github.com/MedMNIST/experiments) for all experiments, including PyTorch, auto-sklearn, AutoKeras and Google AutoML Vision together with their weights!
 
