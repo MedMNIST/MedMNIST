@@ -44,18 +44,19 @@ class MedMNIST(Dataset):
         self.split = split
         self.transform = transform
         self.target_transform = target_transform
+        self.as_rgb = as_rgb
 
         if self.split == 'train':
             self.imgs = npz_file['train_images']
-            self.label = npz_file['train_labels']
+            self.labels = npz_file['train_labels']
         elif self.split == 'val':
             self.imgs = npz_file['val_images']
-            self.label = npz_file['val_labels']
+            self.labels = npz_file['val_labels']
         elif self.split == 'test':
             self.imgs = npz_file['test_images']
-            self.label = npz_file['test_labels']
-
-        self.as_rgb = as_rgb
+            self.labels = npz_file['test_labels']
+        else:
+            raise ValueError
 
     def __len__(self):
         return self.imgs.shape[0]
@@ -98,7 +99,7 @@ class MedMNIST2D(MedMNIST):
             img: PIL.Image
             target: np.array of `L` (L=1 for single-label)
         '''
-        img, target = self.imgs[index], self.label[index].astype(int)
+        img, target = self.imgs[index], self.labels[index].astype(int)
         img = Image.fromarray(img)
 
         if self.as_rgb:
@@ -117,7 +118,7 @@ class MedMNIST2D(MedMNIST):
         from medmnist.utils import save2d
 
         save2d(imgs=self.imgs,
-               labels=self.label,
+               labels=self.labels,
                img_folder=os.path.join(folder, self.flag),
                split=self.split,
                postfix=postfix,
@@ -150,7 +151,7 @@ class MedMNIST3D(MedMNIST):
             img: an array of 1x28x28x28 or 3x28x28x28 (if `as_RGB=True`), in [0,1]
             target: np.array of `L` (L=1 for single-label)
         '''
-        img, target = self.imgs[index], self.label[index].astype(int)
+        img, target = self.imgs[index], self.labels[index].astype(int)
 
         img = np.stack([img/255.]*(3 if self.as_rgb else 1), axis=0)
 
@@ -168,7 +169,7 @@ class MedMNIST3D(MedMNIST):
         assert postfix == "gif"
 
         save3d(imgs=self.imgs,
-               labels=self.label,
+               labels=self.labels,
                img_folder=os.path.join(folder, self.flag),
                split=self.split,
                postfix=postfix,

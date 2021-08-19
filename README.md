@@ -78,6 +78,10 @@ The MedMNIST dataset contains several subsets. Each subset (e.g., `pathmnist.npz
 
         python -m medmnist save --flag=xxxmnist --folder=tmp/
 
+* Parse and evaluate a standard result file, refer to [`Evaluator.parse_and_evaluate`](medmnist/evaluator.py) for details.
+
+        python -m medmnist evaluate --path=folder/{flag}_{split}@{run}.csv
+
 * Download the dataset manually or automatically (by setting `download=True` in [`dataset.py`](medmnist/dataset.py)).
 
 * Explore the MedMNIST dataset with jupyter notebook ([`getting_started.ipynb`](examples/getting_started.ipynb)), and train basic neural networks in PyTorch.

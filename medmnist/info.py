@@ -1,4 +1,4 @@
-__version__ = "1.2"
+__version__ = "1.3"
 
 
 import os
@@ -158,7 +158,7 @@ INFO = {
         "url":
         "https://zenodo.org/record/5208230/files/retinamnist.npz?download=1",
         "MD5": "bd4c0672f1bba3e3a89f0e4e876791e4",
-        "task": "ordinal regression",
+        "task": "ordinal-regression",
         "label": {
             "0": "0",
             "1": "1",
