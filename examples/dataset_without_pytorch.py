@@ -1,4 +1,5 @@
 import os
+import random
 import numpy as np
 from collections import Sequence
 from PIL import Image
@@ -89,6 +90,15 @@ class MedMNIST(Sequence):
             raise RuntimeError('Something went wrong when downloading! ' +
                                'Go to the homepage to download manually. ' +
                                HOMEPAGE)
+
+    @staticmethod
+    def _collate_fn(data):
+        xs = []
+        ys = []
+        for x, y in data:
+            xs.append(np.array(x))
+            ys.append(y)
+        return np.array(xs), np.array(ys)
 
 
 class MedMNIST2D(MedMNIST):
@@ -273,3 +283,29 @@ class SynapseMNIST3D(MedMNIST3D):
 OrganMNISTAxial = OrganAMNIST
 OrganMNISTCoronal = OrganCMNIST
 OrganMNISTSagittal = OrganSMNIST
+
+
+def get_loader(dataset, batch_size):
+    total_size = len(dataset)
+    print('Size', total_size)
+    index_generator = shuffle_iterator(range(total_size))
+    while True:
+        data = []
+        for _ in range(batch_size):
+            idx = next(index_generator)
+            data.append(dataset[idx])
+        yield dataset._collate_fn(data)
+
+
+def shuffle_iterator(iterator):
+    # iterator should have limited size
+    index = list(iterator)
+    total_size = len(index)
+    i = 0
+    random.shuffle(index)
+    while True:
+        yield index[i]
+        i += 1
+        if i >= total_size:
+            i = 0
+            random.shuffle(index)
