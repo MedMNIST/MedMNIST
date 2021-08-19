@@ -1,4 +1,3 @@
-from os import replace
 import medmnist
 from medmnist.info import INFO, DEFAULT_ROOT
 
