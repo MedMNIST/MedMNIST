@@ -1,7 +1,8 @@
-torch
 numpy
 pandas
 scikit-learn
 tqdm
 Pillow
 fire
+torch
+torchvision
