@@ -400,7 +400,7 @@ INFO = {
             "val": 98,
             "test": 298
         },
-        "license": "CC BY 3.0"
+        "license": "CC BY 4.0"
     },
     "fracturemnist3d": {
         "python_class": "FractureMNIST3D",
