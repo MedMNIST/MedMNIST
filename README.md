@@ -63,7 +63,7 @@ Higher (or lower) versions should also work (perhaps with minor modifications).
 
 # Dataset
 
-Please download the dataset(s) via [`Zenodo`](https://doi.org/10.5281/zenodo.4269852). You could also use our code to download automatically by setting `download=True` in [dataset.py](medmnist/dataset.py).
+Please download the dataset(s) via [`Zenodo`](https://doi.org/10.5281/zenodo.4269852). You could also use our code to download automatically by setting `download=True` in [`dataset.py`](medmnist/dataset.py).
 
 The MedMNIST dataset contains several subsets. Each subset (e.g., `pathmnist.npz`) is comprised of 6 keys: `train_images`, `train_labels`, `val_images`, `val_labels`, `test_images` and `test_labels`.
 * `train_images` / `val_images` / `test_images`: `N` x 28 x 28 x 3 for RGB,  `N` x 28 x 28 for gray-scale. `N` denotes the number of samples.  
