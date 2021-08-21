@@ -5,5 +5,5 @@ try:
                                   OrganMNIST3D, NoduleMNIST3D, AdrenalMNIST3D, FractureMNIST3D, VesselMNIST3D, SynapseMNIST3D)
     from medmnist.evaluator import Evaluator
 except:
-    print("Please install the required packages first." +
-          "Use `pip install -r requirements.txt`")
+    print("Please install the required packages first. " +
+          "Use `pip install -r requirements.txt`.")

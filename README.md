@@ -24,9 +24,9 @@ Please note that this dataset is **NOT** intended for clinical use.
     * [`evaluator.py`](medmnist/evaluator.py): Standardized evaluation functions.
     * [`info.py`](medmnist/info.py): Dataset information `dict` for each subset of MedMNIST.
 * [`examples/`](examples/):
-    * [`getting_started.ipynb`](examples/getting_started.ipynb): Explore the MedMNIST dataset with jupyter notebook. It is **ONLY** intended for a quick exploration, i.e., it does not provide full training and evaluation functionalities. 
+    * [`getting_started.ipynb`](examples/getting_started.ipynb): To explore the MedMNIST dataset with jupyter notebook. It is **ONLY** intended for a quick exploration, i.e., it does not provide full training and evaluation functionalities. 
     * [`getting_started_without_PyTorch.ipynb`](examples/getting_started_without_PyTorch.ipynb): This notebook provides snippets about how to use MedMNIST data (the `.npz` files) without PyTorch.
-* [`setup.py`](setup.py): The script to install medmnist as a module
+* [`setup.py`](setup.py): To install `medmnist` as a module.
 * [EXTERNAL] [`MedMNIST/experiments`](https://github.com/MedMNIST/experiments): training and evaluation scripts to reproduce both 2D and 3D experiments in our paper, including PyTorch, auto-sklearn, AutoKeras and Google AutoML Vision together with their weights ;)
 
 # Installation and Requirements
@@ -41,7 +41,7 @@ Check whether you have isnstalled the latest [version](medmnist/info.py):
 
 The code requires only common Python environments for machine learning. Basicially, it was tested with
 * Python 3 (Anaconda 3.6.3 specifically)
-* PyTorch\==0.3.1
+* PyTorch\==1.3.1
 * numpy\==1.18.5, pandas\==0.25.3, scikit-learn\==0.22.2, Pillow\==8.0.1, fire
 
 Higher (or lower) versions should also work (perhaps with minor modifications). 
@@ -63,7 +63,7 @@ Higher (or lower) versions should also work (perhaps with minor modifications).
 
 # Dataset
 
-Please download the dataset(s) via [`Zenodo`](https://doi.org/10.5281/zenodo.4269852). You could also use our code to download automatically.
+Please download the dataset(s) via [`Zenodo`](https://doi.org/10.5281/zenodo.4269852). You could also use our code to download automatically by setting `download=True` in [dataset.py](medmnist/dataset.py).
 
 The MedMNIST dataset contains several subsets. Each subset (e.g., `pathmnist.npz`) is comprised of 6 keys: `train_images`, `train_labels`, `val_images`, `val_labels`, `test_images` and `test_labels`.
 * `train_images` / `val_images` / `test_images`: `N` x 28 x 28 x 3 for RGB,  `N` x 28 x 28 for gray-scale. `N` denotes the number of samples.  

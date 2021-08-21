@@ -36,8 +36,8 @@ class MedMNIST(Dataset):
 
         if not os.path.exists(
                 os.path.join(self.root, "{}.npz".format(self.flag))):
-            raise RuntimeError('Dataset not found.' +
-                               ' You can use download=True to download it')
+            raise RuntimeError('Dataset not found. ' +
+                               ' You can set `download=True` to download it')
 
         npz_file = np.load(os.path.join(self.root, "{}.npz".format(self.flag)))
 
