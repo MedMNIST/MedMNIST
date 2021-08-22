@@ -1,8 +1,8 @@
 # MedMNIST 
-## Project Page ([Website](https://medmnist.github.io/)) | Dataset ([Zenodo](https://doi.org/10.5281/zenodo.5208230)) | V2 Paper ([arXiv](#TODO)) | V1 Paper ([ISBI'21](https://arxiv.org/abs/2010.14925)) 
+## Project ([Website](https://medmnist.github.io/)) | Dataset ([Zenodo](https://doi.org/10.5281/zenodo.5208230)) | Paper ([arXiv](#TODO)) | MedMNIST v1 ([ISBI'21](https://medmnist.github.io/v1)) 
 [Jiancheng Yang](https://jiancheng-yang.com/), Rui Shi, [Donglai Wei](https://donglaiw.github.io/), Zequan Liu, Lin Zhao, [Bilian Ke](https://scholar.google.com/citations?user=2cX5y8kAAAAJ&hl=en), [Hanspeter Pfister](https://scholar.google.com/citations?user=VWX-GMAAAAAJ&hl=en), [Bingbing Ni](https://scholar.google.com/citations?user=eUbmKwYAAAAJ)
 
-We introduce *MedMNIST v2*, a large-scale MNIST-like collection of standardized biomedical images, including 12 datasets for 2D and 6 datasets for 3D. All images are pre-processed into $28\times 28$ (2D) or $28\times 28\times 28$ (3D) with the corresponding classification labels, so that no background knowledge is required for users. Covering primary data modalities in biomedical images, MedMNIST v2 is designed to perform classification on lightweight 2D and 3D images with various data scales (from 100 to 100,000) and diverse tasks (binary/multi-class, ordinal regression and multi-label). The resulting dataset, consisting of 708,069 2D images and 10,214 3D images in total, could support numerous research / educational purposes in biomedical image analysis, computer vision and machine learning. We benchmark several baseline methods on MedMNIST v2, including 2D / 3D neural networks and open-source / commercial AutoML tools. 
+We introduce *MedMNIST v2*, a large-scale MNIST-like collection of standardized biomedical images, including 12 datasets for 2D and 6 datasets for 3D. All images are pre-processed into 28x28 (2D) or 28x28x28 (3D) with the corresponding classification labels, so that no background knowledge is required for users. Covering primary data modalities in biomedical images, MedMNIST v2 is designed to perform classification on lightweight 2D and 3D images with various data scales (from 100 to 100,000) and diverse tasks (binary/multi-class, ordinal regression and multi-label). The resulting dataset, consisting of 708,069 2D images and 10,214 3D images in total, could support numerous research / educational purposes in biomedical image analysis, computer vision and machine learning. We benchmark several baseline methods on MedMNIST v2, including 2D / 3D neural networks and open-source / commercial AutoML tools. 
 
 ![MedMNISTv2_overview](assets/medmnistv2.jpg)
 
@@ -24,7 +24,7 @@ Please note that this dataset is **NOT** intended for clinical use.
     * [`evaluator.py`](medmnist/evaluator.py): Standardized evaluation functions.
     * [`info.py`](medmnist/info.py): Dataset information `dict` for each subset of MedMNIST.
 * [`examples/`](examples/):
-    * [`getting_started.ipynb`](examples/getting_started.ipynb): To explore the MedMNIST dataset with jupyter notebook. It is **ONLY** intended for a quick exploration, i.e., it does not provide full training and evaluation functionalities. 
+    * [`getting_started.ipynb`](examples/getting_started.ipynb): To explore the MedMNIST dataset with jupyter notebook. It is ONLY intended for a quick exploration, i.e., it does not provide full training and evaluation functionalities. 
     * [`getting_started_without_PyTorch.ipynb`](examples/getting_started_without_PyTorch.ipynb): This notebook provides snippets about how to use MedMNIST data (the `.npz` files) without PyTorch.
 * [`setup.py`](setup.py): To install `medmnist` as a module.
 * [EXTERNAL] [`MedMNIST/experiments`](https://github.com/MedMNIST/experiments): training and evaluation scripts to reproduce both 2D and 3D experiments in our paper, including PyTorch, auto-sklearn, AutoKeras and Google AutoML Vision together with their weights ;)
@@ -121,10 +121,10 @@ or using the bibtex:
         year={2021}
     }
 
-Please also cite the corresponding paper of source data if you use any subset of MedMNIST as per the description in the [project page](https://medmnist.github.io/).
+Please also cite the corresponding paper of source data if you use any subset of MedMNIST as per the [project page](https://medmnist.github.io/).
 
 # LICENSE
 
 The code is under Apache-2.0 License.
 
-The datasets are under Creative Commons (CC) Licenses in general. Each subset uses the same license as that of the source dataset, please refer to the [project page](https://medmnist.github.io/) for details. 
+The datasets are under Creative Commons (CC) Licenses in general. Each subset keeps the same [license](https://medmnist.github.io/) as that of the source dataset. 
