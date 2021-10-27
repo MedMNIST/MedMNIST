@@ -28,7 +28,7 @@ INFO = {
     "pathmnist": {
         "python_class": "PathMNIST",
         "description":
-        "A dataset based on a prior study for predicting survival from colorectal cancer histology slides, which provides a dataset NCT-CRC-HE-100K of 100,000 non-overlapping image patches from hematoxylin & eosin stained histological images, and a test dataset CRC-VAL-HE-7K of 7,180 image patches from a different clinical center. 9 types of tissues are involved, resulting a multi-class classification task. We resize the source images of 3 x 224 x 224 into 3 x 28 x 28, and split NCT-CRC-HE-100K into training and valiation set with a ratio of 9:1.",
+        "The PathMNIST is based on a prior study for predicting survival from colorectal cancer histology slides, providing a dataset (NCT-CRC-HE-100K) of 100,000 non-overlapping image patches from hematoxylin & eosin stained histological images, and a test dataset (CRC-VAL-HE-7K) of 7,180 image patches from a different clinical center. The dataset is comprised of 9 types of tissues, resulting in a multi-class classification task. We resize the source images of 3×224×224 into 3×28×28, and split NCT-CRC-HE-100K into training and validation set with a ratio of 9:1. The CRC-VAL-HE-7K is treated as the test set.",
         "url":
         "https://zenodo.org/record/5208230/files/pathmnist.npz?download=1",
         "MD5": "a8b06965200029087d5bd730944a56c1",
@@ -55,7 +55,7 @@ INFO = {
     "chestmnist": {
         "python_class": "ChestMNIST",
         "description":
-        "A dataset based on NIH-ChestXray14 dataset, comprising 112,120 frontal-view X-ray images of 30,805 unique patients with the text-mined 14 disease image labels, which could be formulized as multi-label binary classification task. We use the official data split, and resize the source images of 1 x 1024 x 1024 into 1 x 28 x 28.",
+        "The ChestMNIST is based on the NIH-ChestXray14 dataset, a dataset comprising 112,120 frontal-view X-Ray images of 30,805 unique patients with the text-mined 14 disease labels, which could be formulized as a multi-label binary-class classification task. We use the official data split, and resize the source images of 1×1024×1024 into 1×28×28.",
         "url":
         "https://zenodo.org/record/5208230/files/chestmnist.npz?download=1",
         "MD5": "02c8a6516a18b556561a56cbdd36c4a8",
@@ -87,7 +87,7 @@ INFO = {
     "dermamnist": {
         "python_class": "DermaMNIST",
         "description":
-        "A dataset based on HAM10000, a large collection of multi-source dermatoscopic images of common pigmented skin lesions. The dataset consists of 10,015 dermatoscopic images labeled as 7 different categories, as a multi-class classification task. We split the images into training, validation and test set with a ratio of 7:1:2. The source images of 3 x 600 x 450 are resized into 3 x 28 x 28.",
+        "The DermaMNIST is based on the HAM10000, a large collection of multi-source dermatoscopic images of common pigmented skin lesions. The dataset consists of 10,015 dermatoscopic images categorized as 7 different diseases, formulized as a multi-class classification task. We split the images into training, validation and test set with a ratio of 7:1:2. The source images of 3×600×450 are resized into 3×28×28.",
         "url":
         "https://zenodo.org/record/5208230/files/dermamnist.npz?download=1",
         "MD5": "0744692d530f8e62ec473284d019b0c7",
@@ -112,7 +112,7 @@ INFO = {
     "octmnist": {
         "python_class": "OCTMNIST",
         "description":
-        "A dataset based on a prior dataset of 109,309 valid optical coherence tomography (OCT) images for retinal diseases. 4 types are involved, leading to a multi-class classification task. We split the source training set with a ratio of 9:1 into training and validation set, and use its source validation set as the test set. The source images are single-channel, and their sizes range from (384-1,536) x (277-512). We center-crop the images and resize them into 1 x 28 x 28.",
+        "The OCTMNIST is based on a prior dataset of 109,309 valid optical coherence tomography (OCT) images for retinal diseases. The dataset is comprised of 4 diagnosis categories, leading to a multi-class classification task. We split the source training set with a ratio of 9:1 into training and validation set, and use its source validation set as the test set. The source images are gray-scale, and their sizes are (384−1,536)×(277−512). We center-crop the images and resize them into 1×28×28.",
         "url":
         "https://zenodo.org/record/5208230/files/octmnist.npz?download=1",
         "MD5": "c68d92d5b585d8d81f7112f81e2d0842",
@@ -134,7 +134,7 @@ INFO = {
     "pneumoniamnist": {
         "python_class": "PneumoniaMNIST",
         "description":
-        "A dataset based on a prior dataset of 5,856 pediatric chest X-ray images. The task is binary-class classification of pneumonia and normal. We split the source training set with a ratio of 9:1 into training and validation set, and use its source validation set as the test set. The source images are single-channel, and their sizes range from (384-2,916) x (127-2,713). We center-crop the images and resize them into 1 x 28 x 28.",
+        "The PneumoniaMNIST is based on a prior dataset of 5,856 pediatric chest X-Ray images. The task is binary-class classification of pneumonia against normal. We split the source training set with a ratio of 9:1 into training and validation set and use its source validation set as the test set. The source images are gray-scale, and their sizes are (384−2,916)×(127−2,713). We center-crop the images and resize them into 1×28×28.",
         "url":
         "https://zenodo.org/record/5208230/files/pneumoniamnist.npz?download=1",
         "MD5": "28209eda62fecd6e6a2d98b1501bb15f",
@@ -154,7 +154,7 @@ INFO = {
     "retinamnist": {
         "python_class": "RetinaMNIST",
         "description":
-        "A dataset based on DeepDRiD, a dataset of 1,600 retina fundus images. The task is ordinal regression for 5-level grading of diabetic retinopathy severity. We split the source training set with a ratio of 9:1 into training and validation set, and use the source validation set as test set. The source images of 3 x 1,736 x 1,824 are center-cropped and resized into 3 x 28 x 28",
+        "The RetinaMNIST is based on the DeepDRiD challenge, which provides a dataset of 1,600 retina fundus images. The task is ordinal regression for 5-level grading of diabetic retinopathy severity. We split the source training set with a ratio of 9:1 into training and validation set, and use the source validation set as the test set. The source images of 3×1,736×1,824 are center-cropped and resized into 3×28×28.",
         "url":
         "https://zenodo.org/record/5208230/files/retinamnist.npz?download=1",
         "MD5": "bd4c0672f1bba3e3a89f0e4e876791e4",
@@ -177,7 +177,7 @@ INFO = {
     "breastmnist": {
         "python_class": "BreastMNIST",
         "description":
-        "A dataset based on a dataset of 780 breast ultrasound images. It is categorized into 3 classes: normal, benign and malignant. As we use low-resolution images, we simplify the task into binary classification by combing normal and benign as negative, and classify them against malignant as positive. We split the source dataset with a ratio of 7:1:2 into training, validation and test set. The source images of 1 x 500 x 500 are resized into 1 x 28 x 28.",
+        "The BreastMNIST is based on a dataset of 780 breast ultrasound images. It is categorized into 3 classes: normal, benign, and malignant. As we use low-resolution images, we simplify the task into binary classification by combining normal and benign as positive and classifying them against malignant as negative. We split the source dataset with a ratio of 7:1:2 into training, validation and test set. The source images of 1×500×500 are resized into 1×28×28.",
         "url":
         "https://zenodo.org/record/5208230/files/breastmnist.npz?download=1",
         "MD5": "750601b1f35ba3300ea97c75c52ff8f6",
@@ -197,7 +197,7 @@ INFO = {
     "bloodmnist": {
         "python_class": "BloodMNIST",
         "description":
-        "A dataset based on a dataset of individual normal cells, captured from individuals without infection, hematologic or oncologic disease and free of any pharmacologic treatment at the moment of blood collection. It contains a total of 17,092 images and is organized into eight groups. We split the source dataset with a ratio of 7:1:2 into training, validation and test set. The source images with resolution 3 × 360 × 363 pixels are center-cropped into 3 × 200 × 200, and then resized into 3 × 28 × 28.",
+        "The BloodMNIST is based on a dataset of individual normal cells, captured from individuals without infection, hematologic or oncologic disease and free of any pharmacologic treatment at the moment of blood collection. It contains a total of 17,092 images and is organized into 8 classes. We split the source dataset with a ratio of 7:1:2 into training, validation and test set. The source images with resolution 3×360×363 pixels are center-cropped into 3×200×200, and then resized into 3×28×28.",
         "url":
         "https://zenodo.org/record/5208230/files/bloodmnist.npz?download=1",
         "MD5": "7053d0359d879ad8a5505303e11de1dc",
@@ -223,7 +223,7 @@ INFO = {
     "tissuemnist": {
         "python_class": "TissueMNIST",
         "description":
-        "A dataset based on image set BBBC051, available from the Broad Bioimage Benchmark Collection. The dataset contains 236,386 human kidney cortex cells, segmented from three reference tissue specimens and organized into eight categories. We split the source dataset with a ratio of 7:1:2 into training, validation and test set. Each grayscale image is 32 × 32 × 7 pixels. We take maximum in the third channel and resize them into 28 × 28 grayscale images.",
+        "We use the BBBC051, available from the Broad Bioimage Benchmark Collection. The dataset contains 236,386 human kidney cortex cells, segmented from 3 reference tissue specimens and organized into 8 categories. We split the source dataset with a ratio of 7:1:2 into training, validation and test set. Each gray-scale image is 32×32×7 pixels, where 7 denotes 7 slices. We take maximum values across the slices and resize them into 28×28 gray-scale images.",
         "url":
         "https://zenodo.org/record/5208230/files/tissuemnist.npz?download=1",
         "MD5": "ebe78ee8b05294063de985d821c1c34b",
@@ -249,7 +249,7 @@ INFO = {
     "organamnist": {
         "python_class": "OrganAMNIST",
         "description":
-        "A dataset based on 3D computed tomography (CT) images from Liver Tumor Segmentation Benchmark (LiTS). We use bounding-box annotations of 11 body organs from another study to obtain the organ labels. Hounsfield-Unit (HU) of the 3D images are transformed into grey scale with a abdominal window; we then crop 2D images from the center slices of the 3D bounding boxes in axial views (planes). The images are resized into 1 x 28 x 28 to perform multi-class classification of 11 body organs. 115 and 16 CT scans from the source training set are used as training and validation set, respectively. The 70 CT scans from the source test set are treated as the test set.",
+        "The OrganAMNIST is based on 3D computed tomography (CT) images from Liver Tumor Segmentation Benchmark (LiTS). It is renamed from OrganMNIST_Axial (in MedMNIST v1) for simplicity. We use bounding-box annotations of 11 body organs from another study to obtain the organ labels. Hounsfield-Unit (HU) of the 3D images are transformed into gray-scale with an abdominal window. We crop 2D images from the center slices of the 3D bounding boxes in axial views (planes). The images are resized into 1×28×28 to perform multi-class classification of 11 body organs. 115 and 16 CT scans from the source training set are used as training and validation set, respectively. The 70 CT scans from the source test set are treated as the test set.",
         "url":
         "https://zenodo.org/record/5208230/files/organamnist.npz?download=1",
         "MD5": "866b832ed4eeba67bfb9edee1d5544e6",
@@ -278,7 +278,7 @@ INFO = {
     "organcmnist": {
         "python_class": "OrganCMNIST",
         "description":
-        "A dataset based on 3D computed tomography (CT) images from Liver Tumor Segmentation Benchmark (LiTS). We use bounding-box annotations of 11 body organs from another study to obtain the organ labels. Hounsfield-Unit (HU) of the 3D images are transformed into grey scale with a abdominal window; we then crop 2D images from the center slices of the 3D bounding boxes in coronal views (planes). The images are resized into 1 x 28 x 28 to perform multi-class classification of 11 body organs. 115 and 16 CT scans from the source training set are used as training and validation set, respectively. The 70 CT scans from the source test set are treated as the test set.",
+        "The OrganCMNIST is based on 3D computed tomography (CT) images from Liver Tumor Segmentation Benchmark (LiTS). It is renamed from OrganMNIST_Coronal (in MedMNIST v1) for simplicity. We use bounding-box annotations of 11 body organs from another study to obtain the organ labels. Hounsfield-Unit (HU) of the 3D images are transformed into gray-scale with an abdominal window. We crop 2D images from the center slices of the 3D bounding boxes in coronal views (planes). The images are resized into 1×28×28 to perform multi-class classification of 11 body organs. 115 and 16 CT scans from the source training set are used as training and validation set, respectively. The 70 CT scans from the source test set are treated as the test set.",
         "url":
         "https://zenodo.org/record/5208230/files/organcmnist.npz?download=1",
         "MD5": "0afa5834fb105f7705a7d93372119a21",
@@ -307,7 +307,7 @@ INFO = {
     "organsmnist": {
         "python_class": "OrganSMNIST",
         "description":
-        "A dataset based on 3D computed tomography (CT) images from Liver Tumor Segmentation Benchmark (LiTS). We use bounding-box annotations of 11 body organs from another study to obtain the organ labels. Hounsfield-Unit (HU) of the 3D images are transformed into grey scale with a abdominal window; we then crop 2D images from the center slices of the 3D bounding boxes in sagittal views (planes). The images are resized into 1 x 28 x 28 to perform multi-class classification of 11 body organs. 115 and 16 CT scans from the source training set are used as training and validation set, respectively. The 70 CT scans from the source test set are treated as the test set.",
+        "The OrganSMNIST is based on 3D computed tomography (CT) images from Liver Tumor Segmentation Benchmark (LiTS). It is renamed from OrganMNIST_Sagittal (in MedMNIST v1) for simplicity. We use bounding-box annotations of 11 body organs from another study to obtain the organ labels. Hounsfield-Unit (HU) of the 3D images are transformed into gray-scale with an abdominal window. We crop 2D images from the center slices of the 3D bounding boxes in sagittal views (planes). The images are resized into 1×28×28 to perform multi-class classification of 11 body organs. 115 and 16 CT scans from the source training set are used as training and validation set, respectively. The 70 CT scans from the source test set are treated as the test set.",
         "url":
         "https://zenodo.org/record/5208230/files/organsmnist.npz?download=1",
         "MD5": "e5c39f1af030238290b9557d9503af9d",
@@ -336,7 +336,7 @@ INFO = {
     "organmnist3d": {
         "python_class": "OrganMNIST3D",
         "description":
-        "A dataset based on 3D computed tomography (CT) images from Liver Tumor Segmentation Benchmark (LiTS). We use bounding-box annotations of 11 body organs from another study to obtain the organ labels. Hounsfield-Unit (HU) of the 3D images are transformed into grey scale with a abdominal window. The images are resized into 28 × 28 × 28 to perform multi-class classification of 11 body organs. 115 and 16 CT scans from the source training set are used as training and validation set, respectively. The 70 CT scans from the source test set are treated as the test set.",
+        "The source of the OrganMNIST3D is the same as that of the Organ{A,C,S}MNIST. Instead of 2D images, we directly use the 3D bounding boxes and process the images into 28×28×28 to perform multi-class classification of 11 body organs. The same 115 and 16 CT scans as the Organ{A,C,S}MNIST from the source training set are used as training and validation set, respectively, and the same 70 CT scans as the Organ{A,C,S}MNIST from the source test set are treated as the test set.",
         "url":
         "https://zenodo.org/record/5208230/files/organmnist3d.npz?download=1",
         "MD5": "21f0a239e7f502e6eca33c3fc453c0b6",
@@ -365,7 +365,7 @@ INFO = {
     "nodulemnist3d": {
         "python_class": "NoduleMNIST3D",
         "description":
-        "A dataset based on LIDC-IDRI, a large public lung nodule dataset, containing images from clinical thoracic CT scan. The dataset is designed for both lung nodule segmentation and 5-level malignancy classification task. To perform binary classification, we categorize cases with maligancany level 1/2 into negative class and 4/5 into positive class, ignoring cases with malignancy level 3. We split the source dataset with a ratio of 7:1:2 into training, validation and test set, and center-crop the data into 28 × 28 × 28.",
+        "The NoduleMNIST3D is based on the LIDC-IDRI, a large public lung nodule dataset, containing images from thoracic CT scans. The dataset is designed for both lung nodule segmentation and 5-level malignancy classification task. To perform binary classification, we categorize cases with malignancy level 1/2 into negative class and 4/5 into positive class, ignoring the cases with malignancy level 3. We split the source dataset with a ratio of 7:1:2 into training, validation and test set, and center-crop the spatially normalized images (with a spacing of 1mm×1mm×1mm) into 28×28×28.",
         "url":
         "https://zenodo.org/record/5208230/files/nodulemnist3d.npz?download=1",
         "MD5": "902d495e3d91ad1a7bcac1a6b58a8fa2",
@@ -385,7 +385,7 @@ INFO = {
     "adrenalmnist3d": {
         "python_class": "AdrenalMNIST3D",
         "description":
-        "A dataset based on the shape of adrenal dataset. We calculate the center of adrenal and crop the area with radius 32 around the center. We resize the cropped 64 × 64 × 64 image into 28 × 28 × 28, and use the official split of training set, validation set and test set.",
+        "The AdrenalMNIST3D is a new 3D shape classification dataset, consisting of shape masks from 1,584 left and right adrenal glands (i.e., 792 patients). Collected from Zhongshan Hospital Affiliated to Fudan University, each 3D shape of adrenal gland is annotated by an expert endocrinologist using abdominal computed tomography (CT), together with a binary classification label of normal adrenal gland or adrenal mass. Considering patient privacy, we do not provide the source CT scans, but the real 3D shapes of adrenal glands and their classification labels. We calculate the center of adrenal and resize the center-cropped 64mm×64mm×64mm volume into 28×28×28. The dataset is randomly split into training/validation/test set of 1,188/98/298 on a patient level.",
         "url":
         "https://zenodo.org/record/5208230/files/adrenalmnist3d.npz?download=1",
         "MD5": "bbd3c5a5576322bc4cdfea780653b1ce",
@@ -405,7 +405,7 @@ INFO = {
     "fracturemnist3d": {
         "python_class": "FractureMNIST3D",
         "description":
-        "A dataset based on RibFrac Dataset, containing around 5,000 rib fractures from 660 computed tomography (CT) scans. The dataset organize detected rib fractures into 4 clinical categories(buckle, nondisplaced, displaced or segmental rib fractures). As we use low-resolution images, we combine displaced and segmental rib fractures as class '3', and classify them against buckle(class 1) and nondisplaced(class 2). For each annotated fracture area, we calculate its center and crop the area with radius 32 around the center. We resize the cropped 64 × 64 × 64 image into 28 × 28 × 28, and use the official split of training set, validation set and test set.",
+        "The FractureMNIST3D is based on the RibFrac Dataset, containing around 5,000 rib fractures from 660 computed tomography 153 (CT) scans. The dataset organizes detected rib fractures into 4 clinical categories (i.e., buckle, nondisplaced, displaced, and segmental rib fractures). As we use low-resolution images, we disregard segmental rib fractures and classify 3 types of rib fractures (i.e., buckle, nondisplaced, and displaced). For each annotated fracture area, we calculate its center and resize the center-cropped 64mm×64mm×64mm image into 28×28×28. The official split of training, validation and test set is used.",
         "url":
         "https://zenodo.org/record/5208230/files/fracturemnist3d.npz?download=1",
         "MD5": "6aa7b0143a6b42da40027a9dda61302f",
@@ -426,7 +426,7 @@ INFO = {
     "vesselmnist3d": {
         "python_class": "VesselMNIST3D",
         "description":
-        "A dataset based on an open-access 3D intracranial aneurysm dataset, IntrA, containing 103 3D models of entire brain vessels collected by reconstructing scanned 2D MRA images of patients. 1,694 healthy vessel segments and 215 aneurysm segments are generated automatically from the complete models. We fix the non-watertight mesh with PyMeshFix and voxelize the watertight mesh with trimesh into 28 × 28 × 28 voxels. We split the source dataset with a ratio of 7:1:2 into training, validation and test set.",
+        "The VesselMNIST3D is based on an open-access 3D intracranial aneurysm dataset, IntrA, containing 103 3D models (meshes) of entire brain vessels collected by reconstructing MRA images. 1,694 healthy vessel segments and 215 aneurysm segments are generated automatically from the complete models. We fix the non-watertight mesh with PyMeshFix and voxelize the watertight mesh with trimesh into 28×28×28 voxels. We split the source dataset with a ratio of 7:1:2 into training, validation and test set.",
         "url":
         "https://zenodo.org/record/5208230/files/vesselmnist3d.npz?download=1",
         "MD5": "2ba5b80617d705141f3f85627108fce8",
@@ -446,7 +446,7 @@ INFO = {
     "synapsemnist3d": {
         "python_class": "SynapseMNIST3D",
         "description":
-        "A dataset containing 1,285 excitatory synapse images and 474 inhibitory synapse images, with shape 34 × 128 × 128. The images are resized into 28 × 28 × 28 and split with a ratio of 7:1:2 into training, validation and test set.",
+        "The SynapseMNIST3D is a new 3D volume dataset to classify whether a synapse is excitatory or inhibitory. It uses a 3D image volume of an adult rat acquired by a multi-beam scanning electron microscope. The original data is of the size 100×100×100um^3 and the resolution 8×8×30nm^3, where a (30um)^3 sub-volume was used in the MitoEM dataset with dense 3D mitochondria instance segmentation labels. Three neuroscience experts segment a pyramidal neuron within the whole volume and proofread all the synapses on this neuron with excitatory/inhibitory labels. For each labeled synaptic location, we crop a 3D volume of 1024×1024×1024nm^3 and resize it into 28×28×28 voxels. Finally, the dataset is randomly split with a ratio of 7:1:2 into training, validation and test set.",
         "url":
         "https://zenodo.org/record/5208230/files/synapsemnist3d.npz?download=1",
         "MD5": "1235b78a3cd6280881dd7850a78eadb6",

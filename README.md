@@ -11,10 +11,10 @@ For more details, please refer to our paper:
 **MedMNIST v2: A Large-Scale Lightweight Benchmark for 2D and 3D Biomedical Image Classification** ([arXiv](#TODO))
 
 # Key Features
-* ***Educational***: Our multi-modal data, from multiple open medical image datasets with Creative Commons (CC) Licenses, is easy to use for educational purpose.
-* ***Standardized***: Data is pre-processed into same format, which requires no background knowledge for users.
-* ***Diverse***: The multi-modal datasets covers diverse data scales (from 100 to 100,000) and tasks (binary/multiclass, ordinal regression and multi-label).
-* ***Lightweight***: The small size of 28 × 28 is friendly for rapid prototyping and experimenting multi-modal machine learning and AutoML algorithms.
+* ***Diverse***: It covers diverse data modalities, dataset scales (from 100 to 100,000), and tasks (binary/multi-class, multi-label, and ordinal regression). It is as diverse as the VDD and MSD to fairly evaluate the generalizable performance of machine learning algorithms in different settings, but both 2D and 3D biomedical images are provided. 
+* ***Standardized***: Each sub-dataset is pre-processed into the same format, which requires no background knowledge for users. As an MNIST-like dataset collection to perform classification tasks on small images, it primarily focuses on the machine learning part rather than the end-to-end system. Furthermore, we provide standard train-validation-test splits for all datasets in MedMNIST v2, therefore algorithms could be easily compared. 
+* ***Lightweight***: The small size of 28×28 (2D) or 28×28×28 (3D) is friendly to evaluate machine learning algorithms. 
+* ***Educational***: As an interdisciplinary research area, biomedical image analysis is difficult to hand on for researchers from other communities, as it requires background knowledge from computer vision, machine learning, biomedical imaging, and clinical science. Our data with Creative Commons (CC) Licenses is easy to use for educational purposes.
 
 Please note that this dataset is **NOT** intended for clinical use.
 
@@ -34,12 +34,12 @@ Setup the required environments and install `medmnist` as a standard Python pack
 
     pip install --upgrade git+https://github.com/MedMNIST/MedMNIST.git
 
-Check whether you have isnstalled the latest [version](medmnist/info.py):
+Check whether you have installed the latest [version](medmnist/info.py):
 
     >>> import medmnist
     >>> print(medmnist.__version__)
 
-The code requires only common Python environments for machine learning. Basicially, it was tested with
+The code requires only common Python environments for machine learning. Basically, it was tested with
 * Python 3 (Anaconda 3.6.3 specifically)
 * PyTorch\==1.3.1
 * numpy\==1.18.5, pandas\==0.25.3, scikit-learn\==0.22.2, Pillow\==8.0.1, fire
@@ -66,7 +66,7 @@ Higher (or lower) versions should also work (perhaps with minor modifications).
 Please download the dataset(s) via [`Zenodo`](https://doi.org/10.5281/zenodo.4269852). You could also use our code to download automatically by setting `download=True` in [`dataset.py`](medmnist/dataset.py).
 
 The MedMNIST dataset contains several subsets. Each subset (e.g., `pathmnist.npz`) is comprised of 6 keys: `train_images`, `train_labels`, `val_images`, `val_labels`, `test_images` and `test_labels`.
-* `train_images` / `val_images` / `test_images`: `N` x 28 x 28 x 3 for RGB,  `N` x 28 x 28 for gray-scale. `N` denotes the number of samples.  
+* `train_images` / `val_images` / `test_images`: `N` × 28 × 28 for 2D gray-scale datasets, `N` × 28 × 28 × 3 for 2D RGB datasets, `N` × 28 × 28 × 28 for 3D datasets. `N` denotes the number of samples.  
 * `train_labels` / `val_labels` / `test_labels`: `N` x `L`. `N` denotes the number of samples. `L` denotes the number of task labels; for single-label (binary/multi-class) classification, `L=1`, and `{0,1,2,3,..,C}` denotes the category labels (`C=1` for binary); for multi-label classification `L!=1`, e.g., `L=14` for `chestmnist.npz`.
 
 # Command Line Tools
