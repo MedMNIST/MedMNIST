@@ -124,7 +124,8 @@ Please also cite the corresponding paper of source data if you use any subset of
 
 # License
 
+The dataset is licensed under *Creative Commons Attribution 4.0 International* ([CC BY 4.0](https://creativecommons.org/licenses/by/4.0/)).
+
 The code is under [Apache-2.0 License](./LICENSE).
 
-The dataset is licensed under *Creative Commons Attribution 4.0 International* ([CC BY 4.0](https://creativecommons.org/licenses/by/4.0/)).
 
