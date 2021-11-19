@@ -120,7 +120,7 @@ or using the bibtex:
         year={2021}
     }
 
-Please also cite the corresponding paper of source data if you use any subset of MedMNIST as per the [project website](https://medmnist.github.io/).
+Please also cite the corresponding paper(s) of source data if you use any subset of MedMNIST as per the description on the [project website](https://medmnist.github.io/).
 
 # License
 
