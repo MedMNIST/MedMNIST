@@ -14,7 +14,7 @@ For more details, please refer to our paper:
 * ***Diverse***: It covers diverse data modalities, dataset scales (from 100 to 100,000), and tasks (binary/multi-class, multi-label, and ordinal regression). It is as diverse as the VDD and MSD to fairly evaluate the generalizable performance of machine learning algorithms in different settings, but both 2D and 3D biomedical images are provided. 
 * ***Standardized***: Each sub-dataset is pre-processed into the same format, which requires no background knowledge for users. As an MNIST-like dataset collection to perform classification tasks on small images, it primarily focuses on the machine learning part rather than the end-to-end system. Furthermore, we provide standard train-validation-test splits for all datasets in MedMNIST v2, therefore algorithms could be easily compared. 
 * ***Lightweight***: The small size of 28×28 (2D) or 28×28×28 (3D) is friendly to evaluate machine learning algorithms. 
-* ***Educational***: As an interdisciplinary research area, biomedical image analysis is difficult to hand on for researchers from other communities, as it requires background knowledge from computer vision, machine learning, biomedical imaging, and clinical science. Our data with Creative Commons (CC) Licenses is easy to use for educational purposes.
+* ***Educational***: As an interdisciplinary research area, biomedical image analysis is difficult to hand on for researchers from other communities, as it requires background knowledge from computer vision, machine learning, biomedical imaging, and clinical science. Our data with the Creative Commons (CC) License is easy to use for educational purposes.
 
 Please note that this dataset is **NOT** intended for clinical use.
 
@@ -120,10 +120,11 @@ or using the bibtex:
         year={2021}
     }
 
-Please also cite the corresponding paper of source data if you use any subset of MedMNIST as per the [project page](https://medmnist.github.io/).
+Please also cite the corresponding paper of source data if you use any subset of MedMNIST as per the [project website](https://medmnist.github.io/).
 
 # LICENSE
 
-The code is under Apache-2.0 License.
+The code is under [Apache-2.0 License](./LICENSE).
 
-The datasets are under Creative Commons (CC) Licenses in general. Each subset keeps the same [license](https://medmnist.github.io/) as that of the source dataset. 
+The dataset is licensed under *Creative Commons Attribution 4.0 International* ([CC BY 4.0](https://creativecommons.org/licenses/by/4.0/)).
+
