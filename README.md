@@ -122,7 +122,7 @@ or using the bibtex:
 
 Please also cite the corresponding paper of source data if you use any subset of MedMNIST as per the [project website](https://medmnist.github.io/).
 
-# LICENSE
+# License
 
 The code is under [Apache-2.0 License](./LICENSE).
 
