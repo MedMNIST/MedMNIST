@@ -4,7 +4,7 @@
 
 We introduce *MedMNIST v2*, a large-scale MNIST-like collection of standardized biomedical images, including 12 datasets for 2D and 6 datasets for 3D. All images are pre-processed into 28x28 (2D) or 28x28x28 (3D) with the corresponding classification labels, so that no background knowledge is required for users. Covering primary data modalities in biomedical images, MedMNIST v2 is designed to perform classification on lightweight 2D and 3D images with various data scales (from 100 to 100,000) and diverse tasks (binary/multi-class, ordinal regression and multi-label). The resulting dataset, consisting of 708,069 2D images and 10,214 3D images in total, could support numerous research / educational purposes in biomedical image analysis, computer vision and machine learning. We benchmark several baseline methods on MedMNIST v2, including 2D / 3D neural networks and open-source / commercial AutoML tools. 
 
-![MedMNISTv2_overview](assets/medmnistv2.jpg)
+![MedMNISTv2_overview](https://raw.githubusercontent.com/MedMNIST/MedMNIST/main/assets/medmnistv2.jpg)
 
 For more details, please refer to our paper:
 
@@ -30,9 +30,9 @@ Please note that this dataset is **NOT** intended for clinical use.
 * [EXTERNAL] [`MedMNIST/experiments`](https://github.com/MedMNIST/experiments): training and evaluation scripts to reproduce both 2D and 3D experiments in our paper, including PyTorch, auto-sklearn, AutoKeras and Google AutoML Vision together with their weights ;)
 
 # Installation and Requirements
-Setup the required environments and install `medmnist` as a standard Python package:
+Setup the required environments and install `medmnist` as a standard Python package from PyPI:
 
-    pip install --upgrade git+https://github.com/MedMNIST/MedMNIST.git
+    pip install medmnist
 
 Check whether you have installed the latest [version](medmnist/info.py):
 

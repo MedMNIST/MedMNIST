@@ -17,7 +17,7 @@ setup(
     version=medmnist.__version__,
     url=medmnist.HOMEPAGE,
     license='Apache-2.0 License',
-    author='Jiancheng Yang and Rui Shi',
+    author='MedMNIST Team',
     author_email='jekyll4168@sjtu.edu.cn',
     python_requires=">=3.6.0",
     description='MedMNIST: A Large-Scale Lightweight Benchmark for 2D and 3D Biomedical Image Classification',
