@@ -30,9 +30,13 @@ Please note that this dataset is **NOT** intended for clinical use.
 * [EXTERNAL] [`MedMNIST/experiments`](https://github.com/MedMNIST/experiments): training and evaluation scripts to reproduce both 2D and 3D experiments in our paper, including PyTorch, auto-sklearn, AutoKeras and Google AutoML Vision together with their weights ;)
 
 # Installation and Requirements
-Setup the required environments and install `medmnist` as a standard Python package from PyPI:
+Setup the required environments and install `medmnist` as a standard Python package from [PyPI](https://pypi.org/project/medmnist/):
 
     pip install medmnist
+
+Or install from source:
+
+    pip install --upgrade git+https://github.com/MedMNIST/MedMNIST.git
 
 Check whether you have installed the latest [version](medmnist/info.py):
 
