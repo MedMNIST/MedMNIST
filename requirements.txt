@@ -1,6 +1,7 @@
 numpy
 pandas
 scikit-learn
+scikit-image
 tqdm
 Pillow
 fire

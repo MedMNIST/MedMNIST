@@ -9,10 +9,7 @@ def readme():
     return content
 
 
-def requirements():
-    with open('requirements.txt') as f:
-        required = f.read().splitlines()
-    return required
+README = readme()
 
 
 setup(
@@ -22,9 +19,26 @@ setup(
     license='Apache-2.0 License',
     author='Jiancheng Yang and Rui Shi',
     author_email='jekyll4168@sjtu.edu.cn',
-    description='MedMNIST v2: A Large-Scale Lightweight Benchmark for 2D and 3D Biomedical Image Classification',
+    python_requires=">=3.6.0",
+    description='MedMNIST: A Large-Scale Lightweight Benchmark for 2D and 3D Biomedical Image Classification',
     long_description=readme(),
+    long_description_content_type="text/markdown",
     packages=find_packages(),
-    install_requires=requirements(),
-    zip_safe=True
+    install_requires=[
+        "numpy",
+        "pandas",
+        "scikit-learn",
+        "scikit-image",
+        "tqdm",
+        "Pillow",
+        "fire",
+        "torch",
+        "torchvision"
+    ],
+    zip_safe=True,
+    classifiers=[
+        "License :: OSI Approved :: Apache Software License",
+        "Programming Language :: Python",
+        "Programming Language :: Python :: 3 :: Only"
+    ]
 )
