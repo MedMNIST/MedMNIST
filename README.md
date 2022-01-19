@@ -100,10 +100,12 @@ The MedMNIST dataset contains several subsets. Each subset (e.g., `pathmnist.npz
 
         python -m medmnist evaluate --path=folder/{flag}_{split}@{run}.csv
 
+# License and Citation
 
-# Citation
+The code is under [Apache-2.0 License](./LICENSE).
 
-If you find this project useful, please cite both v1 and v2 paper as:
+The MedMNIST dataset is licensed under *Creative Commons Attribution 4.0 International* ([CC BY 4.0](https://creativecommons.org/licenses/by/4.0/)).
+If you find this project useful in your research, please cite the following papers:
 
     Jiancheng Yang, Rui Shi, Donglai Wei, Zequan Liu, Lin Zhao, Bilian Ke, Hanspeter Pfister, Bingbing Ni. "MedMNIST v2: A Large-Scale Lightweight Benchmark for 2D and 3D Biomedical Image Classification". arXiv preprint arXiv:2110.14795, 2021.
 
@@ -126,12 +128,4 @@ or using the bibtex:
         year={2021}
     }
 
-Please also cite the corresponding paper(s) of source data if you use any subset of MedMNIST as per the description on the [project website](https://medmnist.github.io/).
-
-# License
-
-The dataset is licensed under *Creative Commons Attribution 4.0 International* ([CC BY 4.0](https://creativecommons.org/licenses/by/4.0/)).
-
-The code is under [Apache-2.0 License](./LICENSE).
-
-
+Please also cite source data paper(s) of the MedMNIST subset(s) as per the [description](https://medmnist.github.io/).
