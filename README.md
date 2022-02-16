@@ -100,7 +100,7 @@ The MedMNIST dataset contains several subsets. Each subset (e.g., `pathmnist.npz
         
     for 3D datasets:
 
-        python -m medmnist save --flag=xxxmnist --folder=tmp/ --postfix=gif
+        python -m medmnist save --flag=xxxmnist3d --folder=tmp/ --postfix=gif
 
 * Parse and evaluate a standard result file, refer to [`Evaluator.parse_and_evaluate`](medmnist/evaluator.py) for details.
 
