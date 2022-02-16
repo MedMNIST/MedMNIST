@@ -94,7 +94,13 @@ The MedMNIST dataset contains several subsets. Each subset (e.g., `pathmnist.npz
 
 * Save the dataset as standard figure and csv files, which could be used for AutoML tools, e.g., Google AutoML Vision:
 
-        python -m medmnist save --flag=xxxmnist --folder=tmp/
+    for 2D datasets:
+
+        python -m medmnist save --flag=xxxmnist --folder=tmp/ --postfix=png
+        
+    for 3D datasets:
+
+        python -m medmnist save --flag=xxxmnist --folder=tmp/ --postfix=gif
 
 * Parse and evaluate a standard result file, refer to [`Evaluator.parse_and_evaluate`](medmnist/evaluator.py) for details.
 
