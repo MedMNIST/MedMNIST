@@ -206,7 +206,7 @@ INFO = {
             "0": "basophil",
             "1": "eosinophil",
             "2": "erythroblast",
-            "3": "ig",
+            "3": "immature granulocytes(myelocytes, metamyelocytes and promyelocytes)",
             "4": "lymphocyte",
             "5": "monocyte",
             "6": "neutrophil",
