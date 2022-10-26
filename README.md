@@ -1,5 +1,5 @@
-# MedMNIST 
-## Project ([Website](https://medmnist.github.io/)) | Dataset ([Zenodo](https://doi.org/10.5281/zenodo.6496656)) | Paper ([arXiv](https://arxiv.org/abs/2110.14795)) | MedMNIST v1 ([ISBI'21](https://medmnist.github.io/v1)) 
+# MedMNIST: [medmnist.com](https://medmnist.github.io/)
+## Data ([Zenodo](https://doi.org/10.5281/zenodo.6496656)) | Publication ([Scientific Data](#TODO) / [arXiv](https://arxiv.org/abs/2110.14795)) | MedMNIST v1 ([ISBI'21](https://medmnist.github.io/v1)) 
 [Jiancheng Yang](https://jiancheng-yang.com/), Rui Shi, [Donglai Wei](https://donglaiw.github.io/), Zequan Liu, Lin Zhao, [Bilian Ke](https://scholar.google.com/citations?user=2cX5y8kAAAAJ&hl=en), [Hanspeter Pfister](https://scholar.google.com/citations?user=VWX-GMAAAAAJ&hl=en), [Bingbing Ni](https://scholar.google.com/citations?user=eUbmKwYAAAAJ)
 
 [![](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/MedMNIST/MedMNIST/blob/main/examples/getting_started.ipynb)
@@ -10,7 +10,7 @@ We introduce *MedMNIST v2*, a large-scale MNIST-like collection of standardized 
 
 For more details, please refer to our paper:
 
-**MedMNIST v2: A Large-Scale Lightweight Benchmark for 2D and 3D Biomedical Image Classification** ([arXiv](https://arxiv.org/abs/2110.14795))
+**MedMNIST v2: A Large-Scale Lightweight Benchmark for 2D and 3D Biomedical Image Classification** ([Scientific Data](#TODO) / [arXiv](https://arxiv.org/abs/2110.14795))
 
 # Key Features
 * ***Diverse***: It covers diverse data modalities, dataset scales (from 100 to 100,000), and tasks (binary/multi-class, multi-label, and ordinal regression). It is as diverse as the VDD and MSD to fairly evaluate the generalizable performance of machine learning algorithms in different settings, but both 2D and 3D biomedical images are provided. 
