@@ -113,17 +113,21 @@ The code is under [Apache-2.0 License](./LICENSE).
 The MedMNIST dataset is licensed under *Creative Commons Attribution 4.0 International* ([CC BY 4.0](https://creativecommons.org/licenses/by/4.0/)).
 If you find this project useful in your research, please cite the following papers:
 
-    Jiancheng Yang, Rui Shi, Donglai Wei, Zequan Liu, Lin Zhao, Bilian Ke, Hanspeter Pfister, Bingbing Ni. "MedMNIST v2: A Large-Scale Lightweight Benchmark for 2D and 3D Biomedical Image Classification". arXiv preprint arXiv:2110.14795, 2021.
+    Jiancheng Yang, Rui Shi, Donglai Wei, Zequan Liu, Lin Zhao, Bilian Ke, Hanspeter Pfister, Bingbing Ni. Yang, Jiancheng, et al. "MedMNIST v2-A large-scale lightweight benchmark for 2D and 3D biomedical image classification." Scientific Data, 2023.
 
     Jiancheng Yang, Rui Shi, Bingbing Ni. "MedMNIST Classification Decathlon: A Lightweight AutoML Benchmark for Medical Image Analysis". IEEE 18th International Symposium on Biomedical Imaging (ISBI), 2021.
 
 or using the bibtex:
 
     @article{medmnistv2,
-        title={MedMNIST v2: A Large-Scale Lightweight Benchmark for 2D and 3D Biomedical Image Classification},
+        title={MedMNIST v2-A large-scale lightweight benchmark for 2D and 3D biomedical image classification},
         author={Yang, Jiancheng and Shi, Rui and Wei, Donglai and Liu, Zequan and Zhao, Lin and Ke, Bilian and Pfister, Hanspeter and Ni, Bingbing},
-        journal={arXiv preprint arXiv:2110.14795},
-        year={2021}
+        journal={Scientific Data},
+        volume={10},
+        number={1},
+        pages={41},
+        year={2023},
+        publisher={Nature Publishing Group UK London}
     }
      
     @inproceedings{medmnistv1,
