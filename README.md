@@ -146,6 +146,6 @@ or using the bibtex:
 Please also cite source data paper(s) of the MedMNIST subset(s) as per the description on the [project page](https://medmnist.github.io/).
 
 # Release Notes
-* [`2023-04-02`] Version 2.2.0: `montage` method supported for scikit-image>=0.20.0
-* [`2022-04-27`] Version 2.1.0: NoduleMNIST3D data error fixed
-* [`2021-08-19`] Version 2.0.0
+* `v2.2.0`: `montage` method supported for scikit-image>=0.20.0
+* `v2.1.0`: `NoduleMNIST3D` data error fixed
+* `v2.0.0`: MedMNIST v2 release
