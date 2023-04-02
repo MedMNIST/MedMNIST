@@ -1,3 +1,9 @@
+# To build and upload to PyPI:
+#
+#     python3 setup.py sdist bdist_wheel
+#     python3 -m twine upload dist/*
+#
+
 from setuptools import setup, find_packages
 
 import medmnist
@@ -18,9 +24,9 @@ setup(
     url=medmnist.HOMEPAGE,
     license='Apache-2.0 License',
     author='MedMNIST Team',
-    author_email='jekyll4168@sjtu.edu.cn',
+    author_email='jiancheng.yang@epfl.ch',
     python_requires=">=3.6.0",
-    description='MedMNIST: A Large-Scale Lightweight Benchmark for 2D and 3D Biomedical Image Classification',
+    description='MedMNIST: 18 MNIST-like Datasets for 2D and 3D Biomedical Image Classification',
     long_description=readme(),
     long_description_content_type="text/markdown",
     packages=find_packages(),
