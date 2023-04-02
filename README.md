@@ -12,6 +12,10 @@ For more details, please refer to our paper:
 
 **MedMNIST v2: A Large-Scale Lightweight Benchmark for 2D and 3D Biomedical Image Classification** ([Scientific Data](https://doi.org/10.1038/s41597-022-01721-8) / [arXiv](https://arxiv.org/abs/2110.14795))
 
+or its conference version:
+
+**MedMNIST Classification Decathlon: A Lightweight AutoML Benchmark for Medical Image Analysis** ([ISBI'21](https://arxiv.org/abs/2010.14925))
+
 # Key Features
 * ***Diverse***: It covers diverse data modalities, dataset scales (from 100 to 100,000), and tasks (binary/multi-class, multi-label, and ordinal regression). It is as diverse as the VDD and MSD to fairly evaluate the generalizable performance of machine learning algorithms in different settings, but both 2D and 3D biomedical images are provided. 
 * ***Standardized***: Each sub-dataset is pre-processed into the same format, which requires no background knowledge for users. As an MNIST-like dataset collection to perform classification tasks on small images, it primarily focuses on the machine learning part rather than the end-to-end system. Furthermore, we provide standard train-validation-test splits for all datasets in MedMNIST v2, therefore algorithms could be easily compared. 
@@ -48,18 +52,19 @@ Check whether you have installed the latest [version](medmnist/info.py):
 The code requires only common Python environments for machine learning. Basically, it was tested with
 * Python 3 (>=3.6)
 * PyTorch\==1.3.1
-* numpy\==1.18.5, pandas\==0.25.3, scikit-learn\==0.22.2, Pillow\==8.0.1, fire, scikit-image
+* numpy\==1.18.5, pandas\==0.25.3, scikit-learn\==0.22.2, Pillow\==8.0.1
+* fire, scikit-image
 
 Higher (or lower) versions should also work (perhaps with minor modifications). 
 
-# If you use PyTorch
+# If you use PyTorch...
 
 * Great! Our code is designed to work with PyTorch.
 
 * Explore the MedMNIST dataset with jupyter notebook ([`getting_started.ipynb`](examples/getting_started.ipynb)), and train basic neural networks in PyTorch.
 
 
-# If you do not use PyTorch
+# If you do not use PyTorch...
 
 * Although our code is tested with PyTorch, you are free to parse them with your own code (without PyTorch or even without Python!), as they are only standard NumPy serialization files. It is simple to create a dataset without PyTorch.
 * Go to [`getting_started_without_PyTorch.ipynb`](examples/getting_started_without_PyTorch.ipynb), which provides snippets about how to use MedMNIST data (the `.npz` files) without PyTorch.
@@ -138,4 +143,9 @@ or using the bibtex:
         year={2021}
     }
 
-Please also cite source data paper(s) of the MedMNIST subset(s) as per the [description](https://medmnist.github.io/).
+Please also cite source data paper(s) of the MedMNIST subset(s) as per the description on the [project page](https://medmnist.github.io/).
+
+# Release Notes
+* [`2023-04-02`] Version 2.2.0: `montage` method supported for scikit-image>=0.20.0
+* [`2022-04-27`] Version 2.1.0: NoduleMNIST3D data error fixed
+* [`2021-08-19`] Version 2.0.0

@@ -1,6 +1,7 @@
 import os
 from PIL import Image
 from tqdm import trange
+import skimage
 from skimage.util import montage as skimage_montage
 
 
@@ -21,8 +22,13 @@ def save2d(imgs, labels, img_folder,
 
 def montage2d(imgs, n_channels, sel):
     sel_img = imgs[sel]
-    channel_axis = 3 if n_channels == 3 else None                                                                                          
-    montage_arr = skimage_montage(sel_img, channel_axis=channel_axis)
+
+    # version 0.20.0 changes the kwarg `multichannel` to `channel_axis`
+    if skimage.__version__ >= "0.20.0":
+        montage_arr = skimage_montage(
+            sel_img, channel_axis=3 if n_channels == 3 else None)
+    else:
+        montage_arr = skimage_montage(sel_img, multichannel=(n_channels == 3))
     montage_img = Image.fromarray(montage_arr)
 
     return montage_img
