@@ -146,6 +146,7 @@ or using the bibtex:
 Please also cite source data paper(s) of the MedMNIST subset(s) as per the description on the [project page](https://medmnist.github.io/).
 
 # Release Notes
+* `v2.2.2`: Python 3.11 `Sequence` from collections.abc supported
 * `v2.2.1`: PyPI info updated
 * `v2.2.0`: `montage` method supported for scikit-image>=0.20.0
 * `v2.1.0`: `NoduleMNIST3D` data error fixed

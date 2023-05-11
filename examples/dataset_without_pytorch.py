@@ -1,9 +1,13 @@
 import os
 import random
 import numpy as np
-from collections import Sequence
 from PIL import Image
 from medmnist.info import INFO, HOMEPAGE, DEFAULT_ROOT
+
+try:
+    from collections.abc import Sequence
+except ImportError:
+    from collections import Sequence
 
 
 class MedMNIST(Sequence):
