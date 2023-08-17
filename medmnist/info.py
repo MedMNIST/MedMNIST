@@ -1,4 +1,4 @@
-__version__ = "2.2.2"
+__version__ = "2.2.3"
 
 
 import os
@@ -107,7 +107,7 @@ INFO = {
             "val": 1003,
             "test": 2005
         },
-        "license": "CC BY 4.0"
+        "license": "CC BY-NC 4.0"
     },
     "octmnist": {
         "python_class": "OCTMNIST",

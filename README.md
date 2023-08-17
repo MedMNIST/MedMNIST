@@ -115,7 +115,9 @@ The MedMNIST dataset contains several subsets. Each subset (e.g., `pathmnist.npz
 
 The code is under [Apache-2.0 License](./LICENSE).
 
-The MedMNIST dataset is licensed under *Creative Commons Attribution 4.0 International* ([CC BY 4.0](https://creativecommons.org/licenses/by/4.0/)).
+The MedMNIST dataset is licensed under *Creative Commons Attribution 4.0 International* ([CC BY 4.0](https://creativecommons.org/licenses/by/4.0/)), except DermaMNIST under 
+*Creative Commons Attribution-NonCommercial 4.0 International* ([CC BY-NC 4.0](https://creativecommons.org/licenses/by-nc/4.0/)).
+
 If you find this project useful in your research, please cite the following papers:
 
     Jiancheng Yang, Rui Shi, Donglai Wei, Zequan Liu, Lin Zhao, Bilian Ke, Hanspeter Pfister, Bingbing Ni. Yang, Jiancheng, et al. "MedMNIST v2-A large-scale lightweight benchmark for 2D and 3D biomedical image classification." Scientific Data, 2023.
@@ -146,6 +148,7 @@ or using the bibtex:
 Please also cite source data paper(s) of the MedMNIST subset(s) as per the description on the [project page](https://medmnist.github.io/).
 
 # Release Notes
+* `v2.2.3`: DermaMNIST license to CC BY-NC 4.0
 * `v2.2.2`: Python 3.11 `Sequence` from collections.abc supported
 * `v2.2.1`: PyPI info updated
 * `v2.2.0`: `montage` method supported for scikit-image>=0.20.0
