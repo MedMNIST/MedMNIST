@@ -1,6 +1,8 @@
 # MedMNIST: [medmnist.com](https://medmnist.github.io/)
 
-18x Standardized Datasets for 2D and 3D Biomedical Image Classification with Multiple Size Options: 28 (MNIST-Like), 64, 128, and 224
+18x Standardized Datasets for 2D and 3D Biomedical Image Classification with Multiple Size Options: 
+
+28 (MNIST-Like), 64, 128, and 224
 
 ## Data ([Zenodo](https://doi.org/10.5281/zenodo.10519652)) | Preprint ([arXiv](https://arxiv.org/abs/2110.14795)) | Publication v2 ([Scientific Data](https://doi.org/10.1038/s41597-022-01721-8)) | Publication v1 ([ISBI'21](https://doi.org/10.1109/ISBI48211.2021.9434062))  
 [Jiancheng Yang](https://jiancheng-yang.com/), Rui Shi, [Donglai Wei](https://donglaiw.github.io/), Zequan Liu, Lin Zhao, [Bilian Ke](https://scholar.google.com/citations?user=2cX5y8kAAAAJ&hl=en), [Hanspeter Pfister](https://scholar.google.com/citations?user=VWX-GMAAAAAJ&hl=en), [Bingbing Ni](https://scholar.google.com/citations?user=eUbmKwYAAAAJ)
