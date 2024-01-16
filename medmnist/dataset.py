@@ -15,6 +15,7 @@ class MedMNIST(Dataset):
                  target_transform=None,
                  download=False,
                  as_rgb=False,
+                 size=None,
                  root=DEFAULT_ROOT):
         ''' dataset
         :param split: 'train', 'val' or 'test', select subset
@@ -22,6 +23,19 @@ class MedMNIST(Dataset):
         :param target_transform: target transformation
 
         '''
+
+        if size is None:
+            self.size = 28
+            self.size_flag = ""
+        else:
+            assert size in self.available_sizes
+            self.size = size
+            self.size_flag = f"_{size}"
+            #TODO: use the size_flag to load the correct files in __init__() and download()
+            #TODO: use the size_flag in __main__.py
+            #TODO: test all
+            #TODO: a separate README for v3 large size
+            #TODO: new examples for v3 large size
 
         self.info = INFO[self.flag]
 
@@ -88,6 +102,8 @@ class MedMNIST(Dataset):
 
 class MedMNIST2D(MedMNIST):
 
+    available_sizes = [28, 64, 128, 224]
+
     def __getitem__(self, index):
         '''
         return: (without transform/target_transofrm)
@@ -139,6 +155,8 @@ class MedMNIST2D(MedMNIST):
 
 
 class MedMNIST3D(MedMNIST):
+
+    available_sizes = [28, 64]
 
     def __getitem__(self, index):
         '''
