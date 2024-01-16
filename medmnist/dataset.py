@@ -46,19 +46,14 @@ class MedMNIST(Dataset):
         self.target_transform = target_transform
         self.as_rgb = as_rgb
 
-        if self.split == 'train':
-            self.imgs = npz_file['train_images']
-            self.labels = npz_file['train_labels']
-        elif self.split == 'val':
-            self.imgs = npz_file['val_images']
-            self.labels = npz_file['val_labels']
-        elif self.split == 'test':
-            self.imgs = npz_file['test_images']
-            self.labels = npz_file['test_labels']
+        if self.split in ['train','val','test']:
+            self.imgs = npz_file[f'{self.split}_images']
+            self.labels = npz_file[f'{self.split}_labels']
         else:
             raise ValueError
 
     def __len__(self):
+        assert self.info['n_samples'][self.split] == self.imgs.shape[0]
         return self.imgs.shape[0]
 
     def __repr__(self):
