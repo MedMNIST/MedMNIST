@@ -21,13 +21,12 @@ def available():
 def download(size=None, root=DEFAULT_ROOT):
     """Download all available datasets."""
 
-    if size == "all":
-        sizes = [28, 64, 128, 224]
-
     if size is None:
         sizes = [28]
     elif size in [28, 64, 128, 224]:
         sizes = [size]
+    elif size == "all":
+        sizes = [28, 64, 128, 224]
     else:
         raise ValueError(f"Invalid size {size}.")
     
