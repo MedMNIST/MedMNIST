@@ -14,6 +14,7 @@ SPLIT_DICT = {
 
 def save2d(imgs, labels, img_folder,
            split, postfix, csv_path):
+    print(f"Saving {split} set to {img_folder}, csv_path={csv_path}...")
     return save_fn(imgs, labels, img_folder,
                    split, postfix, csv_path,
                    load_fn=lambda arr: Image.fromarray(arr),
@@ -36,6 +37,7 @@ def montage2d(imgs, n_channels, sel):
 
 def save3d(imgs, labels, img_folder,
            split, postfix, csv_path):
+    print(f"Saving {split} set to {img_folder}, csv_path={csv_path}...")
     return save_fn(imgs, labels, img_folder,
                    split, postfix, csv_path,
                    load_fn=load_frames,

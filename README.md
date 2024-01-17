@@ -1,8 +1,8 @@
 # MedMNIST: [medmnist.com](https://medmnist.github.io/)
 
-18x Standardized Datasets for 2D and 3D Biomedical Image Classification with Multiple Size Options: 
+### 18x Standardized Datasets for 2D and 3D Biomedical Image Classification
 
-28 (MNIST-Like), 64, 128, and 224
+Multiple Size Options: 28 (MNIST-Like), 64, 128, and 224
 
 ## Data ([Zenodo](https://doi.org/10.5281/zenodo.10519652)) | Preprint ([arXiv](https://arxiv.org/abs/2110.14795)) | Publication v2 ([Scientific Data](https://doi.org/10.1038/s41597-022-01721-8)) | Publication v1 ([ISBI'21](https://doi.org/10.1109/ISBI48211.2021.9434062))  
 [Jiancheng Yang](https://jiancheng-yang.com/), Rui Shi, [Donglai Wei](https://donglaiw.github.io/), Zequan Liu, Lin Zhao, [Bilian Ke](https://scholar.google.com/citations?user=2cX5y8kAAAAJ&hl=en), [Hanspeter Pfister](https://scholar.google.com/citations?user=VWX-GMAAAAAJ&hl=en), [Bingbing Ni](https://scholar.google.com/citations?user=eUbmKwYAAAAJ)
@@ -11,9 +11,11 @@
 
 We introduce *MedMNIST*, a large-scale MNIST-like collection of standardized biomedical images, including 12 datasets for 2D and 6 datasets for 3D. All images are pre-processed into 28x28 (2D) or 28x28x28 (3D) with the corresponding classification labels, so that no background knowledge is required for users. Covering primary data modalities in biomedical images, MedMNIST is designed to perform classification on lightweight 2D and 3D images with various data scales (from 100 to 100,000) and diverse tasks (binary/multi-class, ordinal regression and multi-label). The resulting dataset, consisting of approximately 708K 2D images and 10K 3D images in total, could support numerous research and educational purposes in biomedical image analysis, computer vision and machine learning. We benchmark several baseline methods on MedMNIST, including 2D / 3D neural networks and open-source / commercial AutoML tools.
 
-***Update***: We are thrilled to release MedMNIST with larger sizes: 64x64, 128x128, and 224x224 for 2D, and 64x64x64 for 3D. As a complement to the previous 28-size MedMNIST, the large-size version could serve as a standardized benchmark for medical foundation models. 
+***Update***: We are thrilled to release MedMNIST+ with larger sizes: 64x64, 128x128, and 224x224 for 2D, and 64x64x64 for 3D. As a complement to the previous 28-size MedMNIST, the large-size version could serve as a standardized benchmark for medical foundation models. Check the details about MedMNIST+ [here](/on_medmnist_plus.md).
 
-#TODO: API update.
+The MedMNIST+ API (v3.0.0) is being tested, not yet on PyPI (latest version on PyPI is still v2.2.4). To preview, please install from Git:
+        
+    pip install --upgrade git+https://github.com/MedMNIST/MedMNIST.git
 
 ![MedMNISTv2_overview](https://raw.githubusercontent.com/MedMNIST/MedMNIST/main/assets/medmnistv2.jpg)
 
@@ -28,7 +30,7 @@ or its conference version:
 # Key Features
 * ***Diverse***: It covers diverse data modalities, dataset scales (from 100 to 100,000), and tasks (binary/multi-class, multi-label, and ordinal regression). It is as diverse as the VDD and MSD to fairly evaluate the generalizable performance of machine learning algorithms in different settings, but both 2D and 3D biomedical images are provided. 
 * ***Standardized***: Each sub-dataset is pre-processed into the same format, which requires no background knowledge for users. As an MNIST-like dataset collection to perform classification tasks on small images, it primarily focuses on the machine learning part rather than the end-to-end system. Furthermore, we provide standard train-validation-test splits for all datasets in MedMNIST, therefore algorithms could be easily compared. 
-* ***User-Friendly***: The small size of 28×28 (2D) or 28×28×28 (3D) is lightweight and ideal for evaluating machine learning algorithms.
+* ***User-Friendly***: The small size of 28×28 (2D) or 28×28×28 (3D) is lightweight and ideal for evaluating machine learning algorithms. We also offer a larger-size version, MedMNIST+: 64x64 (2D), 128x128 (2D), 224x224 (2D), and 64x64x64 (3D). Serving as a complement to the 28-size MedMNIST, this could be a standardized resource for developing medical foundation models. All these datasets are accessible via the same API.
 * ***Educational***: As an interdisciplinary research area, biomedical image analysis is difficult to hand on for researchers from other communities, as it requires background knowledge from computer vision, machine learning, biomedical imaging, and clinical science. Our data with the Creative Commons (CC) License is easy to use for educational purposes.
 
 Please note that this dataset is **NOT** intended for clinical use.
@@ -53,7 +55,7 @@ Or install from source:
 
     pip install --upgrade git+https://github.com/MedMNIST/MedMNIST.git
 
-Check whether you have installed the latest [version](medmnist/info.py):
+Check whether you have installed the latest code [version](medmnist/info.py):
 
     >>> import medmnist
     >>> print(medmnist.__version__)
@@ -94,9 +96,11 @@ The MedMNIST dataset contains several subsets. Each subset (e.g., `pathmnist.npz
     
         python -m medmnist available
 
-* Download all available datasets:
+* Download all available datasets of a specific size:
     
-        python -m medmnist download
+        python -m medmnist download --size=28
+
+    By default,`size=None` (28).
 
 * Delete all downloaded npz from root:
 
@@ -110,15 +114,25 @@ The MedMNIST dataset contains several subsets. Each subset (e.g., `pathmnist.npz
 
     for 2D datasets:
 
-        python -m medmnist save --flag=xxxmnist --folder=tmp/ --postfix=png
+        python -m medmnist save --flag=xxxmnist --folder=tmp/ --postfix=png --download=True --size=28
         
     for 3D datasets:
 
-        python -m medmnist save --flag=xxxmnist3d --folder=tmp/ --postfix=gif
+        python -m medmnist save --flag=xxxmnist3d --folder=tmp/ --postfix=gif --download=True --size=28
+
+    By default, `download=False` and `size=None` (28).
 
 * Parse and evaluate a standard result file, refer to [`Evaluator.parse_and_evaluate`](medmnist/evaluator.py) for details.
 
-        python -m medmnist evaluate --path=folder/{flag}_{split}@{run}.csv
+        python -m medmnist evaluate --path=folder/{flag}{size_flag}_{split}@{run}.csv
+
+    Here, `size_flag` is blank for 28 images, and `_size` for larger images, e.g., "_64", e.g., 
+
+        python -m medmnist evaluate --path=bloodmnist_64_val_[AUC]0.486_[ACC]0.114@dummy.csv
+
+    or
+    
+        python -m medmnist evaluate --path=chestmnist_test_[AUC]0.500_[ACC]0.499@dummy.csv
 
 # License and Citation
 
@@ -157,6 +171,11 @@ or using the bibtex:
 Please also cite source data paper(s) of the MedMNIST subset(s) as per the description on the [project page](https://medmnist.github.io/).
 
 # Release Notes
+* [WIP] `v3.0.0`: MedMNIST+ featuring larger sizes: 64x64, 128x128, and 224x224 for 2D, and 64x64x64 for 3D.
+    - [ ] TODO: test all (`__main__.py`, `getting_started.ipynb`, `getting_started_without_PyTorch`, including using `Evaluator`)
+    - [ ] TODO: new examples for v3 large size (in `getting_started.ipynb`, `getting_started_without_PyTorch`, including using `Evaluator`)
+    - [ ] TODO: a [document](on_medmnist_plus.md) on MedMNIST+ details
+    - [ ] TODO: clean README, release on PyPI.
 * `v2.2.4`: removed a small number of blank samples in OrganAMNIST, OrganCMNIST, OrganSMNIST, OrganMNIST3D, and VesselMNIST3D. 
 * `v2.2.3`: DermaMNIST license to CC BY-NC 4.0
 * `v2.2.2`: Python 3.11 `Sequence` from collections.abc supported
