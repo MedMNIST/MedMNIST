@@ -13,7 +13,7 @@ We introduce *MedMNIST*, a large-scale MNIST-like collection of standardized bio
 
 ***Update***: We are thrilled to release MedMNIST+ with larger sizes: 64x64, 128x128, and 224x224 for 2D, and 64x64x64 for 3D. As a complement to the previous 28-size MedMNIST, the large-size version could serve as a standardized benchmark for medical foundation models. Check the details about MedMNIST+ [here](/on_medmnist_plus.md).
 
-The MedMNIST+ API (v3.0.0) is being tested, not yet on PyPI (latest version on PyPI is still v2.2.4). To preview, please install from Git:
+The MedMNIST+ API (v3.0.0) is being tested, not yet on PyPI (latest version on PyPI is still v2.2.4). To preview, please install from source:
         
     pip install --upgrade git+https://github.com/MedMNIST/MedMNIST.git
 
@@ -96,11 +96,13 @@ The MedMNIST dataset contains several subsets. Each subset (e.g., `pathmnist.npz
     
         python -m medmnist available
 
-* Download all available datasets of a specific size:
+* Download available datasets of a specific size (`size=None` (28) by default):
     
         python -m medmnist download --size=28
 
-    By default,`size=None` (28).
+    To download all available sizes:
+
+        python -m medmnist download --size=all
 
 * Delete all downloaded npz from root:
 

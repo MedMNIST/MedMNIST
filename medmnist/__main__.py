@@ -21,22 +21,30 @@ def available():
 def download(size=None, root=DEFAULT_ROOT):
     """Download all available datasets."""
 
-    if size is None:
-        size = 28
+    if size == "all":
+        sizes = [28, 64, 128, 224]
 
-    for key in INFO.keys():
-        available_sizes = getattr(medmnist, INFO[key]["python_class"]).available_sizes
-        if size in available_sizes:
-            print(
-                f"Downloading {key:<15} | {INFO[key]['python_class']:<15} | Size: {size}"
-            )
-            _ = getattr(medmnist, INFO[key]["python_class"])(
-                split="train", download=True, root=root, size=size
-            )
-        else:
-            print(
-                f"Size {size} not avaiable for {key:<15} | {INFO[key]['python_class']:<15}"
-            )
+    if size is None:
+        sizes = [28]
+    elif size in [28, 64, 128, 224]:
+        sizes = [size]
+    else:
+        raise ValueError(f"Invalid size {size}.")
+    
+    for size in sizes:
+        for key in INFO.keys():
+            available_sizes = getattr(medmnist, INFO[key]["python_class"]).available_sizes
+            if size in available_sizes:
+                print(
+                    f"Downloading {key:<15} | {INFO[key]['python_class']:<15} | Size: {size}"
+                )
+                _ = getattr(medmnist, INFO[key]["python_class"])(
+                    split="train", download=True, root=root, size=size
+                )
+            else:
+                print(
+                    f"Size {size} not avaiable for {key:<15} | {INFO[key]['python_class']:<15}"
+                )
 
 
 def clean(root=DEFAULT_ROOT):
