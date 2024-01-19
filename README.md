@@ -175,8 +175,8 @@ Please also cite source data paper(s) of the MedMNIST subset(s) as per the descr
 # Release Notes
 * [WIP] `v3.0.0`: MedMNIST+ featuring larger sizes: 64x64, 128x128, and 224x224 for 2D, and 64x64x64 for 3D.
     - [ ] TODO: test all (`__main__.py`, `getting_started.ipynb`, `getting_started_without_PyTorch`, including using `Evaluator`)
-    - [ ] TODO: new examples for v3 large size (in `getting_started.ipynb`, `getting_started_without_PyTorch`, including using `Evaluator`)
-    - [ ] TODO: a [document](on_medmnist_plus.md) on MedMNIST+ details
+    - [x] TODO: new examples for v3 large size (in `getting_started.ipynb`, `getting_started_without_PyTorch`, including using `Evaluator`)
+    - [x] TODO: a [document](on_medmnist_plus.md) on MedMNIST+ details
     - [ ] TODO: clean README, release on PyPI.
 * `v2.2.4`: removed a small number of blank samples in OrganAMNIST, OrganCMNIST, OrganSMNIST, OrganMNIST3D, and VesselMNIST3D. 
 * `v2.2.3`: DermaMNIST license to CC BY-NC 4.0
