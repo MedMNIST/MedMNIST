@@ -1,11 +1,12 @@
 # MedMNIST: [medmnist.com](https://medmnist.github.io/)
 
+## Data ([Zenodo](https://doi.org/10.5281/zenodo.10519652)) | Publication ([Nature Scientific Data'23](https://doi.org/10.1038/s41597-022-01721-8) / [ISBI'21](https://doi.org/10.1109/ISBI48211.2021.9434062)) | Preprint ([arXiv](https://arxiv.org/abs/2110.14795)) 
+[Jiancheng Yang](https://jiancheng-yang.com/), Rui Shi, [Donglai Wei](https://donglaiw.github.io/), Zequan Liu, Lin Zhao, [Bilian Ke](https://scholar.google.com/citations?user=2cX5y8kAAAAJ&hl=en), [Hanspeter Pfister](https://scholar.google.com/citations?user=VWX-GMAAAAAJ&hl=en), [Bingbing Ni](https://scholar.google.com/citations?user=eUbmKwYAAAAJ)
+
 ### 18x Standardized Datasets for 2D and 3D Biomedical Image Classification
 
 Multiple Size Options: 28 (MNIST-Like), 64, 128, and 224
 
-## Data ([Zenodo](https://doi.org/10.5281/zenodo.10519652)) | Publication ([Nature Scientific Data'23](https://doi.org/10.1038/s41597-022-01721-8) / [ISBI'21](https://doi.org/10.1109/ISBI48211.2021.9434062)) | Preprint ([arXiv](https://arxiv.org/abs/2110.14795)) 
-[Jiancheng Yang](https://jiancheng-yang.com/), Rui Shi, [Donglai Wei](https://donglaiw.github.io/), Zequan Liu, Lin Zhao, [Bilian Ke](https://scholar.google.com/citations?user=2cX5y8kAAAAJ&hl=en), [Hanspeter Pfister](https://scholar.google.com/citations?user=VWX-GMAAAAAJ&hl=en), [Bingbing Ni](https://scholar.google.com/citations?user=eUbmKwYAAAAJ)
 
 [![](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/MedMNIST/MedMNIST/blob/main/examples/getting_started.ipynb)
 
@@ -51,7 +52,7 @@ Or install from source:
 
     pip install --upgrade git+https://github.com/MedMNIST/MedMNIST.git
 
-Check whether you have installed the latest code [version](medmnist/info.py):
+Check whether you have installed the latest code [version](medmnist/info.py#L1):
 
     >>> import medmnist
     >>> print(medmnist.__version__)
