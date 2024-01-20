@@ -4,24 +4,20 @@
 
 Multiple Size Options: 28 (MNIST-Like), 64, 128, and 224
 
-## Data ([Zenodo](https://doi.org/10.5281/zenodo.10519652)) | Preprint ([arXiv](https://arxiv.org/abs/2110.14795)) | Publication v2 ([Scientific Data](https://doi.org/10.1038/s41597-022-01721-8)) | Publication v1 ([ISBI'21](https://doi.org/10.1109/ISBI48211.2021.9434062))  
+## Data ([Zenodo](https://doi.org/10.5281/zenodo.10519652)) | Publication ([Nature Scientific Data'23](https://doi.org/10.1038/s41597-022-01721-8) / [ISBI'21](https://doi.org/10.1109/ISBI48211.2021.9434062)) | Preprint ([arXiv](https://arxiv.org/abs/2110.14795)) 
 [Jiancheng Yang](https://jiancheng-yang.com/), Rui Shi, [Donglai Wei](https://donglaiw.github.io/), Zequan Liu, Lin Zhao, [Bilian Ke](https://scholar.google.com/citations?user=2cX5y8kAAAAJ&hl=en), [Hanspeter Pfister](https://scholar.google.com/citations?user=VWX-GMAAAAAJ&hl=en), [Bingbing Ni](https://scholar.google.com/citations?user=eUbmKwYAAAAJ)
 
 [![](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/MedMNIST/MedMNIST/blob/main/examples/getting_started.ipynb)
 
 We introduce *MedMNIST*, a large-scale MNIST-like collection of standardized biomedical images, including 12 datasets for 2D and 6 datasets for 3D. All images are pre-processed into 28x28 (2D) or 28x28x28 (3D) with the corresponding classification labels, so that no background knowledge is required for users. Covering primary data modalities in biomedical images, MedMNIST is designed to perform classification on lightweight 2D and 3D images with various data scales (from 100 to 100,000) and diverse tasks (binary/multi-class, ordinal regression and multi-label). The resulting dataset, consisting of approximately 708K 2D images and 10K 3D images in total, could support numerous research and educational purposes in biomedical image analysis, computer vision and machine learning. We benchmark several baseline methods on MedMNIST, including 2D / 3D neural networks and open-source / commercial AutoML tools.
 
-***Update***: We are thrilled to release MedMNIST+ with larger sizes: 64x64, 128x128, and 224x224 for 2D, and 64x64x64 for 3D. As a complement to the previous 28-size MedMNIST, the large-size version could serve as a standardized benchmark for medical foundation models. Check the details about MedMNIST+ [here](/on_medmnist_plus.md).
-
-The MedMNIST+ API (v3.0.0) is being tested, not yet on PyPI (latest version on PyPI is still v2.2.4). To preview, please install from source:
-        
-    pip install --upgrade git+https://github.com/MedMNIST/MedMNIST.git
+***Update***: We are thrilled to release [MedMNIST+](on_medmnist_plus.md) with larger sizes: 64x64, 128x128, and 224x224 for 2D, and 64x64x64 for 3D. As a complement to the previous 28-size MedMNIST, the large-size version could serve as a standardized benchmark for medical foundation models. Install the latest API to try it out!
 
 ![MedMNISTv2_overview](https://raw.githubusercontent.com/MedMNIST/MedMNIST/main/assets/medmnistv2.jpg)
 
 For more details, please refer to our paper:
 
-**MedMNIST v2: A Large-Scale Lightweight Benchmark for 2D and 3D Biomedical Image Classification** ([Scientific Data](https://doi.org/10.1038/s41597-022-01721-8) / [arXiv](https://arxiv.org/abs/2110.14795))
+**MedMNIST v2: A Large-Scale Lightweight Benchmark for 2D and 3D Biomedical Image Classification** ([Nature Scientific Data'23](https://doi.org/10.1038/s41597-022-01721-8))
 
 or its conference version:
 
@@ -68,14 +64,31 @@ The code requires only common Python environments for machine learning. Basicall
 
 Higher (or lower) versions should also work (perhaps with minor modifications). 
 
-# If you use PyTorch...
+# Quick Start
+
+To use the standard 28-size (MNIST-like) version utilizing the downloaded files:
+
+    >>> from medmnist import PathMNIST
+    >>> train_dataset = PathMNIST(split="train")
+
+To enable automatic downloading by setting `download=True`:
+
+    >>> from medmnist import NoduleMNIST3D
+    >>> val_dataset = NoduleMNIST3D(split="val", download=True)
+
+Alternatively, you can access [MedMNIST+](on_medmnist_plus.md) with larger image sizes by specifying the `size` parameter:
+
+    >>> from medmnist import ChestMNIST
+    >>> test_dataset = ChestMNIST(split="test", download=True, size=224)
+
+## If you use PyTorch...
 
 * Great! Our code is designed to work with PyTorch.
 
 * Explore the MedMNIST dataset with jupyter notebook ([`getting_started.ipynb`](examples/getting_started.ipynb)), and train basic neural networks in PyTorch.
 
 
-# If you do not use PyTorch...
+## If you do not use PyTorch...
 
 * Although our code is tested with PyTorch, you are free to parse them with your own code (without PyTorch or even without Python!), as they are only standard NumPy serialization files. It is simple to create a dataset without PyTorch.
 * Go to [`getting_started_without_PyTorch.ipynb`](examples/getting_started_without_PyTorch.ipynb), which provides snippets about how to use MedMNIST data (the `.npz` files) without PyTorch.
@@ -173,12 +186,8 @@ or using the bibtex:
 Please also cite source data paper(s) of the MedMNIST subset(s) as per the description on the [project page](https://medmnist.github.io/).
 
 # Release Notes
-* [WIP] `v3.0.0`: MedMNIST+ featuring larger sizes: 64x64, 128x128, and 224x224 for 2D, and 64x64x64 for 3D.
-    - [ ] TODO: test all (`__main__.py`, `getting_started.ipynb`, `getting_started_without_PyTorch`, including using `Evaluator`)
-    - [x] TODO: new examples for v3 large size (in `getting_started.ipynb`, `getting_started_without_PyTorch`, including using `Evaluator`)
-    - [x] TODO: a [document](on_medmnist_plus.md) on MedMNIST+ details
-    - [ ] TODO: clean README, release on PyPI.
-* `v2.2.4`: removed a small number of blank samples in OrganAMNIST, OrganCMNIST, OrganSMNIST, OrganMNIST3D, and VesselMNIST3D. 
+* `v3.0.0`: MedMNIST+ featuring larger sizes: 64x64, 128x128, and 224x224 for 2D, and 64x64x64 for 3D.
+* `v2.2.4`: Removed a small number of blank samples in OrganAMNIST, OrganCMNIST, OrganSMNIST, OrganMNIST3D, and VesselMNIST3D. 
 * `v2.2.3`: DermaMNIST license to CC BY-NC 4.0
 * `v2.2.2`: Python 3.11 `Sequence` from collections.abc supported
 * `v2.2.1`: PyPI info updated

@@ -1,10 +1,10 @@
 # How we generated the MedMNIST+ (the larger-size version of MedMNIST)
 
-The data in MedMNIST+ corresponds one-to-one with that in MedMNIST (size 28x28 for 2D, 28x28x28 for 3D), with the only difference lying in the resolution of the images. In other words, the dataset splits (*i.e.* train, val, and test) and the sample indices are the same for MedMNIST and MedMNIST+. 
+The data in MedMNIST+ directly corresponds to that of MedMNIST, maintaining the same dataset splits (i.e., train, val, and test) and sample indices. The primary distinction between the two lies in the image sizes. For 2D images, MedMNIST+ offers sizes of 28x28, 64x64, 128x128, and 224x224 pixels, whereas for 3D images, sizes of 28x28x28 and 64x64x64 are available.
 
-It is important to emphasize that for the data obtained through center-crop followed by resizing in MedMNIST, we use the same size for center-crop and subsequently resize to obtain the target resolution in MedMNIST+. 
+It's crucial to note that in MedMNIST, where data is processed through center-cropping followed by resizing, MedMNIST+ employs the same initial center-crop size and then resizes the images to achieve the desired target resolutions.
 
-We will describe the details of MedMNIST+, compared with MedMNIST. More details of MedMNIST can be found in our [paper](https://doi.org/10.1038/s41597-022-01721-8).
+We will describe the details of MedMNIST+, compared with MedMNIST. More details of the standard MedMNIST can be found in our [paper](https://doi.org/10.1038/s41597-022-01721-8).
 
 ### PathMNIST
 In MedMNIST, we resize the source images of 3×224×224 into 3×28×28. 
