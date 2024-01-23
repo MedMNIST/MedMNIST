@@ -111,9 +111,17 @@ class MedMNIST(Dataset):
             )
         except:
             raise RuntimeError(
-                "Something went wrong when downloading! "
-                + "Go to the homepage to download manually. "
-                + HOMEPAGE
+                f"""
+                Automatic download failed! Please download {self.flag}{self.size_flag}.npz manually.
+                1. [Optional] Check your network connection: 
+                    Go to {HOMEPAGE} and find the Zenodo repository
+                2. Download the npz file from the Zenodo repository or its Zenodo data link: 
+                    {self.info[f"url{self.size_flag}"]}
+                3. [Optional] Verify the MD5: 
+                    {self.info[f"MD5{self.size_flag}"]}
+                4. Put the npz file under your MedMNIST root folder: 
+                    {self.root}
+                """
             )
 
 

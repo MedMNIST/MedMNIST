@@ -187,6 +187,7 @@ or using the bibtex:
 Please also cite source data paper(s) of the MedMNIST subset(s) as per the description on the [project page](https://medmnist.github.io/).
 
 # Release Notes
+* `v3.0.1`: Updated the downloading error message to make it more instructive.
 * `v3.0.0`: MedMNIST+ featuring larger sizes: 64x64, 128x128, and 224x224 for 2D, and 64x64x64 for 3D.
 * `v2.2.4`: Removed a small number of blank samples in OrganAMNIST, OrganCMNIST, OrganSMNIST, OrganMNIST3D, and VesselMNIST3D. 
 * `v2.2.3`: DermaMNIST license to CC BY-NC 4.0
