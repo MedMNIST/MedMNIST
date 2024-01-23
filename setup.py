@@ -26,7 +26,7 @@ setup(
     author='MedMNIST Team',
     author_email='jiancheng.yang@epfl.ch',
     python_requires=">=3.6.0",
-    description='MedMNIST: 18 MNIST-like Datasets for 2D and 3D Biomedical Image Classification',
+    description='[MedMNIST+] 18x Standardized Datasets for 2D and 3D Biomedical Image Classification with Multiple Size Options: 28 (MNIST-Like), 64, 128, and 224',
     long_description=readme(),
     long_description_content_type="text/markdown",
     packages=find_packages(),
