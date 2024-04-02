@@ -27,7 +27,7 @@ or its conference version:
 # Key Features
 * ***Diverse***: It covers diverse data modalities, dataset scales (from 100 to 100,000), and tasks (binary/multi-class, multi-label, and ordinal regression). It is as diverse as the VDD and MSD to fairly evaluate the generalizable performance of machine learning algorithms in different settings, but both 2D and 3D biomedical images are provided. 
 * ***Standardized***: Each sub-dataset is pre-processed into the same format, which requires no background knowledge for users. As an MNIST-like dataset collection to perform classification tasks on small images, it primarily focuses on the machine learning part rather than the end-to-end system. Furthermore, we provide standard train-validation-test splits for all datasets in MedMNIST, therefore algorithms could be easily compared. 
-* ***User-Friendly***: The small size of 28×28 (2D) or 28×28×28 (3D) is lightweight and ideal for evaluating machine learning algorithms. We also offer a larger-size version, MedMNIST+: 64x64 (2D), 128x128 (2D), 224x224 (2D), and 64x64x64 (3D). Serving as a complement to the 28-size MedMNIST, this could be a standardized resource for developing medical foundation models. All these datasets are accessible via the same API.
+* ***User-Friendly***: The small size of 28x28 (2D) or 28x28x28 (3D) is lightweight and ideal for evaluating machine learning algorithms. We also offer a larger-size version, MedMNIST+: 64x64 (2D), 128x128 (2D), 224x224 (2D), and 64x64x64 (3D). Serving as a complement to the 28-size MedMNIST, this could be a standardized resource for developing medical foundation models. All these datasets are accessible via the same API.
 * ***Educational***: As an interdisciplinary research area, biomedical image analysis is difficult to hand on for researchers from other communities, as it requires background knowledge from computer vision, machine learning, biomedical imaging, and clinical science. Our data with the Creative Commons (CC) License is easy to use for educational purposes.
 
 Please note that this dataset is **NOT** intended for clinical use.
@@ -102,7 +102,9 @@ Please download the dataset(s) via Zenodo. You could also use our code to downlo
 
 The MedMNIST dataset contains several subsets. Each subset (e.g., `pathmnist.npz`) is comprised of 6 keys: `train_images`, `train_labels`, `val_images`, `val_labels`, `test_images` and `test_labels`.
 * `train_images` / `val_images` / `test_images`: `N` × 28 × 28 for 2D gray-scale datasets, `N` × 28 × 28 × 3 for 2D RGB datasets, `N` × 28 × 28 × 28 for 3D datasets. `N` denotes the number of samples.  
-* `train_labels` / `val_labels` / `test_labels`: `N` x `L`. `N` denotes the number of samples. `L` denotes the number of task labels; for single-label (binary/multi-class) classification, `L=1`, and `{0,1,2,3,..,C}` denotes the category labels (`C=1` for binary); for multi-label classification `L!=1`, e.g., `L=14` for `chestmnist.npz`.
+* `train_labels` / `val_labels` / `test_labels`: `N` × `L`. `N` denotes the number of samples. `L` denotes the number of task labels; for single-label (binary/multi-class) classification, `L=1`, and `{0,1,2,3,..,C}` denotes the category labels (`C=1` for binary); for multi-label classification `L!=1`, e.g., `L=14` for `chestmnist.npz`.
+
+Additionally, we provide a CSV file for each MedMNIST subset [here](https://drive.google.com/drive/folders/1A_99qH_c-J0p_SatwSiaP_i1CvLUOzVo?usp=sharing), which maps the "image_id" in the subset to the corresponding image in the source dataset. For each entry, it details the specific "split" and "index" within the MedMNIST subset, along with the corresponding image name from the official source dataset.
 
 # Command Line Tools
 
