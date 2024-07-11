@@ -31,7 +31,7 @@ class Evaluator:
                 + "Please specify and create the `root` directory manually."
             )
 
-        npz_file = np.load(os.path.join(self.root, "{}.npz".format(self.flag)))
+        npz_file = np.load(os.path.join(self.root, f"{self.flag}{self.size_flag}.npz"))
 
         self.info = INFO[self.flag]
 
