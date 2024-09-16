@@ -3,6 +3,9 @@
 #     python3 setup.py sdist bdist_wheel
 #     python3 -m twine upload dist/*
 #
+# To clean up:  
+#
+#     rm -rf build dist medmnist.egg-info
 
 from setuptools import setup, find_packages
 
