@@ -10,6 +10,8 @@ Multiple Size Options: 28 (MNIST-Like), 64, 128, and 224
 
 [![](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/MedMNIST/MedMNIST/blob/main/examples/getting_started.ipynb)
 
+***Disclaimer***: The only official distribution link for the MedMNIST dataset is [Zenodo](https://doi.org/10.5281/zenodo.10519652). We kindly request users to refer to this original dataset link for accurate and up-to-date data.
+
 We introduce *MedMNIST*, a large-scale MNIST-like collection of standardized biomedical images, including 12 datasets for 2D and 6 datasets for 3D. All images are pre-processed into 28x28 (2D) or 28x28x28 (3D) with the corresponding classification labels, so that no background knowledge is required for users. Covering primary data modalities in biomedical images, MedMNIST is designed to perform classification on lightweight 2D and 3D images with various data scales (from 100 to 100,000) and diverse tasks (binary/multi-class, ordinal regression and multi-label). The resulting dataset, consisting of approximately 708K 2D images and 10K 3D images in total, could support numerous research and educational purposes in biomedical image analysis, computer vision and machine learning. We benchmark several baseline methods on MedMNIST, including 2D / 3D neural networks and open-source / commercial AutoML tools.
 
 ***Update***: We are thrilled to release [MedMNIST+](on_medmnist_plus.md) with larger sizes: 64x64, 128x128, and 224x224 for 2D, and 64x64x64 for 3D. As a complement to the previous 28-size MedMNIST, the large-size version could serve as a standardized benchmark for medical foundation models. Install the latest API to try it out!
@@ -156,10 +158,8 @@ Additionally, we provide a CSV file for each MedMNIST subset [here](https://driv
 
 # License and Citation
 
-The code is under [Apache-2.0 License](./LICENSE).
-
 The MedMNIST dataset is licensed under *Creative Commons Attribution 4.0 International* ([CC BY 4.0](https://creativecommons.org/licenses/by/4.0/)), except DermaMNIST under 
-*Creative Commons Attribution-NonCommercial 4.0 International* ([CC BY-NC 4.0](https://creativecommons.org/licenses/by-nc/4.0/)).
+*Creative Commons Attribution-NonCommercial 4.0 International* ([CC BY-NC 4.0](https://creativecommons.org/licenses/by-nc/4.0/)). The code is under [Apache-2.0 License](./LICENSE).
 
 If you find this project useful in your research, please cite the following papers:
 
