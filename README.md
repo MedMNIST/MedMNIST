@@ -10,13 +10,14 @@ Multiple Size Options: 28 (MNIST-Like), 64, 128, and 224
 
 [![](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/MedMNIST/MedMNIST/blob/main/examples/getting_started.ipynb)
 
-***Disclaimer***: The only official distribution link for the MedMNIST dataset is [Zenodo](https://doi.org/10.5281/zenodo.10519652). We kindly request users to refer to this original dataset link for accurate and up-to-date data.
-
 We introduce *MedMNIST*, a large-scale MNIST-like collection of standardized biomedical images, including 12 datasets for 2D and 6 datasets for 3D. All images are pre-processed into 28x28 (2D) or 28x28x28 (3D) with the corresponding classification labels, so that no background knowledge is required for users. Covering primary data modalities in biomedical images, MedMNIST is designed to perform classification on lightweight 2D and 3D images with various data scales (from 100 to 100,000) and diverse tasks (binary/multi-class, ordinal regression and multi-label). The resulting dataset, consisting of approximately 708K 2D images and 10K 3D images in total, could support numerous research and educational purposes in biomedical image analysis, computer vision and machine learning. We benchmark several baseline methods on MedMNIST, including 2D / 3D neural networks and open-source / commercial AutoML tools.
+
+***Disclaimer***: The only official distribution link for the MedMNIST dataset is [Zenodo](https://doi.org/10.5281/zenodo.10519652). We kindly request users to refer to this original dataset link for accurate and up-to-date data.
 
 ***Update***: We are thrilled to release [MedMNIST+](on_medmnist_plus.md) with larger sizes: 64x64, 128x128, and 224x224 for 2D, and 64x64x64 for 3D. As a complement to the previous 28-size MedMNIST, the large-size version could serve as a standardized benchmark for medical foundation models. Install the latest API to try it out!
 
 ***Third-Party Update***: [@sdoerrich97](https://github.com/sdoerrich97) released a comprehensive evaluation for MedMNIST+ covering 10 different deep learning models trained via 3 distinct training schemes across all 12 2D datasets and available image resolutions (28x28, 64x64, 128x128, and 224x224), which may be interesting for the MedMNIST community. Check the issue [here](https://github.com/MedMNIST/MedMNIST/issues/43).
+
 
 ![MedMNISTv2_overview](https://raw.githubusercontent.com/MedMNIST/MedMNIST/main/assets/medmnistv2.jpg)
 
