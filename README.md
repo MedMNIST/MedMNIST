@@ -14,9 +14,12 @@ We introduce *MedMNIST*, a large-scale MNIST-like collection of standardized bio
 
 ***Disclaimer***: The only official distribution link for the MedMNIST dataset is [Zenodo](https://doi.org/10.5281/zenodo.10519652). We kindly request users to refer to this original dataset link for accurate and up-to-date data.
 
-***Update***: We are thrilled to release [MedMNIST+](on_medmnist_plus.md) with larger sizes: 64x64, 128x128, and 224x224 for 2D, and 64x64x64 for 3D. As a complement to the previous 28-size MedMNIST, the large-size version could serve as a standardized benchmark for medical foundation models. Install the latest API to try it out!
+***Update 2024-01-17***: We are thrilled to release [MedMNIST+](on_medmnist_plus.md) with larger sizes: 64x64, 128x128, and 224x224 for 2D, and 64x64x64 for 3D. As a complement to the previous 28-size MedMNIST, the large-size version could serve as a standardized benchmark for medical foundation models. Install the latest API to try it out!
 
-***Third-Party Update***: [@sdoerrich97](https://github.com/sdoerrich97) released a comprehensive evaluation for MedMNIST+ covering 10 different deep learning models trained via 3 distinct training schemes across all 12 2D datasets and available image resolutions (28x28, 64x64, 128x128, and 224x224), which may be interesting for the MedMNIST community. Check the issue [here](https://github.com/MedMNIST/MedMNIST/issues/43).
+***Third-Party Update 2024-05-13***: [@sdoerrich97](https://github.com/sdoerrich97) released a comprehensive evaluation for MedMNIST+ covering 10 different deep learning models trained via 3 distinct training schemes across all 12 2D datasets and available image resolutions (28x28, 64x64, 128x128, and 224x224), which may be interesting for the MedMNIST community. Check the issue [here](https://github.com/MedMNIST/MedMNIST/issues/43).
+
+***Third-Party Update 2024-12-20***: [@francescodisalvo05](https://github.com/francescodisalvo05) introduced MedMNIST-C, a corrupted version of the MedMNIST datasets, with modality-specific image corruptions and augmentation APIs, inspired by the ImageNet-C benchmark. This work is aimed at evaluating and enhancing model robustness. Check the issue [here](https://github.com/MedMNIST/MedMNIST/issues/63).
+
 
 
 ![MedMNISTv2_overview](https://raw.githubusercontent.com/MedMNIST/MedMNIST/main/assets/medmnistv2.jpg)
