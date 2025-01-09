@@ -7,22 +7,13 @@
 
 Multiple Size Options: 28 (MNIST-Like), 64, 128, and 224
 
+***Update 2024-01-17***: We are thrilled to release [MedMNIST+](on_medmnist_plus.md) with larger sizes: 64x64, 128x128, and 224x224 for 2D, and 64x64x64 for 3D. As a complement to the previous 28-size MedMNIST, the large-size version could serve as a standardized benchmark for medical foundation models. Install the latest API to try it out!
 
 [![](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/MedMNIST/MedMNIST/blob/main/examples/getting_started.ipynb)
 
-We introduce *MedMNIST*, a large-scale MNIST-like collection of standardized biomedical images, including 12 datasets for 2D and 6 datasets for 3D. All images are pre-processed into 28x28 (2D) or 28x28x28 (3D) with the corresponding classification labels, so that no background knowledge is required for users. Covering primary data modalities in biomedical images, MedMNIST is designed to perform classification on lightweight 2D and 3D images with various data scales (from 100 to 100,000) and diverse tasks (binary/multi-class, ordinal regression and multi-label). The resulting dataset, consisting of approximately 708K 2D images and 10K 3D images in total, could support numerous research and educational purposes in biomedical image analysis, computer vision and machine learning. We benchmark several baseline methods on MedMNIST, including 2D / 3D neural networks and open-source / commercial AutoML tools.
-
-***Disclaimer***: The only official distribution link for the MedMNIST dataset is [Zenodo](https://doi.org/10.5281/zenodo.10519652). We kindly request users to refer to this original dataset link for accurate and up-to-date data.
-
-***Update 2024-01-17***: We are thrilled to release [MedMNIST+](on_medmnist_plus.md) with larger sizes: 64x64, 128x128, and 224x224 for 2D, and 64x64x64 for 3D. As a complement to the previous 28-size MedMNIST, the large-size version could serve as a standardized benchmark for medical foundation models. Install the latest API to try it out!
-
-***Third-Party Update 2024-05-13***: [@sdoerrich97](https://github.com/sdoerrich97) released a comprehensive evaluation for MedMNIST+ covering 10 different deep learning models trained via 3 distinct training schemes across all 12 2D datasets and available image resolutions (28x28, 64x64, 128x128, and 224x224), which may be interesting for the MedMNIST community. Check the issue [here](https://github.com/MedMNIST/MedMNIST/issues/43).
-
-***Third-Party Update 2024-12-20***: [@francescodisalvo05](https://github.com/francescodisalvo05) introduced MedMNIST-C, a corrupted version of the MedMNIST datasets, with modality-specific image corruptions and augmentation APIs, inspired by the ImageNet-C benchmark. This work is aimed at evaluating and enhancing model robustness. Check the issue [here](https://github.com/MedMNIST/MedMNIST/issues/63).
-
-
-
 ![MedMNISTv2_overview](https://raw.githubusercontent.com/MedMNIST/MedMNIST/main/assets/medmnistv2.jpg)
+
+We introduce *MedMNIST*, a large-scale MNIST-like collection of standardized biomedical images, including 12 datasets for 2D and 6 datasets for 3D. All images are standardized into multiple size options (MNIST-like 28, 64, 128, and 224)with the corresponding classification labels, so that no background knowledge is required for users. Covering primary data modalities in biomedical images, MedMNIST is designed to perform classification on lightweight 2D and 3D images with various data scales (from 100 to 100,000) and diverse tasks (binary/multi-class, ordinal regression and multi-label). The resulting dataset, consisting of approximately 708K 2D images and 10K 3D images in total, could support numerous research and educational purposes in biomedical image analysis, computer vision and machine learning. We benchmark several baseline methods on MedMNIST, including 2D / 3D neural networks and open-source / commercial AutoML tools.
 
 For more details, please refer to our paper:
 
@@ -39,6 +30,14 @@ or its conference version:
 * ***Educational***: As an interdisciplinary research area, biomedical image analysis is difficult to hand on for researchers from other communities, as it requires background knowledge from computer vision, machine learning, biomedical imaging, and clinical science. Our data with the Creative Commons (CC) License is easy to use for educational purposes.
 
 Please note that this dataset is **NOT** intended for clinical use.
+
+# Third-Party Contributions
+
+***Update 2024-05-13***: [@sdoerrich97](https://github.com/sdoerrich97) released a comprehensive evaluation for MedMNIST+ covering 10 different deep learning models trained via 3 distinct training schemes across all 12 2D datasets and available image resolutions (28x28, 64x64, 128x128, and 224x224), which may be interesting for the MedMNIST community. Check the issue [here](https://github.com/MedMNIST/MedMNIST/issues/43).
+
+***Update 2024-12-20***: [@francescodisalvo05](https://github.com/francescodisalvo05) introduced MedMNIST-C, a corrupted version of the MedMNIST datasets, with modality-specific image corruptions and augmentation APIs, inspired by the ImageNet-C benchmark. This work is aimed at evaluating and enhancing model robustness. Check the issue [here](https://github.com/MedMNIST/MedMNIST/issues/63).
+
+***Update 2025-01-08***: [@amithjkamath](https://github.com/amithjkamath) introduced a MATLAB API for MedMNIST. Check the issue [here](https://github.com/MedMNIST/MedMNIST/issues/64).
 
 # Code Structure
 * [`medmnist/`](medmnist/):
@@ -104,9 +103,11 @@ Alternatively, you can access [MedMNIST+](on_medmnist_plus.md) with larger image
 * Simply change the super class of `MedMNIST` from `torch.utils.data.Dataset` to `collections.Sequence`, you will get a standard dataset without PyTorch. Check [`dataset_without_pytorch.py`](examples/dataset_without_pytorch.py) for more details.
 * You still have most functionality of our MedMNIST code ;)
 
-# Dataset
+# Data Files
 
-Please download the dataset(s) via Zenodo. You could also use our code to download automatically by setting `download=True` in [`dataset.py`](medmnist/dataset.py).
+The only official distribution link for the MedMNIST dataset is [Zenodo](https://doi.org/10.5281/zenodo.10519652). We kindly request users to refer to this original dataset link for accurate and up-to-date data.
+
+You could also use our code to download automatically by setting `download=True` in [`dataset.py`](medmnist/dataset.py).
 
 The MedMNIST dataset contains several subsets. Each subset (e.g., `pathmnist.npz`) is comprised of 6 keys: `train_images`, `train_labels`, `val_images`, `val_labels`, `test_images` and `test_labels`.
 * `train_images` / `val_images` / `test_images`: `N` × 28 × 28 for 2D gray-scale datasets, `N` × 28 × 28 × 3 for 2D RGB datasets, `N` × 28 × 28 × 28 for 3D datasets. `N` denotes the number of samples.  
@@ -159,6 +160,7 @@ Additionally, we provide a CSV file for each MedMNIST subset [here](https://driv
     or
     
         python -m medmnist evaluate --path=chestmnist_test_[AUC]0.500_[ACC]0.499@dummy.csv
+  
 
 # License and Citation
 
@@ -207,3 +209,4 @@ Please also cite source data paper(s) of the MedMNIST subset(s) as per the descr
 * `v2.0.0`: MedMNIST v2 release (on PyPI)
 * `v1.0.0`: MedMNIST v1 release
 * `v0.2.0`: MedMNIST beta release
+
