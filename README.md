@@ -31,7 +31,7 @@ or its conference version:
 
 Please note that this dataset is **NOT** intended for clinical use.
 
-# Third-Party Contributions
+# Highlighted Third-Party Contributions
 
 ***Update 2024-05-13***: [@sdoerrich97](https://github.com/sdoerrich97) released a comprehensive evaluation for MedMNIST+ covering 10 different deep learning models trained via 3 distinct training schemes across all 12 2D datasets and available image resolutions (28x28, 64x64, 128x128, and 224x224), which may be interesting for the MedMNIST community. Check the issue [here](https://github.com/MedMNIST/MedMNIST/issues/43).
 
